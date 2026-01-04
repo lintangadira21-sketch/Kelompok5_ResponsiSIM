@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cari Barang - Mall Lost & Found</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- 1. COLOR & VARIABLES */
+      :root {
+        --praxeti-white: #f8f9fa;
+        --mantis: #74c365;
+        --spring-pop: #dbe64c;
+        --midnight-mirage: #001f3f;
+        --nuit-blanche: #1e488f;
+        --picture-green: #00804c;
+
+        --shadow-soft: 0 15px 35px -5px rgba(0, 31, 63, 0.06);
+        --shadow-hover: 0 30px 60px -10px rgba(0, 31, 63, 0.12);
+        --shadow-glow: 0 0 20px rgba(219, 230, 76, 0.4);
+
+        --ease-elastic: cubic-bezier(0.43, 1.6, 0.56, 1);
+        --ease-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f2f4f6;
+        background-image: radial-gradient(
+            at 0% 0%,
+            rgba(219, 230, 76, 0.15) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 100% 0%,
+            rgba(30, 72, 143, 0.1) 0px,
+            transparent 50%
+          );
+        color: var(--midnight-mirage);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        padding-top: 100px; 
+      }
+
+      /* --- 2. NAVBAR --- */
+      .navbar-container {
+        position: fixed !important;
+        top: 25px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 0 20px !important;
+        pointer-events: none !important;
+      }
+
+      .navbar {
+        width: 100% !important;
+        max-width: 1140px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-radius: 50px !important;
+        padding: 12px 24px !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.12) !important;
+        transition: all 0.4s ease !important;
+        pointer-events: auto !important;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 12px 48px rgba(0, 31, 63, 0.15) !important;
+      }
+
+      .navbar-brand {
+        font-weight: 800 !important;
+        font-size: 1.5rem !important;
+        color: var(--midnight-mirage) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-decoration: none !important;
+        transition: transform 0.3s !important;
+        font-family: "Outfit", sans-serif !important;
+      }
+
+      .navbar-brand:hover {
+        transform: translateY(-2px) !important;
+      }
+
+      .text-green {
+        color: var(--picture-green) !important;
+        font-weight: 800 !important;
+      }
+
+      .brand-icon-box {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        filter: none !important;
+      }
+
+      .nav-link {
+        font-weight: 600 !important;
+        color: var(--midnight-mirage) !important;
+        margin: 0 6px !important;
+        padding: 8px 18px !important;
+        border-radius: 25px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        position: relative !important;
+        overflow: hidden !important;
+        font-family: "Inter", sans-serif !important;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 31, 63, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .nav-link:hover::before {
+        left: 100%;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--nuit-blanche) !important;
+        background: rgba(30, 72, 143, 0.08) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .lang-switch-box {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+        padding: 8px 16px !important;
+        border-radius: 25px !important;
+        transition: all 0.3s !important;
+        border: 1px solid rgba(0, 31, 63, 0.1) !important;
+        font-family: "Inter", sans-serif !important;
+      }
+
+      .lang-switch-box:hover {
+        background: rgba(0, 31, 63, 0.08) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .lang-opt {
+        cursor: pointer !important;
+        opacity: 0.4 !important;
+        transition: all 0.3s !important;
+        user-select: none !important;
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+      }
+
+      .lang-opt:hover {
+        opacity: 0.7 !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+      }
+
+      .lang-opt.active {
+        opacity: 1 !important;
+        color: var(--nuit-blanche) !important;
+        background: rgba(30, 72, 143, 0.1) !important;
+        font-weight: 800 !important;
+      }
+
+      .navbar-toggler {
+        border: none !important;
+        padding: 10px 14px !important;
+        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      .navbar-toggler:hover {
+        background: white !important;
+        transform: scale(1.05) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 3px rgba(219, 230, 76, 0.3) !important;
+        outline: none !important;
+      }
+
+      .navbar-toggler i {
+        font-size: 1.5rem !important;
+        color: var(--midnight-mirage) !important;
+        transition: transform 0.3s ease !important;
+      }
+
+      @media (max-width: 991px) {
+        .navbar-collapse {
+          background: rgba(255, 255, 255, 0.98) !important;
+          backdrop-filter: blur(30px) !important;
+          -webkit-backdrop-filter: blur(30px) !important;
+          border-radius: 20px !important;
+          padding: 20px !important;
+          box-shadow: 0 20px 60px rgba(0, 31, 63, 0.15) !important;
+          border: 1px solid rgba(255, 255, 255, 0.9) !important;
+          text-align: center !important;
+          margin-top: 15px !important;
+        }
+
+        .navbar-nav {
+          gap: 12px !important;
+          align-items: center !important;
+        }
+
+        .nav-link {
+          padding: 14px 28px !important;
+          width: 100% !important;
+          max-width: 300px !important;
+          margin: 0 auto !important;
+          display: block !important;
+        }
+
+        .lang-switch-box {
+          margin: 20px auto 0 !important;
+          display: inline-flex !important;
+          justify-content: center !important;
+          width: auto !important;
+          padding: 6px 14px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 90px;
+        }
+
+        .navbar-container {
+          top: 15px !important;
+          padding: 0 15px !important;
+        }
+
+        .navbar {
+          padding: 10px 20px !important;
+          border-radius: 25px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.3rem !important;
+        }
+
+        .brand-icon-box {
+          width: 36px !important;
+          height: 36px !important;
+        }
+
+        .navbar-toggler {
+          padding: 8px 12px !important;
+        }
+
+        .navbar-toggler i {
+          font-size: 1.4rem !important;
+        }
+
+        .nav-link {
+          font-size: 0.9rem !important;
+          padding: 6px 14px !important;
+        }
+      }
+
+      @media (max-width: 576px) {
+        body {
+          padding-top: 80px;
+        }
+
+        .navbar-container {
+          top: 12px !important;
+          padding: 0 12px !important;
+        }
+
+        .navbar {
+          padding: 8px 16px !important;
+          border-radius: 20px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem !important;
+        }
+
+        .brand-icon-box {
+          width: 32px !important;
+          height: 32px !important;
+        }
+
+        .navbar-collapse {
+          padding: 16px !important;
+          border-radius: 16px !important;
+          margin-top: 12px !important;
+        }
+
+        .nav-link {
+          padding: 12px 24px !important;
+          font-size: 0.9rem !important;
+        }
+
+        .lang-switch-box {
+          padding: 5px 12px !important;
+          font-size: 0.85rem !important;
+        }
+      }
+
+      @media (max-width: 360px) {
+        body {
+          padding-top: 70px;
+        }
+
+        .navbar {
+          padding: 6px 12px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.1rem !important;
+        }
+
+        .brand-icon-box {
+          width: 30px !important;
+          height: 30px !important;
+        }
+
+        .nav-link {
+          padding: 10px 20px !important;
+          font-size: 0.85rem !important;
+        }
+      }
+
+      /* --- 3. STYLING KONTEN --- */
+
+      .bg-decoration {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.6;
+        mix-blend-mode: multiply;
+        animation: floatOrb 25s infinite alternate ease-in-out;
+      }
+      .orb-1 {
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, #dbe64c, transparent 70%);
+        top: -30%;
+        left: -20%;
+      }
+      .orb-2 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #74c365, transparent 70%);
+        bottom: -20%;
+        right: -20%;
+        animation-delay: -5s;
+      }
+
+      @keyframes floatOrb {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(50px, 50px) rotate(10deg);
+        }
+      }
+
+      /* HERO SECTION */
+      h1.display-4 {
+        font-weight: 900;
+        letter-spacing: -2.5px;
+        background: linear-gradient(
+          135deg,
+          var(--midnight-mirage) 0%,
+          var(--nuit-blanche) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 20px 40px rgba(0, 31, 63, 0.1);
+        position: relative;
+      }
+      .lead {
+        font-weight: 600;
+        color: #64748b;
+        font-size: 1.2rem;
+      }
+
+      /* SEARCH & FILTER */
+      .search-container {
+        background: white;
+        padding: 10px;
+        border-radius: 100px;
+        box-shadow: var(--shadow-soft);
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        transition: all 0.4s var(--ease-elastic);
+      }
+      .search-container:hover,
+      .search-container:focus-within {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(219, 230, 76, 0.5);
+      }
+      .search-input {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 12px 20px;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--midnight-mirage);
+        background: transparent;
+      }
+      .search-container .btn {
+        background: var(--spring-pop);
+        color: var(--midnight-mirage);
+        border: none;
+        font-weight: 800;
+        padding: 14px 36px;
+        border-radius: 100px;
+        transition: 0.3s var(--ease-elastic);
+      }
+      .search-container .btn:hover {
+        transform: scale(1.08) rotate(2deg);
+        box-shadow: 0 10px 20px rgba(219, 230, 76, 0.5);
+      }
+
+      .filter-btn {
+        border: 2px solid transparent;
+        background: white;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-weight: 700;
+        color: #64748b;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        transition: all 0.4s var(--ease-elastic);
+      }
+      .filter-btn:hover {
+        transform: translateY(-3px);
+        color: var(--midnight-mirage);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      }
+      .filter-btn.active {
+        background: var(--midnight-mirage);
+        color: var(--spring-pop);
+        box-shadow: 0 10px 25px rgba(0, 31, 63, 0.25);
+        transform: scale(1.08);
+        border: 2px solid var(--midnight-mirage);
+      }
+
+      /* ITEM CARDS */
+      .item-col {
+        transition: all 0.6s var(--ease-smooth);
+      }
+
+      .item-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        border-radius: 30px;
+        overflow: hidden;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        box-shadow: var(--shadow-soft);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .item-card:hover {
+        transform: translateY(-12px) scale(1.01);
+        box-shadow: var(--shadow-hover);
+        border-color: #fff;
+        z-index: 5;
+      }
+
+      .card-img-wrapper {
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+        background: #f0f2f5;
+        margin: 10px 10px 0 10px;
+        border-radius: 20px;
+      }
+      .card-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s var(--ease-smooth);
+      }
+      .item-card:hover .card-img-wrapper img {
+        transform: scale(1.12);
+      }
+
+      /* Overlay Gradient */
+      .card-img-wrapper::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 31, 63, 0.4),
+          transparent 50%
+        );
+        opacity: 0;
+        transition: 0.4s;
+      }
+      .item-card:hover .card-img-wrapper::after {
+        opacity: 1;
+      }
+
+      /* Content Styling */
+      .item-card .p-4 {
+        padding: 25px !important;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .item-card h5 {
+        font-weight: 800;
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        color: var(--midnight-mirage);
+        letter-spacing: -0.5px;
+      }
+
+      /* Location Pin */
+      .small.text-muted {
+        font-weight: 700;
+        color: #94a3b8 !important;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Status Badges  */
+      .status-badge {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        z-index: 2;
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        animation: pulse-badge 2s infinite;
+      }
+      .bg-found {
+        background: #10b981;
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      .bg-lost {
+        background: #ef4444;
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      @keyframes pulse-badge {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Button Detail */
+      .btn-detail-custom {
+        margin-top: auto;
+        background: #f8fafc;
+        border: none;
+        padding: 14px;
+        border-radius: 16px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 800;
+        color: var(--midnight-mirage);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        font-size: 0.95rem;
+        box-shadow: inset 0 0 0 2px #e2e8f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-detail-custom::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: var(--spring-pop);
+        z-index: -1;
+        transition: width 0.4s var(--ease-elastic);
+      }
+      .btn-detail-custom::after {
+        content: "→";
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: 0.3s;
+      }
+      .btn-detail-custom:hover {
+        color: var(--midnight-mirage);
+        box-shadow: inset 0 0 0 2px var(--spring-pop);
+      }
+      .btn-detail-custom:hover::before {
+        width: 100%;
+      }
+      .btn-detail-custom:hover::after {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* ANIMATION */
+      .animate-in {
+        opacity: 0;
+        animation: fadeUpPremium 1s var(--ease-elastic) forwards;
+      }
+
+      @keyframes fadeUpPremium {
+        from {
+          opacity: 0;
+          transform: translateY(60px) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* CONTENT SPACING */
+      .content-section {
+        padding-top: 40px;
+        padding-bottom: 80px;
+      }
+
+      /* Responsive content */
+      @media (max-width: 768px) {
+        h1.display-4 {
+          font-size: 2.5rem !important;
+          letter-spacing: -1.5px;
+        }
+        
+        .lead {
+          font-size: 1.1rem;
+        }
+        
+        .search-container {
+          padding: 8px;
+          border-width: 3px;
+        }
+        
+        .search-input {
+          padding: 10px 16px;
+          font-size: 0.95rem;
+        }
+        
+        .search-container .btn {
+          padding: 12px 24px;
+          font-size: 0.9rem;
+        }
+        
+        .filter-btn {
+          padding: 10px 20px;
+          font-size: 0.85rem;
+          margin: 5px;
+        }
+        
+        .card-img-wrapper {
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        h1.display-4 {
+          font-size: 2rem !important;
+          letter-spacing: -1px;
+        }
+        
+        .lead {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-decoration">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar-container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <div class="brand-icon-box">
+              <img src="assets/img/logo.png" alt="Logo" class="brand-logo" />
+            </div>
+            <span>Rhapsody <span class="text-green">Find</span></span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navContent"
+          >
+            <i class="ri-menu-4-line"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" data-i18n="nav_home"
+                  >Beranda</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="search.html" data-i18n="nav_search"
+                  >Ruang Temuan</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html" data-i18n="nav_about"
+                  >Tentang</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="faq.html" data-i18n="nav_faq">FAQ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="policy.html" data-i18n="nav_policy"
+                  >Kebijakan</a
+                >
+              </li>
+            </ul>
+
+            <div class="lang-switch-box">
+              <span
+                class="lang-opt active"
+                id="lang-id"
+                onclick="changeLanguage('id')"
+                >ID</span
+              >
+              <span class="text-muted">|</span>
+              <span class="lang-opt" id="lang-en" onclick="changeLanguage('en')"
+                >EN</span
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- KONTEN ASLI -->
+    <section class="content-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h1
+            class="mb-3 display-4 animate-in"
+            style="animation-delay: 0.1s"
+            data-i18n="page_title"
+          >
+            Ruang Temuan
+          </h1>
+          <p
+            class="lead mb-5 mx-auto animate-in"
+            style="max-width: 600px; animation-delay: 0.2s"
+            data-i18n="page_subtitle"
+          >
+            Cek apakah barangmu sudah diamankan oleh petugas kami.
+          </p>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-7">
+              <div
+                class="search-container mb-4 animate-in"
+                style="animation-delay: 0.3s"
+              >
+                <i
+                  class="ri-search-line text-dark ms-3 fs-5"
+                  style="opacity: 0.5"
+                ></i>
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="search-input"
+                  placeholder="cari disini..."
+                />
+                <button
+                  id="searchBtn"
+                  class="btn shadow-sm"
+                  data-i18n="btn_search"
+                >
+                  Cari
+                </button>
+              </div>
+
+              <div
+                class="d-flex justify-content-center gap-2 mt-4 flex-wrap animate-in"
+                style="animation-delay: 0.4s"
+                id="filterContainer"
+              >
+                <button
+                  class="filter-btn active"
+                  onclick="filterItems('lost', this)"
+                  data-i18n="filter_all"
+                >
+                  Semua
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterItems('elektronik', this)"
+                  data-i18n="filter_elec"
+                >
+                  Elektronik
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterItems('dompet', this)"
+                  data-i18n="filter_bag"
+                >
+                  Dompet & Tas
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterItems('kunci', this)"
+                  data-i18n="filter_key"
+                >
+                  Kunci
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterItems('found', this)"
+                  data-i18n="filter_claimed"
+                >
+                  Sudah Diambil
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4" id="itemsGrid">
+          <div class="col-md-6 col-lg-3 item-col" data-category="kunci found">
+            <div class="item-card">
+              <span class="status-badge bg-found" data-i18n="status_found"
+                >Telah diambil</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/kuncimobil.jpg" alt="Kunci" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-success"></i> Parkiran B1
+                </div>
+                <h5 class="mb-2">Kunci Mobil Honda</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Ditemukan di atas mobil di parkiran B1.
+                </p>
+                <a
+                  href="item-detail.html?id=kunci"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="found">
+            <div class="item-card">
+              <span class="status-badge bg-found" data-i18n="status_found"
+                >Telah diambil</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/corkcicle.jpg" alt="Tumbler" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-success"></i> Cinema XXI
+                </div>
+                <h5 class="mb-2">Tumbler Corkcicle</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Warna orange, tertinggal di kursi J12 studio 3.
+                </p>
+                <a
+                  href="item-detail.html?id=tumbler"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="found">
+            <div class="item-card">
+              <span class="status-badge bg-found" data-i18n="status_found"
+                >Telah diambil</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/gucci1.jpg" alt="Topi" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-success"></i> Mushola Lt. 3
+                </div>
+                <h5 class="mb-2">Topi Gucci</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Topi wanita, berwarna krem, ditemukan di rak sepatu.
+                </p>
+                <a
+                  href="item-detail.html?id=topi"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="found">
+            <div class="item-card">
+              <span class="status-badge bg-found" data-i18n="status_found"
+                >Telah diambil</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/payung1.jpg" alt="Payung" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-success"></i> Lobby Utama
+                </div>
+                <h5 class="mb-2">Payung Transparan</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Diserahkan oleh satpam lobby, gagang warna putih.
+                </p>
+                <a
+                  href="item-detail.html?id=payung"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="dompet lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/dompet1.jpg" alt="Dompet" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Food Court
+                </div>
+                <h5 class="mb-2">Dompet Kulit Coklat</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Merk Fossil, berisi KTP dan kartu debit BCA.
+                </p>
+                <a
+                  href="item-detail.html?id=dompet"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 item-col"
+            data-category="elektronik lost"
+          >
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/macbook.jpg" alt="Laptop" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Starbucks
+                </div>
+                <h5 class="mb-2">Macbook Air M1</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Warna Silver, ada stiker di bagian depan.
+                </p>
+                <a
+                  href="item-detail.html?id=laptop"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 item-col"
+            data-category="elektronik lost"
+          >
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/iphone13.jpg" alt="iPhone" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Toilet Lt. 1
+                </div>
+                <h5 class="mb-2">iPhone 13 Pro</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Case warna cream.
+                </p>
+                <a
+                  href="item-detail.html?id=iphone"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="dompet lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/tas.jpg" alt="Tas" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Area Bermain
+                  Anak
+                </div>
+                <h5 class="mb-2">Tas Hermes Birkin</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  warna merah, berisi kosmetik dan powerbank.
+                </p>
+                <a
+                  href="item-detail.html?id=tas"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 item-col"
+            data-category="elektronik lost"
+          >
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/airpodpro1.jpg" alt="TWS" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Bangku Taman
+                </div>
+                <h5 class="mb-2">Airpods Pro</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  beserta casing.
+                </p>
+                <a
+                  href="item-detail.html?id=airpods"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="kunci lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/kuncimotor.jpg" alt="Kunci Motor" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Parkiran Motor
+                </div>
+                <h5 class="mb-2">Kunci Vespa Matic</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Kunci warna merah, gantungan hitam.
+                </p>
+                <a
+                  href="item-detail.html?id=nmax"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 item-col"
+            data-category="elektronik lost"
+          >
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/jam.jpg" alt="Jam" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Toilet Pria Lt.
+                  2
+                </div>
+                <h5 class="mb-2">Jam Tangan Rolex</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Warna gold.
+                </p>
+                <a
+                  href="item-detail.html?id=jam"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 item-col"
+            data-category="elektronik lost"
+          >
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/kamera.jpg" alt="Kamera" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Atrium Utama
+                </div>
+                <h5 class="mb-2">Kamera Sony Alpha</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Tertinggal di bangku saat event pameran mobil.
+                </p>
+                <a
+                  href="item-detail.html?id=kamera"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/boneka.jpg" alt="Boneka" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Miniso
+                </div>
+                <h5 class="mb-2">Boneka Kelinci</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Boneka anak, warna pink, kuping panjang.
+                </p>
+                <a
+                  href="item-detail.html?id=boneka"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/helm.jpg" alt="Helm" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Parkiran Motor
+                </div>
+                <h5 class="mb-2">Helm KYT Fullface</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Helm fullface warna merah putih dengan visor transparan.
+                </p>
+                <a
+                  href="item-detail.html?id=helm"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="kunci lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/kunciporsche.jpg" alt="Kunci Porsche" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Area Valet
+                  Parking
+                </div>
+                <h5 class="mb-2">Kunci Porsche 911</h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Kunci remote hitam metalik dengan logo Porsche, ada gantungan
+                  kulit premium.
+                </p>
+                <a
+                  href="item-detail.html?id=kunciporsche"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 item-col" data-category="dompet lost">
+            <div class="item-card">
+              <span class="status-badge bg-lost" data-i18n="status_lost"
+                >Hilang</span
+              >
+              <div class="card-img-wrapper">
+                <img src="assets/img/tasdior.jpg" alt="Tas Dior" />
+              </div>
+              <div class="p-4">
+                <div
+                  class="small text-muted mb-2 d-flex align-items-center gap-1"
+                >
+                  <i class="ri-map-pin-2-fill text-danger"></i> Boutique Area
+                  Lt. 2
+                </div>
+                <h5 class="mb-2">Tas Lady Dior </h5>
+                <p class="small text-muted mb-4 line-clamp-2">
+                  Warna navy, tersedia kartu identitas di dalamnya.
+                </p>
+                <a
+                  href="item-detail.html?id=tasdior"
+                  class="btn-detail-custom"
+                  data-i18n="btn_detail"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="noResults" class="text-center mt-5 d-none">
+          <i class="ri-ghost-smile-line display-1 text-muted opacity-25"></i>
+          <p class="text-muted mt-3 fw-bold fs-5" data-i18n="no_results">
+            Tidak ada barang di kategori ini.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const resources = {
+        id: {
+          nav_home: "Beranda",
+          nav_search: "Ruang Temuan",
+          nav_about: "Tentang",
+          nav_faq: "FAQ",
+          nav_policy: "Kebijakan",
+          page_title: "Ruang Temuan",
+          page_subtitle:
+            "Cek apakah barangmu sudah diamankan oleh petugas kami.",
+          search_placeholder: "cari disini...",
+          btn_search: "Cari",
+          filter_all: "Semua",
+          filter_elec: "Elektronik",
+          filter_bag: "Dompet & Tas",
+          filter_key: "Kunci",
+          filter_other: "Lainnya",
+          filter_claimed: "Sudah Diambil",
+          status_lost: "Hilang",
+          status_found: "Telah diambil",
+          btn_detail: "Lihat Detail",
+          no_results: "Tidak ada barang di kategori ini.",
+        },
+        en: {
+          nav_home: "Home",
+          nav_search: "Discovery Hub",
+          nav_about: "About",
+          nav_faq: "FAQ",
+          nav_policy: "Policy",
+          page_title: "Discovery Hub",
+          page_subtitle: "Check if your items have been secured by our team.",
+          search_placeholder: "search here...",
+          btn_search: "Search",
+          filter_all: "All Items",
+          filter_elec: "Electronics",
+          filter_bag: "Wallet & Bags",
+          filter_key: "Keys",
+          filter_other: "Others",
+          filter_claimed: "Already Claimed",
+          status_lost: "Lost",
+          status_found: "Claimed",
+          btn_detail: "View Details",
+          no_results: "No items found in this category.",
+        },
+      };
+
+      function changeLanguage(lang) {
+        // Update all translatable elements
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (resources[lang] && resources[lang][key]) {
+            if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+              element.placeholder = resources[lang][key];
+            } else {
+              element.textContent = resources[lang][key];
+            }
+          }
+        });
+
+        // Update language switcher
+        const langId = document.getElementById("lang-id");
+        const langEn = document.getElementById("lang-en");
+
+        if (lang === "id") {
+          langId.classList.add("active");
+          langEn.classList.remove("active");
+        } else {
+          langEn.classList.add("active");
+          langId.classList.remove("active");
+        }
+
+        // Save preference
+        localStorage.setItem("rhapsody_language", lang);
+      }
+
+      let currentCategory = "lost";
+      
+      // Fungsi Filter & Search
+      function filterItems(category, btnElement) {
+        // 1. Update Kategori 
+        if (btnElement) {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((btn) => btn.classList.remove("active"));
+          btnElement.classList.add("active");
+          currentCategory = category; 
+        } else if (category) {
+          currentCategory = category;
+        } else {
+          category = currentCategory;
+        }
+
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const items = document.querySelectorAll(".item-col");
+        let hasVisibleItems = false;
+
+        items.forEach((item) => {
+          const itemCats = item.getAttribute("data-category");
+
+          // teks Judul dan Deskripsi untuk pencarian
+          const title = item.querySelector("h5").innerText.toLowerCase();
+          const desc = item.querySelector("p.small").innerText.toLowerCase();
+          const matchesSearch = title.includes(query) || desc.includes(query);
+
+          // LOGIKA: Kategori DAN Pencarian
+          if (itemCats.includes(category) && matchesSearch) {
+            item.style.display = "block";
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0) scale(1)";
+            }, 50);
+            hasVisibleItems = true;
+          } else {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(20px) scale(0.95)";
+            setTimeout(() => {
+              item.style.display = "none";
+            }, 400);
+          }
+        });
+
+        const noRes = document.getElementById("noResults");
+        if (!hasVisibleItems) {
+          noRes.classList.remove("d-none");
+        } else {
+          noRes.classList.add("d-none");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load saved language
+        const savedLang = localStorage.getItem("rhapsody_language") || "id";
+        changeLanguage(savedLang);
+
+        // Initialize with "Semua" category
+        const initialBtn = document.querySelector(
+          ".filter-btn[data-i18n='filter_all']"
+        );
+        if (initialBtn) {
+          filterItems("lost", initialBtn);
+        }
+
+        // Search input event
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+
+        searchInput.addEventListener("keyup", () => {
+          filterItems(null, null);
+        });
+
+        searchBtn.addEventListener("click", () => {
+          filterItems(null, null);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          if (navbar && window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else if (navbar) {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+              const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+              bsCollapse.hide();
+            }
+          });
+        });
+
+        // Initialize animations
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                setTimeout(() => {
+                  entry.target.classList.add("animate-in");
+                  entry.target.style.opacity = 1;
+                }, index * 100);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(".item-col").forEach((item) => {
+          item.style.opacity = 0;
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html>

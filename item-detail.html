@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Barang - Mall Rhapsody</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- COLOR PALETTE --- */
+      :root {
+        --praxeti-white: #f6f7ed; 
+        --mantis: #74c365;
+        --spring-pop: #dbe64c; 
+        --picture-green: #00804c;
+        --midnight: #001f3f; 
+        --nuit-blanche: #1e488f;
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--midnight); 
+        color: var(--praxeti-white); 
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* --- 1. DYNAMIC BACKGROUND --- */
+      .bg-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: radial-gradient(
+          circle at center,
+          var(--nuit-blanche) 0%,
+          var(--midnight) 100%
+        );
+      }
+   
+      .bg-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+        pointer-events: none;
+        mix-blend-mode: overlay;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.3;
+        animation: floatOrb 12s infinite alternate ease-in-out;
+        mix-blend-mode: screen;
+      }
+      .orb-1 {
+        width: 700px;
+        height: 700px;
+        background: var(--spring-pop);
+        top: -30%;
+        right: -20%;
+      }
+      .orb-2 {
+        width: 600px;
+        height: 600px;
+        background: var(--nuit-blanche);
+        bottom: -20%;
+        left: -20%;
+        animation-delay: -6s;
+      }
+
+      @keyframes floatOrb {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(50px, 70px) scale(1.1);
+        }
+      }
+
+      /* --- 2. DEEP GLASS CARD CONTAINER --- */
+      .glass-card {
+        background: rgba(0, 31, 63, 0.6);
+        backdrop-filter: blur(50px) saturate(150%);
+        -webkit-backdrop-filter: blur(50px) saturate(150%);
+        border: 1px solid rgba(219, 230, 76, 0.3); 
+        border-radius: 32px;
+        box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        min-height: 600px;
+        /* Animation Entry */
+        opacity: 0;
+        animation: scaleIn 0.8s var(--ease-out-quart) forwards;
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95) translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* --- 3. LEFT SIDE: IMAGE SHOWCASE (DARK MODE) --- */
+      .img-section {
+        /* Dark gradient */
+        background: linear-gradient(
+          160deg,
+          rgba(30, 72, 143, 0.4),
+          rgba(0, 31, 63, 0.8)
+        );
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px;
+        border-right: 1px solid rgba(219, 230, 76, 0.1);
+        overflow: hidden;
+      }
+
+      .detail-image {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(219, 230, 76, 0.2);
+        transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+        transition: all 0.6s var(--ease-out-quart);
+        z-index: 2;
+        opacity: 0;
+        animation: imageEntrance 1s 0.3s var(--ease-out-quart) forwards;
+      }
+
+      @keyframes imageEntrance {
+        from {
+          opacity: 0;
+          transform: perspective(1000px) rotateY(-15deg) translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: perspective(1000px) rotateY(-5deg) translateX(0);
+        }
+      }
+
+      .img-section:hover .detail-image {
+        transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+        box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.7),
+          0 0 50px rgba(219, 230, 76, 0.3);
+      }
+
+      /* Decorative Circle behind image (Glowing) */
+      .deco-circle {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        border: 2px dashed rgba(219, 230, 76, 0.15); 
+        border-radius: 50%;
+        animation: spin 40s linear infinite;
+        z-index: 1;
+      }
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- 4. RIGHT SIDE: CONTENT & TYPOGRAPHY --- */
+      .content-section {
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1.display-5 {
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 0.2em;
+        background: linear-gradient(
+          45deg,
+          var(--praxeti-white),
+          var(--spring-pop)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      #detail-desc {
+        color: rgba(
+          246,
+          247,
+          237,
+          0.8
+        ); 
+        font-weight: 500;
+      }
+
+      /* SUBHEADING Label */
+      .sub-label {
+        color: var(--spring-pop);
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      /* Animation Stagger Helper */
+      .animate-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 0.6s var(--ease-out-quart) forwards;
+      }
+      .d-1 {
+        animation-delay: 0.4s;
+      }
+      .d-2 {
+        animation-delay: 0.5s;
+      }
+      .d-3 {
+        animation-delay: 0.6s;
+      }
+      .d-4 {
+        animation-delay: 0.8s;
+      }
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* --- 5. INFO WIDGETS (DARK MODE) --- */
+      .info-widget {
+        background: rgba(255, 255, 255, 0.03); 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 20px;
+        height: 100%;
+        transition: all 0.4s var(--ease-out-quart);
+        position: relative;
+        overflow: hidden;
+      }
+      .info-widget:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.07);
+        border-color: var(--spring-pop); 
+        box-shadow: 0 10px 30px -10px rgba(219, 230, 76, 0.2);
+      }
+      .widget-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--spring-pop);
+        transition: transform 0.4s;
+      }
+      .info-widget:hover .widget-icon {
+        transform: scale(1.1) rotate(10deg);
+        background: var(--spring-pop);
+        color: var(--midnight);
+      }
+      .widget-label {
+        color: rgba(246, 247, 237, 0.6);
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .widget-value {
+        color: var(--praxeti-white);
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-top: 5px;
+      }
+
+      /* --- 6. BUTTONS & STATUS (HIGH CONTRAST) --- */
+      .status-badge {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+        padding: 10px 24px;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        animation: fadeDown 0.6s 0.8s var(--ease-out-quart) forwards;
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .status-taken {
+        background: linear-gradient(135deg, var(--picture-green), #00663d);
+        color: white;
+      }
+      .status-lost {
+        background: linear-gradient(135deg, #d63031, #b71c1c);
+        color: white;
+      }
+
+      .btn-primary-custom {
+        background: var(--spring-pop);
+        color: var(--midnight);
+        border: none;
+        padding: 16px 0;
+        font-weight: 800;
+        font-size: 1rem;
+        transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 10px 30px -5px rgba(219, 230, 76, 0.4);
+      }
+      .btn-primary-custom:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 20px 50px -10px rgba(219, 230, 76, 0.6);
+        background: #e6f05f;
+        color: var(--midnight);
+      }
+
+      /* Secondary Button - Outline */
+      .btn-secondary-custom {
+        background: transparent;
+        color: var(--praxeti-white);
+        border: 2px solid rgba(246, 247, 237, 0.3);
+        font-weight: 700;
+        transition: 0.3s;
+      }
+      .btn-secondary-custom:hover {
+        background: rgba(246, 247, 237, 0.1);
+        border-color: var(--praxeti-white);
+        color: var(--spring-pop);
+      }
+
+      /* Back Button */
+      .btn-back {
+        background: rgba(0, 31, 63, 0.6);
+        backdrop-filter: blur(10px);
+        color: var(--praxeti-white);
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+      }
+      .btn-back:hover {
+        transform: translateX(-5px);
+        background: var(--spring-pop);
+        color: var(--midnight);
+        border-color: var(--spring-pop);
+      }
+
+      @media (max-width: 991px) {
+        .img-section {
+          padding: 40px;
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          min-height: 400px;
+        }
+        .glass-card {
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-wrapper">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+
+    <div class="container py-5">
+      <div class="mb-4 animate-up d-1">
+        <a
+          href="search.html"
+          class="btn btn-back rounded-pill px-4 py-2 text-decoration-none"
+        >
+          <i class="ri-arrow-left-line me-2"></i>Kembali
+        </a>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-xl-11">
+          <div class="glass-card">
+            <div class="row g-0 h-100">
+              <div class="col-lg-5 img-section">
+                <div class="deco-circle"></div>
+                <div id="status-badge" class="status-badge">Loading...</div>
+                <img id="detail-img" src="" alt="Barang" class="detail-image" />
+              </div>
+
+              <div class="col-lg-7 content-section">
+                <div class="mb-4">
+                  <h6 class="text-uppercase mb-3 animate-up d-1 sub-label">
+                    Detail Informasi
+                  </h6>
+                  <h1 class="display-5 animate-up d-1" id="detail-title">
+                    ...
+                  </h1>
+                  <p
+                    class="fs-5 mt-3 animate-up d-2"
+                    id="detail-desc"
+                    style="line-height: 1.7; max-width: 95%"
+                  >
+                    ...
+                  </p>
+                </div>
+
+                <div class="row g-3 mb-5 animate-up d-3" id="info-grid"></div>
+
+                <div class="mt-auto row g-3 animate-up d-4">
+                  <div class="col-md-7">
+                    <button
+                      id="btn-claim"
+                      class="btn btn-primary-custom w-100 rounded-pill"
+                    >
+                      <i class="ri-hand-coin-fill me-2"></i> Klaim Barang Ini
+                    </button>
+                  </div>
+                  <div class="col-md-5">
+                    <button
+                      class="btn btn-secondary-custom w-100 rounded-pill py-3"
+                    >
+                      <i class="ri-share-forward-line me-2"></i> Bagikan Info
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+      const items = {
+        // BARANG DIAMBIL (TAKEN)
+        kunci: {
+          title: "Kunci Mobil Honda",
+          loc: "Parkiran B1",
+          desc: "Ditemukan di atas mobil di parkiran B1.",
+          status: "Telah Diambil",
+          type: "taken",
+          dateFound: "28 Des 2024",
+          dateTaken: "29 Des 2024",
+          img: "assets/img/kuncimobil.jpg",
+        },
+        tumbler: {
+          title: "Tumbler Corkcicle",
+          loc: "Cinema XXI",
+          desc: "Warna orange, tertinggal di kursi J12 studio 3. Kondisi masih baru, ada stiker merk di bagian bawah.",
+          status: "Telah Diambil",
+          type: "taken",
+          dateFound: "25 Des 2024",
+          dateTaken: "26 Des 2024",
+          img: "assets/img/corkcicle.jpg",
+        },
+        topi: {
+          title: "Topi Gucci",
+          loc: "Mushola Lt. 3",
+          desc: "Topi wanita, berwarna krem, ditemukan di rak sepatu. Bahan katun premium dengan logo Gucci di depan.",
+          status: "Telah Diambil",
+          type: "taken",
+          dateFound: "20 Des 2024",
+          dateTaken: "21 Des 2024",
+          img: "assets/img/gucci1.jpg",
+        },
+        payung: {
+          title: "Payung Transparan",
+          loc: "Lobby Utama",
+          desc: "Diserahkan oleh satpam lobby, gagang warna putih. Payung otomatis dengan diameter 120cm.",
+          status: "Telah Diambil",
+          type: "taken",
+          dateFound: "15 Des 2024",
+          dateTaken: "15 Des 2024",
+          img: "assets/img/payung1.jpg",
+        },
+
+        // BARANG HILANG (LOST)
+        tas: {
+          title: "Tas Hermes Birkin",
+          loc: "Food Court",
+          desc: "warna merah, berisi kosmetik dan powerbank.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "30 Des 2024",
+          img: "assets/img/tas.jpg",
+        },
+        dompet: {
+          title: "Dompet Kulit Coklat",
+          loc: "Food Court",
+          desc: " Merk Fossil, berisi KTP dan kartu debit BCA.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "30 Des 2024",
+          img: "assets/img/dompet1.jpg",
+        },
+        laptop: {
+          title: "Macbook Air M1",
+          loc: "Starbucks",
+          desc: "Warna Silver, ada stiker di bagian depan.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "29 Des 2024",
+          img: "assets/img/macbook.jpg",
+        },
+        iphone: {
+          title: "iPhone 13 Pro",
+          loc: "Toilet Lt. 1",
+          desc: "Case warna cream.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "28 Des 2024",
+          img: "assets/img/iphone13.jpg",
+        },
+        airpods: {
+          title: "Airpods Pro",
+          loc: "Bangku Taman",
+          desc: "beserta casing.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "26 Des 2024",
+          img: "assets/img/airpodpro1.jpg",
+        },
+        nmax: {
+          title: "Kunci Vespa Matic",
+          loc: "Parkiran Motor",
+          desc: "Kunci warna merah, gantungan hitam.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "25 Des 2024",
+          img: "assets/img/kuncimotor.jpg",
+        },
+        jam: {
+          title: "Jam Tangan Rolex",
+          loc: "Toilet Pria Lt. 2",
+          desc: "Warna gold.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "24 Des 2024",
+          img: "assets/img/jam.jpg",
+        },
+        boneka: {
+          title: "Boneka Kelinci",
+          loc: "Area Bermain Anak",
+          desc: "Boneka anak, warna pink, kuping panjang.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "22 Des 2024",
+          img: "assets/img/boneka.jpg",
+        },
+        helm: {
+          title: "Helm KYT Fullface",
+          loc: "Parkiran Motor",
+          desc: " Helm fullface warna merah putih dengan visor transparan.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "19 Des 2024",
+          img: "assets/img/helm.jpg",
+        },
+        kamera: {
+          title: "Kamera Sony Alpha",
+          loc: "Atrium Utama",
+          desc: "Tertinggal di bangku saat event pameran mobil. Body kamera saja tanpa lensa.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "19 Des 2024",
+          img: "assets/img/kamera.jpg",
+        },
+
+        kunciporsche: {
+          title: "Kunci Porsche 911",
+          loc: "Area Valet Parking",
+          desc: "Kunci remote hitam metalik dengan logo Porsche, ada gantungan kulit premium. Kondisi masih baru, baterai masih berfungsi.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "2 Jan 2025",
+          img: "assets/img/kunciporsche.jpg",
+        },
+        
+        tasdior: {
+          title: "Tas Dior Saddle Bag",
+          loc: "Boutique Area Lt. 2",
+          desc: "Warna navy, tersedia kartu identitas di dalamnya.",
+          status: "Hilang",
+          type: "lost",
+          dateLost: "3 Jan 2025",
+          img: "assets/img/tasdior.jpg",
+        },
+      };
+
+      function goToClaimPage() {
+        const itemName = document.getElementById("detail-title").innerText;
+        window.location.href = `claim-form.html?item=${encodeURIComponent(
+          itemName
+        )}`;
+      }
+
+      function shareInfo() {
+        const itemName = document.getElementById("detail-title").innerText;
+        if (navigator.share) {
+          navigator.share({
+            title: `Info Barang: ${itemName}`,
+            text: `Ditemukan info barang ${itemName} di Rhapsody Mall.`,
+            url: window.location.href,
+          });
+        } else {
+          navigator.clipboard.writeText(window.location.href);
+          alert("Link detail barang telah disalin!");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const data = items[id];
+        const infoGrid = document.getElementById("info-grid");
+        const btnClaim = document.getElementById("btn-claim");
+        const btnShare = document.querySelector(".btn-secondary-custom");
+
+        if (btnClaim) btnClaim.onclick = goToClaimPage;
+        if (btnShare) btnShare.onclick = shareInfo;
+
+        if (data) {
+          document.getElementById("detail-title").innerText = data.title;
+          document.getElementById("detail-desc").innerText = data.desc;
+          document.getElementById("detail-img").src = data.img;
+
+          // Update HTML injection to match new dark classes
+          const locWidget = `
+            <div class="col-12 col-md-4">
+               <div class="info-widget">
+                  <div class="widget-icon"><i class="ri-map-pin-2-fill"></i></div>
+                  <small class="widget-label">Lokasi</small>
+                  <div class="widget-value">${data.loc}</div>
+               </div>
+            </div>`;
+
+          const badge = document.getElementById("status-badge");
+
+          if (data.type === "taken") {
+            infoGrid.innerHTML = `${locWidget}
+                <div class="col-6 col-md-4">
+                    <div class="info-widget">
+                       <div class="widget-icon"><i class="ri-search-eye-line"></i></div>
+                       <small class="widget-label">Ditemukan</small>
+                       <div class="widget-value">${data.dateFound}</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="info-widget" style="border-color: var(--picture-green)">
+                       <div class="widget-icon" style="background: var(--picture-green); color: white;"><i class="ri-checkbox-circle-fill"></i></div>
+                       <small class="widget-label" style="color: var(--mantis)">Diambil</small>
+                       <div class="widget-value">${data.dateTaken}</div>
+                    </div>
+                </div>`;
+            badge.className = "status-badge status-taken";
+            badge.innerHTML = `<i class="ri-check-double-line me-2"></i> Telah Diambil`;
+            btnClaim.disabled = true;
+            btnClaim.innerHTML = `<i class="ri-lock-2-line me-2"></i> Case Closed`;
+            // Style for disabled button in dark mode
+            btnClaim.style.background = "rgba(255,255,255,0.1)";
+            btnClaim.style.color = "rgba(255,255,255,0.4)";
+            btnClaim.style.boxShadow = "none";
+            btnClaim.style.cursor = "not-allowed";
+          } else {
+            infoGrid.innerHTML = `${locWidget}
+                <div class="col-12 col-md-8">
+                    <div class="info-widget" style="border-color: var(--nuit-blanche)">
+                       <div class="widget-icon" style="background: var(--nuit-blanche); color: white;"><i class="ri-alarm-warning-fill"></i></div>
+                       <small class="widget-label" style="color: #aaa">Tanggal Hilang</small>
+                       <div class="widget-value">${data.dateLost}</div>
+                    </div>
+                </div>`;
+            badge.className = "status-badge status-lost";
+            badge.innerHTML = `<i class="ri-error-warning-fill me-2"></i> Masih Hilang`;
+          }
+        } else {
+          // Fallback Dark Mode
+          document.querySelector(".container").innerHTML = `
+            <div class="text-center py-5 animate-up d-1" style="color: white;">
+              <h2 class="fw-bold display-4">Barang Tidak Ditemukan</h2>
+              <p class="text-muted fs-5">Maaf, data untuk barang ini belum terdaftar di sistem.</p>
+              <a href="search.html" class="btn btn-primary-custom rounded-pill px-5 mt-3">Kembali Cari</a>
+            </div>`;
+        }
+      });
+    </script>
+  </body>
+</html>

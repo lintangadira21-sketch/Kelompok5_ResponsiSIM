@@ -1,0 +1,2617 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ - Rhapsody Find</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --praxeti-white: #f6f7ed;
+        --mantis-green: #74c365;
+        --spring-yellow: #dbe64c;
+        --picture-green: #00804c;
+        --midnight-mirage: #001f3f;
+        --nuit-blanche: #1e488f;
+        --text-light: #718096;
+        --card-bg: rgba(255, 255, 255, 0.97);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--praxeti-white);
+        color: var(--midnight-mirage);
+        overflow-x: hidden;
+        padding-top: 100px;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .btn,
+      .navbar-brand {
+        font-family: "Outfit", sans-serif;
+      }
+
+      /* =========== BACKGROUND =========== */
+      .background-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(30, 72, 143, 0.08) 0%,
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(219, 230, 76, 0.06) 0%,
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(116, 195, 101, 0.04) 0%,
+            transparent 30%
+          );
+        opacity: 0.5;
+      }
+
+      .pattern-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23001F3F' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.3;
+      }
+
+      .floating-shapes {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.2;
+        animation: float 25s infinite ease-in-out;
+      }
+
+      .shape-1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          var(--nuit-blanche) 0%,
+          transparent 70%
+        );
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+
+      .shape-2 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          var(--spring-yellow) 0%,
+          transparent 70%
+        );
+        bottom: 15%;
+        right: 10%;
+        animation-delay: 5s;
+      }
+
+      .shape-3 {
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(
+          circle,
+          var(--mantis-green) 0%,
+          transparent 70%
+        );
+        top: 60%;
+        left: 15%;
+        animation-delay: 10s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(30px, -40px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-20px, 20px) rotate(240deg);
+        }
+      }
+
+      /* =========== NAVBAR =========== */
+      .navbar-container {
+        position: fixed !important;
+        top: 25px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 0 20px !important;
+        pointer-events: none !important;
+      }
+
+      .navbar {
+        width: 100% !important;
+        max-width: 1140px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-radius: 50px !important;
+        padding: 12px 24px !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.12) !important;
+        transition: all 0.4s ease !important;
+        pointer-events: auto !important;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 12px 48px rgba(0, 31, 63, 0.15) !important;
+      }
+
+      .navbar-brand {
+        font-weight: 800 !important;
+        font-size: 1.5rem !important;
+        color: var(--midnight-mirage) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-decoration: none !important;
+        transition: transform 0.3s !important;
+      }
+
+      .navbar-brand:hover {
+        transform: translateY(-2px) !important;
+      }
+
+      .text-green {
+        color: var(--picture-green) !important;
+        font-weight: 800 !important;
+      }
+
+      /* LOGO FIXED */
+      .brand-icon-box {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        filter: none !important;
+      }
+
+      .nav-link {
+        font-weight: 600 !important;
+        color: var(--midnight-mirage) !important;
+        margin: 0 6px !important;
+        padding: 8px 18px !important;
+        border-radius: 25px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 31, 63, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .nav-link:hover::before {
+        left: 100%;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--nuit-blanche) !important;
+        background: rgba(30, 72, 143, 0.08) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .lang-switch-box {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+        padding: 8px 16px !important;
+        border-radius: 25px !important;
+        transition: all 0.3s !important;
+        border: 1px solid rgba(0, 31, 63, 0.1) !important;
+      }
+
+      .lang-switch-box:hover {
+        background: rgba(0, 31, 63, 0.08) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .lang-opt {
+        cursor: pointer !important;
+        opacity: 0.4 !important;
+        transition: all 0.3s !important;
+        user-select: none !important;
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+      }
+
+      .lang-opt:hover {
+        opacity: 0.7 !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+      }
+
+      .lang-opt.active {
+        opacity: 1 !important;
+        color: var(--nuit-blanche) !important;
+        background: rgba(30, 72, 143, 0.1) !important;
+        font-weight: 800 !important;
+      }
+
+      /* =========== FAQ HERO =========== */
+      .faq-hero {
+        padding: 80px 0 60px;
+        position: relative;
+      }
+
+      .faq-hero::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(30, 72, 143, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        filter: blur(50px);
+        z-index: -1;
+        opacity: 0.5;
+      }
+
+      .faq-hero-badge {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 14px 28px;
+        border-radius: 50px;
+        color: var(--nuit-blanche);
+        font-weight: 700;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 24px rgba(0, 31, 63, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+      }
+
+      .faq-hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 25px;
+        line-height: 1.1;
+        background: linear-gradient(
+          135deg,
+          var(--midnight-mirage) 0%,
+          var(--nuit-blanche) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+      }
+
+      .faq-hero-subtitle {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: var(--nuit-blanche);
+      }
+
+      .faq-hero-desc {
+        font-size: 1.15rem;
+        color: var(--text-light);
+        max-width: 700px;
+        line-height: 1.7;
+        margin: 0 auto 50px;
+      }
+
+      /* Search Box */
+      .faq-search-container {
+        max-width: 650px;
+        margin: 0 auto 50px;
+        position: relative;
+      }
+
+      .faq-search-wrapper {
+        position: relative;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 12px 32px rgba(0, 31, 63, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+      }
+
+      .faq-search-wrapper:focus-within {
+        border-color: var(--nuit-blanche);
+        box-shadow: 0 20px 48px rgba(30, 72, 143, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .faq-search-input {
+        width: 100%;
+        padding: 20px 28px;
+        padding-right: 80px;
+        border: none;
+        background: transparent;
+        font-size: 1.05rem;
+        color: var(--midnight-mirage);
+        outline: none;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+      }
+
+      .faq-search-input::placeholder {
+        color: var(--text-light);
+        font-size: 1rem;
+        font-weight: 400;
+      }
+
+      .faq-search-btn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(30, 72, 143, 0.3);
+      }
+
+      .faq-search-btn:hover {
+        transform: translateY(-50%) scale(1.08);
+        box-shadow: 0 10px 28px rgba(30, 72, 143, 0.4);
+      }
+
+      /* =========== FAQ CATEGORIES =========== */
+      .faq-categories-nav {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0 40px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .faq-categories-nav::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--nuit-blanche),
+          transparent
+        );
+        border-radius: 3px;
+      }
+
+      .faq-category-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        padding: 14px 28px;
+        border-radius: 16px;
+        font-weight: 600;
+        color: var(--midnight-mirage);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 1rem;
+        box-shadow: 0 6px 20px rgba(0, 31, 63, 0.08);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .faq-category-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .faq-category-btn:hover::before {
+        left: 100%;
+      }
+
+      .faq-category-btn:hover {
+        background: white;
+        border-color: rgba(30, 72, 143, 0.2);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 12px 32px rgba(30, 72, 143, 0.12);
+      }
+
+      .faq-category-btn.active {
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 12px 32px rgba(30, 72, 143, 0.25);
+        transform: translateY(-4px) scale(1.02);
+      }
+
+      /* =========== FAQ CARDS =========== */
+      .faq-section {
+        padding: 40px 0 100px;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+      }
+
+      @media (max-width: 768px) {
+        .faq-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
+      .faq-card {
+        background: var(--card-bg);
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 12px 40px rgba(0, 31, 63, 0.08);
+        position: relative;
+        backdrop-filter: blur(20px);
+      }
+
+      .faq-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .faq-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 60px rgba(30, 72, 143, 0.12);
+      }
+
+      .faq-card:hover::before {
+        opacity: 1;
+      }
+
+      .faq-card.active {
+        border-color: rgba(30, 72, 143, 0.3);
+        box-shadow: 0 20px 60px rgba(30, 72, 143, 0.15);
+      }
+
+      .faq-card.active::before {
+        opacity: 1;
+      }
+
+      .faq-card-header {
+        padding: 28px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        transition: all 0.3s;
+        background: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+      }
+
+      .faq-card-header:hover {
+        background: rgba(30, 72, 143, 0.04);
+      }
+
+      .faq-card-number {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 0;
+        box-shadow: 0 6px 16px rgba(30, 72, 143, 0.25);
+      }
+
+      .faq-card-title {
+        flex: 1;
+        margin: 0;
+        font-weight: 700;
+        color: var(--midnight-mirage);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: left;
+        padding-right: 20px;
+        cursor: pointer;
+      }
+
+      .faq-card-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(30, 72, 143, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: var(--nuit-blanche);
+        flex-shrink: 0;
+        margin-top: 0;
+        border: 2px solid rgba(30, 72, 143, 0.2);
+        cursor: pointer;
+      }
+
+      .faq-card.active .faq-card-toggle {
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        border-color: transparent;
+        transform: rotate(180deg);
+        box-shadow: 0 6px 16px rgba(30, 72, 143, 0.3);
+      }
+
+      .faq-card-content {
+        padding: 0 28px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-card.active .faq-card-content {
+        padding: 0 28px 28px;
+        max-height: 2000px;
+      }
+
+      .faq-answer-content {
+        color: var(--text-light);
+        line-height: 1.8;
+        font-size: 1rem;
+        padding-left: 68px;
+        position: relative;
+      }
+
+      .faq-answer-content::before {
+        content: "";
+        position: absolute;
+        left: 48px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--nuit-blanche),
+          transparent
+        );
+        border-radius: 3px;
+      }
+
+      .faq-answer-content p {
+        margin-bottom: 20px;
+      }
+
+      .faq-answer-content ul,
+      .faq-answer-content ol {
+        padding-left: 28px;
+        margin-bottom: 20px;
+      }
+
+      .faq-answer-content li {
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .faq-answer-content li::before {
+        content: "•";
+        color: var(--nuit-blanche);
+        font-weight: bold;
+        position: absolute;
+        left: -20px;
+        font-size: 1.4rem;
+        top: -2px;
+      }
+
+      /* Info Box */
+      .faq-info-box {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 72, 143, 0.08),
+          rgba(30, 72, 143, 0.04)
+        );
+        border-left: 4px solid var(--nuit-blanche);
+        padding: 22px;
+        border-radius: 14px;
+        margin-top: 25px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(30, 72, 143, 0.15);
+      }
+
+      .faq-info-box i {
+        color: var(--nuit-blanche);
+        font-size: 1.3rem;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+
+      .faq-info-box p {
+        margin-bottom: 0;
+        color: var(--nuit-blanche);
+        font-weight: 600;
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      /* No Results */
+      .no-results-message {
+        text-align: center;
+        padding: 80px 60px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        border: 2px dashed rgba(30, 72, 143, 0.2);
+        margin: 60px 0;
+        backdrop-filter: blur(20px);
+        grid-column: 1 / -1;
+      }
+
+      .no-results-icon {
+        font-size: 4rem;
+        color: var(--nuit-blanche);
+        margin-bottom: 25px;
+        opacity: 0.5;
+      }
+
+      /* =========== CONTACT CTA =========== */
+      .faq-contact-cta {
+        background: linear-gradient(
+          135deg,
+          var(--midnight-mirage),
+          var(--nuit-blanche)
+        );
+        border-radius: 28px;
+        padding: 50px;
+        margin-top: 80px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 31, 63, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .faq-contact-cta::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 70%
+        );
+        opacity: 0.3;
+      }
+
+      .faq-contact-cta h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        position: relative;
+      }
+
+      .faq-contact-cta p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        position: relative;
+        max-width: 700px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        position: relative;
+      }
+
+      .cta-btn {
+        padding: 16px 32px;
+        border-radius: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .cta-btn:hover::before {
+        left: 100%;
+      }
+
+      .cta-btn.primary {
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        box-shadow: 0 8px 24px rgba(30, 72, 143, 0.3);
+      }
+
+      .cta-btn.secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      }
+
+      /* =========== RESPONSIVE =========== */
+      @media (max-width: 1200px) {
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .faq-hero-title {
+          font-size: 3rem;
+        }
+
+        .faq-hero-subtitle {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 90px;
+        }
+
+        .navbar-container {
+          top: 15px !important;
+          padding: 0 15px !important;
+        }
+
+        .navbar {
+          padding: 10px 20px !important;
+          border-radius: 25px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.3rem !important;
+        }
+
+        .brand-icon-box {
+          width: 36px !important;
+          height: 36px !important;
+        }
+
+        .nav-link {
+          font-size: 0.9rem !important;
+          padding: 6px 14px !important;
+        }
+
+        .faq-hero {
+          padding: 60px 0 40px;
+        }
+
+        .faq-hero-title {
+          font-size: 2.5rem;
+        }
+
+        .faq-hero-subtitle {
+          font-size: 1.5rem;
+        }
+
+        .faq-hero-desc {
+          font-size: 1.05rem;
+          margin-bottom: 40px;
+        }
+
+        .faq-search-container {
+          margin-bottom: 40px;
+        }
+
+        .faq-search-input {
+          padding: 18px 24px;
+          padding-right: 70px;
+          font-size: 1rem;
+        }
+
+        .faq-search-btn {
+          width: 48px;
+          height: 48px;
+        }
+
+        .faq-category-btn {
+          padding: 12px 24px;
+          font-size: 0.95rem;
+        }
+
+        .faq-card-header {
+          padding: 24px;
+          gap: 16px;
+        }
+
+        .faq-card-number {
+          width: 44px;
+          height: 44px;
+          font-size: 1rem;
+        }
+
+        .faq-card-title {
+          font-size: 1.05rem;
+        }
+
+        .faq-card-toggle {
+          width: 40px;
+          height: 40px;
+        }
+
+        .faq-answer-content {
+          padding-left: 60px;
+          font-size: 0.95rem;
+        }
+
+        .faq-contact-cta {
+          padding: 40px 28px;
+          margin-top: 60px;
+          border-radius: 24px;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .cta-btn {
+          width: 100%;
+          justify-content: center;
+          padding: 16px 24px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .faq-hero-title {
+          font-size: 2rem;
+        }
+
+        .faq-hero-subtitle {
+          font-size: 1.3rem;
+        }
+
+        .faq-hero-desc {
+          font-size: 1rem;
+        }
+
+        .faq-category-btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+
+        .faq-answer-content {
+          padding-left: 0;
+        }
+
+        .faq-answer-content::before {
+          display: none;
+        }
+
+        .faq-card.active .faq-card-content {
+          padding: 0 24px 24px;
+        }
+
+        .faq-info-box {
+          padding: 20px;
+        }
+
+        .no-results-message {
+          padding: 60px 30px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .navbar {
+          padding: 8px 16px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.1rem !important;
+        }
+
+        .faq-hero-title {
+          font-size: 1.8rem;
+        }
+
+        .faq-hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .faq-category-btn {
+          padding: 8px 16px;
+          font-size: 0.85rem;
+        }
+
+        .faq-card-header {
+          padding: 20px;
+        }
+
+        .faq-card-number {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(
+          135deg,
+          var(--nuit-blanche),
+          var(--midnight-mirage)
+        );
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 6px 20px rgba(30, 72, 143, 0.3);
+        transition: all 0.3s;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(30, 72, 143, 0.4);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Background Layers -->
+    <div class="background-overlay"></div>
+    <div class="pattern-layer"></div>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!-- Navbar -->
+    <div class="navbar-container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <div class="brand-icon-box">
+              <img src="assets/img/logo.png" alt="Logo" class="brand-logo" />
+            </div>
+            <span>Rhapsody <span class="text-green">Find</span></span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" data-i18n="nav_home"
+                  >Beranda</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="search.html" data-i18n="nav_search"
+                  >Ruang Temuan</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html" data-i18n="nav_about"
+                  >Tentang</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="faq.html" data-i18n="nav_faq"
+                  >FAQ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="policy.html" data-i18n="nav_policy"
+                  >Kebijakan</a
+                >
+              </li>
+            </ul>
+
+            <div class="lang-switch-box">
+              <span
+                class="lang-opt active"
+                id="lang-id"
+                onclick="changeLanguage('id')"
+                >ID</span
+              >
+              <span class="text-muted">|</span>
+              <span class="lang-opt" id="lang-en" onclick="changeLanguage('en')"
+                >EN</span
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- FAQ Hero -->
+    <section class="faq-hero">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div
+            class="col-lg-10 text-center"
+            data-aos="fade-up"
+            data-aos-duration="800"
+          >
+            <div class="faq-hero-badge">
+              <i class="ri-questionnaire-line"></i>
+              <span data-i18n="hero_badge">Pertanyaan Umum</span>
+            </div>
+
+            <h1 class="faq-hero-title">
+              <span data-i18n="hero_title">Ada Pertanyaan?</span>
+            </h1>
+
+            <h2 class="faq-hero-subtitle" data-i18n="hero_subtitle">
+              Kami Punya Jawaban
+            </h2>
+
+            <p class="faq-hero-desc" data-i18n="hero_desc">
+              Temukan jawaban untuk pertanyaan yang sering diajukan tentang
+              layanan Lost & Found Rhapsody Mall. Dari pelaporan hingga klaim
+              barang, semua informasi penting ada di sini.
+            </p>
+
+            <div class="faq-search-container">
+              <div class="faq-search-wrapper">
+                <input
+                  type="text"
+                  class="faq-search-input"
+                  id="faqSearch"
+                  placeholder="Cari pertanyaan atau kata kunci..."
+                  data-i18n="search_placeholder"
+                />
+                <button
+                  class="faq-search-btn"
+                  onclick="searchFAQ()"
+                  data-i18n="search_button"
+                >
+                  <i class="ri-search-line"></i>
+                </button>
+              </div>
+              <p class="text-muted small mt-3" data-i18n="search_hint">
+                Coba kata kunci: "lapor", "klaim", "jam operasional", "biaya"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-section" id="faqContent">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-12">
+            <!-- FAQ Categories -->
+            <div
+              class="faq-categories-nav"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <button
+                class="faq-category-btn active"
+                data-category="all"
+                onclick="filterCategory('all')"
+              >
+                <i class="ri-megaphone-line"></i>
+                <span data-i18n="cat_all">Semua Pertanyaan</span>
+                <span class="badge bg-light text-dark ms-2" id="all-count"
+                  >11</span
+                >
+              </button>
+              <button
+                class="faq-category-btn"
+                data-category="report"
+                onclick="filterCategory('report')"
+              >
+                <i class="ri-megaphone-line"></i>
+                <span data-i18n="cat_report">Pelaporan</span>
+                <span class="badge bg-light text-dark ms-2" id="report-count"
+                  >3</span
+                >
+              </button>
+              <button
+                class="faq-category-btn"
+                data-category="claim"
+                onclick="filterCategory('claim')"
+              >
+                <i class="ri-checkbox-circle-line"></i>
+                <span data-i18n="cat_claim">Klaim Barang</span>
+                <span class="badge bg-light text-dark ms-2" id="claim-count"
+                  >3</span
+                >
+              </button>
+              <button
+                class="faq-category-btn"
+                data-category="policy"
+                onclick="filterCategory('policy')"
+              >
+                <i class="ri-shield-check-line"></i>
+                <span data-i18n="cat_policy">Kebijakan</span>
+                <span class="badge bg-light text-dark ms-2" id="policy-count"
+                  >3</span
+                >
+              </button>
+              <button
+                class="faq-category-btn"
+                data-category="contact"
+                onclick="filterCategory('contact')"
+              >
+                <i class="ri-contacts-line"></i>
+                <span data-i18n="cat_contact">Kontak & Layanan</span>
+                <span class="badge bg-light text-dark ms-2" id="contact-count"
+                  >2</span
+                >
+              </button>
+            </div>
+
+            <!-- FAQ Cards Grid -->
+            <div class="faq-grid" id="faqCardsContainer">
+              <!-- FAQ 1 -->
+              <div
+                class="faq-card"
+                data-category="report"
+                data-aos="fade-up"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">1</div>
+                  <h5 class="faq-card-title" data-i18n="faq1_q">
+                    Bagaimana cara melaporkan barang hilang di Rhapsody Mall?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq1_a1">
+                      Ada 3 cara melaporkan barang hilang:
+                    </p>
+                    <ol>
+                      <li data-i18n="faq1_a2">
+                        <strong>Datang langsung</strong> ke Customer Service
+                        Lantai 1 (dekat Entrance A)
+                      </li>
+                      <li data-i18n="faq1_a3">
+                        <strong>Hubungi</strong> Via WhatsApp +62 895-3574-15601 Atau + 62-813-6678-9792
+                      </li>
+                      <li data-i18n="faq1_a4">
+                        <strong>Telepon</strong> ke (021) 1234-5678 ext. 123
+                        pada jam operasional
+                      </li>
+                    </ol>
+                    <div class="faq-info-box">
+                      <i class="ri-lightbulb-line"></i>
+                      <p data-i18n="faq1_tip">
+                        Untuk barang berharga, disarankan datang langsung untuk
+                        proses lebih cepat.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 2 -->
+              <div
+                class="faq-card"
+                data-category="report"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">2</div>
+                  <h5 class="faq-card-title" data-i18n="faq2_q">
+                    Apakah ada biaya untuk melaporkan barang hilang?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq2_a1">
+                      <strong>Tidak ada biaya sama sekali.</strong> Layanan
+                      pelaporan barang hilang di Rhapsody Mall gratis 100%.
+                    </p>
+                    <p data-i18n="faq2_a2">
+                      Kami berkomitmen membantu pengunjung tanpa membebani biaya
+                      administrasi.
+                    </p>
+                    <p data-i18n="faq2_a3" class="small text-muted mt-3">
+                      *Tidak ada biaya administrasi, pendaftaran, atau biaya
+                      tersembunyi lainnya.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 3 -->
+              <div
+                class="faq-card"
+                data-category="report"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">3</div>
+                  <h5 class="faq-card-title" data-i18n="faq3_q">
+                    Informasi apa saja yang perlu disiapkan sebelum melapor?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq3_a1">
+                      Untuk mempercepat proses, siapkan:
+                    </p>
+                    <ul>
+                      <li data-i18n="faq3_a2">
+                        Deskripsi detail barang (warna, merek, ukuran, ciri
+                        khas)
+                      </li>
+                      <li data-i18n="faq3_a3">
+                        Perkiraan waktu dan lokasi kehilangan
+                      </li>
+                      <li data-i18n="faq3_a4">
+                        Foto barang jika ada (dari ponsel Anda)
+                      </li>
+                      <li data-i18n="faq3_a5">Kontak yang bisa dihubungi</li>
+                      <li data-i18n="faq3_a6">KTP asli untuk verifikasi</li>
+                    </ul>
+                    <div class="faq-info-box">
+                      <i class="ri-time-line"></i>
+                      <p data-i18n="faq3_tip">
+                        Dengan persiapan lengkap, proses lapor hanya memakan
+                        waktu 10-15 menit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 4 -->
+              <div
+                class="faq-card"
+                data-category="claim"
+                data-aos="fade-up"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">4</div>
+                  <h5 class="faq-card-title" data-i18n="faq5_q">
+                    Berapa lama barang disimpan di Customer Service?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq5_a1">
+                      Barang akan disimpan maksimal
+                      <strong>30 hari kalender</strong> sejak tanggal ditemukan.
+                    </p>
+                    <div class="faq-info-box">
+                      <i class="ri-information-line"></i>
+                      <p data-i18n="faq5_tip">
+                        <strong>Pengecualian:</strong> Barang berbahaya hanya
+                        disimpan 24 jam. Barang elektronik 60 hari.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 5 -->
+              <div
+                class="faq-card"
+                data-category="claim"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">5</div>
+                  <h5 class="faq-card-title" data-i18n="faq6_q">
+                    Syarat apa saja untuk mengklaim barang yang ditemukan?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq6_a1">Syarat utama klaim barang:</p>
+                    <ul>
+                      <li data-i18n="faq6_a2">
+                        <strong>KTP asli</strong> yang masih berlaku
+                      </li>
+                      <li data-i18n="faq6_a3">
+                        Deskripsi detail dan akurat tentang barang
+                      </li>
+                      <li data-i18n="faq6_a4">
+                        Jika ada, bukti kepemilikan (foto, receipt, kartu
+                        garansi)
+                      </li>
+                      <li data-i18n="faq6_a5">
+                        Untuk barang elektronik: minta menyalakan/memasukkan
+                        password
+                      </li>
+                      <li data-i18n="faq6_a6">
+                        Dokumen form klaim barang yang sudah ditandatangani
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 6 -->
+              <div
+                class="faq-card"
+                data-category="claim"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">6</div>
+                  <h5 class="faq-card-title" data-i18n="faq7_q">
+                    Bisakah orang lain mengklaim barang untuk saya?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq7_a1">Ya, dengan syarat:</p>
+                    <ul>
+                      <li data-i18n="faq7_a2">
+                        Surat kuasa bermaterai dari pemilik asli
+                      </li>
+                      <li data-i18n="faq7_a3">
+                        Fotokopi KTP pemilik asli yang sudah dilegalisir
+                      </li>
+                      <li data-i18n="faq7_a4">KTP asli penerima kuasa</li>
+                      <li data-i18n="faq7_a5">
+                        Foto barang sebagai bukti pengenalan
+                      </li>
+                      <li data-i18n="faq7_a6">
+                        Konfirmasi telepon dari pemilik asli saat klaim
+                      </li>
+                    </ul>
+                    <div class="faq-info-box">
+                      <i class="ri-alert-line"></i>
+                      <p data-i18n="faq7_tip">
+                        Untuk barang berharga tinggi, disarankan datang
+                        langsung.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 7-->
+              <div
+                class="faq-card"
+                data-category="policy"
+                data-aos="fade-up"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">7</div>
+                  <h5 class="faq-card-title" data-i18n="faq8_q">
+                    Apa yang terjadi jika barang tidak diambil dalam 30 hari?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq8_a1">
+                      Barang yang tidak diklaim dalam 30 hari akan:
+                    </p>
+                    <ul>
+                      <li data-i18n="faq8_a2">
+                        <strong>Disumbangkan</strong> ke yayasan sosial (barang
+                        layak pakai)
+                      </li>
+                      <li data-i18n="faq8_a3">
+                        <strong>Didaur ulang</strong> (barang rusak/tidak layak)
+                      </li>
+                      <li data-i18n="faq8_a4">
+                        <strong>Dihancurkan</strong> (dokumen penting setelah
+                        difoto)
+                      </li>
+                      <li data-i18n="faq8_a5">
+                        <strong>Diserahkan ke polisi</strong> (barang berharga
+                        tinggi)
+                      </li>
+                    </ul>
+                    <p data-i18n="faq8_a6" class="mt-3">
+                      Proses ini sesuai dengan Peraturan Mall No. 045/2023
+                      tentang Pengelolaan Barang Temuan.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 8 -->
+              <div
+                class="faq-card"
+                data-category="policy"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">8</div>
+                  <h5 class="faq-card-title" data-i18n="faq9_q">
+                    Bagaimana dengan keamanan data pribadi saya?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq9_a1">
+                      Kami menjamin keamanan data dengan sistem keamanan
+                      berlapis:
+                    </p>
+                    <div class="row mt-4">
+                      <div class="col-md-6 mb-3">
+                        <div
+                          class="d-flex align-items-center p-4 rounded"
+                          style="
+                            background: rgba(30, 72, 143, 0.08);
+                            border: 1px solid rgba(30, 72, 143, 0.15);
+                          "
+                        >
+                          <i
+                            class="ri-lock-line me-3"
+                            style="
+                              color: var(--nuit-blanche);
+                              font-size: 1.5rem;
+                            "
+                          ></i>
+                          <div>
+                            <div class="fw-bold" data-i18n="faq9_a2">
+                              Data Terenkripsi
+                            </div>
+                            <div class="small text-muted" data-i18n="faq9_a3">
+                              Enkripsi 256-bit SSL/TLS
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div
+                          class="d-flex align-items-center p-4 rounded"
+                          style="
+                            background: rgba(30, 72, 143, 0.08);
+                            border: 1px solid rgba(30, 72, 143, 0.15);
+                          "
+                        >
+                          <i
+                            class="ri-eye-off-line me-3"
+                            style="
+                              color: var(--nuit-blanche);
+                              font-size: 1.5rem;
+                            "
+                          ></i>
+                          <div>
+                            <div class="fw-bold" data-i18n="faq9_a4">
+                              Akses Terbatas
+                            </div>
+                            <div class="small text-muted" data-i18n="faq9_a5">
+                              Hanya petugas berwenang
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div
+                          class="d-flex align-items-center p-4 rounded"
+                          style="
+                            background: rgba(30, 72, 143, 0.08);
+                            border: 1px solid rgba(30, 72, 143, 0.15);
+                          "
+                        >
+                          <i
+                            class="ri-delete-bin-line me-3"
+                            style="
+                              color: var(--nuit-blanche);
+                              font-size: 1.5rem;
+                            "
+                          ></i>
+                          <div>
+                            <div class="fw-bold" data-i18n="faq9_a6">
+                              Retensi Terbatas
+                            </div>
+                            <div class="small text-muted" data-i18n="faq9_a7">
+                              Data dihapus setelah 90 hari
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div
+                          class="d-flex align-items-center p-4 rounded"
+                          style="
+                            background: rgba(30, 72, 143, 0.08);
+                            border: 1px solid rgba(30, 72, 143, 0.15);
+                          "
+                        >
+                          <i
+                            class="ri-shield-keyhole-line me-3"
+                            style="
+                              color: var(--nuit-blanche);
+                              font-size: 1.5rem;
+                            "
+                          ></i>
+                          <div>
+                            <div class="fw-bold" data-i18n="faq9_a8">
+                              Privasi Terjaga
+                            </div>
+                            <div class="small text-muted" data-i18n="faq9_a9">
+                              Tidak dijual/dibagikan ke pihak ketiga
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 9 -->
+              <div
+                class="faq-card"
+                data-category="policy"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">9</div>
+                  <h5 class="faq-card-title" data-i18n="faq10_q">
+                    Apa saja barang yang tidak diterima di Lost & Found?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq10_a1">
+                      Kami tidak menerima dan menyimpan:
+                    </p>
+                    <ul>
+                      <li data-i18n="faq10_a2">
+                        <strong>Barang berbahaya</strong> (senjata, bahan kimia,
+                        bahan mudah terbakar)
+                      </li>
+                      <li data-i18n="faq10_a3">
+                        <strong>Barang ilegal</strong> (narkoba, barang
+                        selundupan)
+                      </li>
+                      <li data-i18n="faq10_a4">
+                        <strong>Hewan hidup</strong> (diserahkan ke petugas
+                        kebersihan)
+                      </li>
+                      <li data-i18n="faq10_a5">
+                        <strong>Makanan/minuman</strong> (dibuang demi
+                        kesehatan)
+                      </li>
+                      <li data-i18n="faq10_a6">
+                        <strong>Barang yang membusuk</strong> (dibuang langsung)
+                      </li>
+                    </ul>
+                    <p data-i18n="faq10_a7" class="mt-3">
+                      Barang dengan kategori ilegal dan berbahaya akan langsung diserahkan ke pihak berwajib.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 10-->
+              <div
+                class="faq-card"
+                data-category="contact"
+                data-aos="fade-up"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">10</div>
+                  <h5 class="faq-card-title" data-i18n="faq11_q">
+                    Jam operasional Customer Service Lost & Found?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq11_a1">
+                      <strong>Operasional Normal:</strong> 10:00 - 22:00 WIB
+                      (setiap hari)
+                    </p>
+                    <p data-i18n="faq11_a2">
+                      <strong>Emergency Hotline:</strong> 24/7 untuk keadaan
+                      darurat
+                    </p>
+                    <p data-i18n="faq11_a3">
+                      <strong>Lokasi:</strong> Lantai 1, dekat Entrance A,
+                      Rhapsody Mall
+                    </p>
+                    <p data-i18n="faq11_a4">
+                      <strong>Koordinat:</strong> -6.175392, 106.827153
+                    </p>
+                    <div class="faq-info-box mt-4">
+                      <i class="ri-calendar-line"></i>
+                      <p data-i18n="faq11_tip">
+                        Buka setiap hari termasuk hari libur nasional. 
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 11 -->
+              <div
+                class="faq-card"
+                data-category="contact"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                onclick="toggleFAQ(this)"
+              >
+                <div class="faq-card-header">
+                  <div class="faq-card-number">11</div>
+                  <h5 class="faq-card-title" data-i18n="faq12_q">
+                    Bagaimana cara melacak status laporan saya?
+                  </h5>
+                  <div class="faq-card-toggle">
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                </div>
+                <div class="faq-card-content">
+                  <div class="faq-answer-content">
+                    <p data-i18n="faq12_a1">
+                      Ada beberapa cara melacak status:
+                    </p>
+                    <ul>
+                      <li data-i18n="faq12_a3">
+                        <strong>WhatsApp:</strong> Kirim kode laporan ke +62
+                        895-3574-15601 Atau +62 813-6678-9792
+                      </li>
+                      <li data-i18n="faq12_a4">
+                        <strong>Telepon:</strong> Hubungi (021) 1234-5678 ext.
+                        123
+                      </li>
+                      <li data-i18n="faq12_a5">
+                        <strong>Email:</strong> Cek inbox dan spam folder untuk
+                        update
+                      </li>
+                      <li data-i18n="faq12_a6">
+                        <strong>Datang Langsung:</strong> Bawa bukti laporan ke
+                        Customer Service
+                      </li>
+                    </ul>
+                    <div class="faq-info-box mt-4">
+                      <i class="ri-qr-code-line"></i>
+                      <p data-i18n="faq12_tip">
+                        Setiap laporan mendapatkan kode unik untuk tracking.
+                        Simpan baik-baik!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div
+              class="faq-contact-cta"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h3 data-i18n="cta_title">Masih belum menemukan jawaban?</h3>
+                  <p data-i18n="cta_desc">
+                    Tim kami siap membantu Anda 24/7. Hubungi
+                    kami via telepon, email, WhatsApp, atau kunjungi langsung
+                    loket Lost & Found untuk bantuan personal yang cepat dan
+                    ramah.
+                  </p>
+                  <div class="cta-buttons">
+                    <!-- Telepon -->
+                    <a href="tel:02112345678" class="cta-btn primary">
+                      <i class="ri-phone-line"></i>
+                      <span data-i18n="cta_call">Telepon (021) 1234-5678</span>
+                    </a>
+
+                    <!-- Email -->
+                    <a
+                      href="mailto:24611004@students.uii.ac.id"
+                      class="cta-btn secondary"
+                    >
+                      <i class="ri-mail-line"></i>
+                      <span data-i18n="cta_email">Kirim Email</span>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a
+                      href="https://wa.me/62895357415601?text=Halo%20Rhapsody%20Find%2C%20saya%20perlu%20bantuan%20mengenai%20barang%20hilang"
+                      class="cta-btn secondary"
+                      target="_blank"
+                    >
+                      <i class="ri-whatsapp-line"></i>
+                      <span data-i18n="cta_whatsapp">WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Help -->
+            <div
+              class="text-center mt-5"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <p class="text-muted" data-i18n="additional_help">
+                Butuh bantuan lebih lanjut?
+                <a
+                  href="contact.html"
+                  class="text-decoration-none fw-bold"
+                  style="color: var(--nuit-blanche)"
+                  data-i18n="additional_link"
+                >
+                  Kunjungi halaman kontak kami →
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        const backToTop = document.getElementById("backToTop");
+
+        if (navbar && window.scrollY > 30) {
+          navbar.classList.add("scrolled");
+        } else if (navbar) {
+          navbar.classList.remove("scrolled");
+        }
+
+        // Show/hide back to top button
+        if (backToTop && window.scrollY > 500) {
+          backToTop.classList.add("visible");
+        } else if (backToTop) {
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      // Back to top functionality
+      document
+        .getElementById("backToTop")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+      // FAQ Toggle Function
+      function toggleFAQ(element) {
+        const faqCard = element.closest
+          ? element.closest(".faq-card")
+          : element;
+        const isActive = faqCard.classList.contains("active");
+
+        // Close all other FAQ cards
+        if (!isActive) {
+          document.querySelectorAll(".faq-card").forEach((card) => {
+            card.classList.remove("active");
+          });
+        }
+
+        // Toggle current card
+        faqCard.classList.toggle("active");
+
+        // Scroll into view if opening
+        if (!isActive) {
+          setTimeout(() => {
+            faqCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 300);
+        }
+      }
+
+      // Filter FAQ by Category
+      function filterCategory(category) {
+        const allCards = document.querySelectorAll(".faq-card");
+        const categoryButtons = document.querySelectorAll(".faq-category-btn");
+
+        // Update active button
+        categoryButtons.forEach((btn) => {
+          btn.classList.remove("active");
+          if (btn.getAttribute("data-category") === category) {
+            btn.classList.add("active");
+          }
+        });
+
+        // Show/hide cards based on category
+        let visibleCount = 0;
+        allCards.forEach((card) => {
+          if (
+            category === "all" ||
+            card.getAttribute("data-category") === category
+          ) {
+            card.style.display = "block";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        // Show message if no cards found
+        showNoResultsMessage(visibleCount === 0);
+      }
+
+      // FAQ Search Function
+      function searchFAQ() {
+        const searchTerm = document
+          .getElementById("faqSearch")
+          .value.toLowerCase()
+          .trim();
+        if (!searchTerm) {
+          showToast("Masukkan kata kunci pencarian", "info");
+          return;
+        }
+
+        const allCards = document.querySelectorAll(".faq-card");
+        let foundCount = 0;
+
+        allCards.forEach((card) => {
+          const question = card
+            .querySelector(".faq-card-title")
+            .textContent.toLowerCase();
+          const answer = card
+            .querySelector(".faq-answer-content")
+            .textContent.toLowerCase();
+
+          if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            card.style.display = "block";
+            card.classList.add("active");
+            foundCount++;
+
+            if (answer.includes(searchTerm)) {
+              setTimeout(() => {
+                card.scrollIntoView({ behavior: "smooth", block: "center" });
+              }, 300);
+            }
+          } else {
+            card.style.display = "none";
+            card.classList.remove("active");
+          }
+        });
+
+        // Update category buttons
+        document.querySelectorAll(".faq-category-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document
+          .querySelector('.faq-category-btn[data-category="all"]')
+          .classList.add("active");
+
+        if (foundCount === 0) {
+          showNoResultsMessage(true);
+          showToast("Tidak ditemukan hasil untuk pencarian Anda", "info");
+        } else {
+          showToast(
+            `Ditemukan ${foundCount} hasil untuk "${searchTerm}"`,
+            "success"
+          );
+          showNoResultsMessage(false);
+        }
+      }
+
+      // Show/hide no results message
+      function showNoResultsMessage(show = false) {
+        let noResultsMsg = document.getElementById("noResultsMessage");
+        const visibleCards = document.querySelectorAll(
+          '.faq-card[style="display: block"]'
+        );
+
+        if (visibleCards.length === 0 && show) {
+          if (!noResultsMsg) {
+            noResultsMsg = document.createElement("div");
+            noResultsMsg.id = "noResultsMessage";
+            noResultsMsg.className = "no-results-message";
+            noResultsMsg.innerHTML = `
+                    <div class="no-results-icon">
+                        <i class="ri-search-eye-line"></i>
+                    </div>
+                    <h5 class="mb-3" data-i18n="no_results_title">Tidak ditemukan hasil</h5>
+                    <p class="text-muted mb-4" data-i18n="no_results_desc">Coba kata kunci lain atau hubungi tim support kami untuk bantuan lebih lanjut</p>
+                    <button class="btn" onclick="showAllFAQs()" 
+                            style="background: linear-gradient(135deg, var(--nuit-blanche), var(--midnight-mirage)); color: white; padding: 14px 28px; font-size: 1rem; border-radius: 12px; border: none;">
+                        <i class="ri-refresh-line me-2"></i><span data-i18n="no_results_btn">Tampilkan Semua FAQ</span>
+                    </button>
+                `;
+            document
+              .getElementById("faqCardsContainer")
+              .appendChild(noResultsMsg);
+          } else {
+            noResultsMsg.style.display = "block";
+          }
+        } else if (noResultsMsg) {
+          noResultsMsg.style.display = "none";
+        }
+      }
+
+      // Show all FAQs
+      function showAllFAQs() {
+        filterCategory("all");
+        document.getElementById("faqSearch").value = "";
+        showToast("Menampilkan semua FAQ", "success");
+      }
+
+      // Toast Notification
+      function showToast(message, type = "info") {
+        const bgColor =
+          type === "success"
+            ? "var(--picture-green)"
+            : type === "info"
+            ? "var(--nuit-blanche)"
+            : "#f56565";
+
+        const toastHtml = `
+            <div class="toast align-items-center text-white border-0" 
+                 role="alert" style="position: fixed; bottom: 40px; right: 40px; z-index: 9999; background: ${bgColor}; font-size: 1rem; border-radius: 14px; overflow: hidden; min-width: 300px;">
+                <div class="d-flex align-items-center">
+                    <div class="toast-body d-flex align-items-center" style="padding: 18px 24px;">
+                        <i class="ri-${
+                          type === "success"
+                            ? "checkbox-circle"
+                            : type === "info"
+                            ? "information"
+                            : "error-warning"
+                        }-line me-3" style="font-size: 1.3rem;"></i>
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-3 m-auto" data-bs-dismiss="toast" style="opacity: 0.7;"></button>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML("beforeend", toastHtml);
+        const toast = new bootstrap.Toast(
+          document.querySelector(".toast:last-child"),
+          {
+            delay: 3000,
+          }
+        );
+        toast.show();
+
+        toast._element.addEventListener("hidden.bs.toast", function () {
+          this.remove();
+        });
+      }
+
+      // Update category counts
+      function updateCategoryCounts() {
+        const categories = ["all", "report", "claim", "policy", "contact"];
+        categories.forEach((category) => {
+          const count =
+            category === "all"
+              ? document.querySelectorAll(".faq-card").length
+              : document.querySelectorAll(
+                  `.faq-card[data-category="${category}"]`
+                ).length;
+
+          const countElement = document.getElementById(`${category}-count`);
+          if (countElement) {
+            countElement.textContent = count;
+          }
+        });
+      }
+
+      // Language System
+      const translations = {
+        id: {
+          // Navbar
+          nav_home: "Beranda",
+          nav_search: "Ruang Temuan",
+          nav_about: "Tentang",
+          nav_faq: "FAQ",
+          nav_policy: "Kebijakan",
+
+          // Hero
+          hero_badge: "Pertanyaan Umum",
+          hero_title: "Ada Pertanyaan?",
+          hero_subtitle: "Kami Punya Jawaban",
+          hero_desc:
+            "Temukan jawaban untuk pertanyaan yang sering diajukan tentang layanan Lost & Found Rhapsody Mall. Dari pelaporan hingga klaim barang, semua informasi penting ada di sini.",
+          search_placeholder: "Cari pertanyaan atau kata kunci...",
+          search_button: "Cari",
+          search_hint:
+            'Coba kata kunci: "lapor", "klaim", "jam operasional", "biaya"',
+
+          // Categories
+          cat_all: "Semua Pertanyaan",
+          cat_report: "Pelaporan",
+          cat_claim: "Klaim Barang",
+          cat_policy: "Kebijakan",
+          cat_contact: "Kontak & Layanan",
+
+          // FAQ Questions
+          faq1_q: "Bagaimana cara melaporkan barang hilang di Rhapsody Mall?",
+          faq1_a1: "Ada 3 cara melaporkan barang hilang:",
+          faq1_a2:
+            "Datang langsung ke Customer Service Lantai 1 (dekat Entrance A)",
+          faq1_a3: 'Hubungi via WhatsApp di +62 895-3574-15601 atau +62 813-6678-9792',
+          faq1_a4: "Telepon ke (021) 1234-5678 ext. 123 pada jam operasional",
+          faq1_tip:
+            "Untuk barang berharga, disarankan datang langsung untuk proses lebih cepat.",
+
+          faq2_q: "Apakah ada biaya untuk melaporkan barang hilang?",
+          faq2_a1:
+            "Tidak ada biaya sama sekali. Layanan pelaporan barang hilang di Rhapsody Mall gratis 100%.",
+          faq2_a2:
+            "Kami berkomitmen membantu pengunjung tanpa membebani biaya administrasi.",
+          faq2_a3:
+            "*Tidak ada biaya administrasi, pendaftaran, atau biaya tersembunyi lainnya.",
+
+          faq3_q: "Informasi apa saja yang perlu disiapkan sebelum melapor?",
+          faq3_a1: "Untuk mempercepat proses, siapkan:",
+          faq3_a2: "Deskripsi detail barang (warna, merek, ukuran, ciri khas)",
+          faq3_a3: "Perkiraan waktu dan lokasi kehilangan",
+          faq3_a4: "Foto barang jika ada (dari ponsel Anda)",
+          faq3_a5: "Kontak yang bisa dihubungi",
+          faq3_a6: "KTP asli untuk verifikasi",
+          faq3_tip:
+            "Dengan persiapan lengkap, proses lapor hanya memakan waktu 10-15 menit.",
+
+          faq5_q: "Berapa lama barang disimpan di Customer Service?",
+          faq5_a1:
+            "Barang akan disimpan maksimal 30 hari kalender sejak tanggal ditemukan.",
+          faq5_tip:
+            "Pengecualian: Barang berbahaya hanya disimpan 24 jam. Barang elektronik 60 hari.",
+
+          faq6_q: "Syarat apa saja untuk mengklaim barang yang ditemukan?",
+          faq6_a1: "Syarat utama klaim barang:",
+          faq6_a2: "KTP asli yang masih berlaku",
+          faq6_a3: "Deskripsi detail dan akurat tentang barang",
+          faq6_a4: "Jika ada, bukti kepemilikan (foto, receipt, kartu garansi)",
+          faq6_a5:
+            "Untuk barang elektronik: minta menyalakan/memasukkan password",
+          faq6_a6: "Dokumen form klaim barang yang sudah ditandatangani",
+
+          faq7_q: "Bisakah orang lain mengklaim barang untuk saya?",
+          faq7_a1: "Ya, dengan syarat:",
+          faq7_a2: "Surat kuasa bermaterai dari pemilik asli",
+          faq7_a3: "Fotokopi KTP pemilik asli yang sudah dilegalisir",
+          faq7_a4: "KTP asli penerima kuasa",
+          faq7_a5: "Foto barang sebagai bukti pengenalan",
+          faq7_a6: "Konfirmasi telepon dari pemilik asli saat klaim",
+          faq7_tip: "Untuk barang berharga tinggi, disarankan datang langsung.",
+
+          faq8_q: "Apa yang terjadi jika barang tidak diambil dalam 30 hari?",
+          faq8_a1: "Barang yang tidak diklaim dalam 30 hari akan:",
+          faq8_a2: "Disumbangkan ke yayasan sosial (barang layak pakai)",
+          faq8_a3: "Didaur ulang (barang rusak/tidak layak)",
+          faq8_a4: "Dihancurkan (dokumen penting setelah difoto)",
+          faq8_a5: "Diserahkan ke polisi (barang berharga tinggi)",
+          faq8_a6:
+            "Proses ini sesuai dengan Peraturan Mall No. 045/2023 tentang Pengelolaan Barang Temuan.",
+
+          faq9_q: "Bagaimana dengan keamanan data pribadi saya?",
+          faq9_a1:
+            "Kami menjamin keamanan data dengan sistem keamanan berlapis:",
+          faq9_a2: "Data Terenkripsi",
+          faq9_a3: "Enkripsi 256-bit SSL/TLS",
+          faq9_a4: "Akses Terbatas",
+          faq9_a5: "Hanya petugas berwenang",
+          faq9_a6: "Retensi Terbatas",
+          faq9_a7: "Data dihapus setelah 90 hari",
+          faq9_a8: "Privasi Terjaga",
+          faq9_a9: "Tidak dijual/dibagikan ke pihak ketiga",
+
+          faq10_q: "Apa saja barang yang tidak diterima di Lost & Found?",
+          faq10_a1: "Kami tidak menerima dan menyimpan:",
+          faq10_a2:
+            "Barang berbahaya (senjata, bahan kimia, bahan mudah terbakar)",
+          faq10_a3: "Barang ilegal (narkoba, barang selundupan)",
+          faq10_a4: "Hewan hidup (diserahkan ke petugas kebersihan)",
+          faq10_a5: "Makanan/minuman (dibuang demi kesehatan)",
+          faq10_a6: "Barang yang membusuk (dibuang langsung)",
+          faq10_a7:
+            "Barang dengan kategori ilegal dan berbahaya akan langsung diserahkan ke pihak berwajib.",
+
+          faq11_q: "Jam operasional Customer Service Lost & Found?",
+          faq11_a1: "Operasional Normal: 10:00 - 22:00 WIB (setiap hari)",
+          faq11_a2: "Emergency Hotline: 24/7 untuk keadaan darurat",
+          faq11_a3: "Lokasi: Lantai 1, dekat Entrance A, Rhapsody Mall",
+          faq11_a4: "Koordinat: -6.175392, 106.827153",
+          faq11_tip:
+            "Buka setiap hari termasuk hari libur nasional. ",
+
+          faq12_q: "Bagaimana cara melacak status laporan saya?",
+          faq12_a1: "Ada beberapa cara melacak status:",
+          faq12_a3:
+            "WhatsApp: Kirim kode laporan ke +62 895-3574-15601 Atau +62 813-6678-992",
+          faq12_a4: "Telepon: Hubungi (021) 1234-5678 ext. 123",
+          faq12_a5: "Email: Cek inbox dan spam folder untuk update",
+          faq12_a6: "Datang Langsung: Bawa bukti laporan ke Customer Service",
+          faq12_tip:
+            "Setiap laporan mendapatkan kode unik untuk tracking. Simpan baik-baik!",
+
+          // CTA
+          cta_title: "Masih belum menemukan jawaban?",
+          cta_desc:
+            "Tim kami siap membantu Anda 24/7. Hubungi kami via telepon, email, WhatsApp, atau kunjungi langsung loket Lost & Found untuk bantuan personal yang cepat dan ramah.",
+          cta_call: "Telepon (021) 1234-5678",
+          cta_email: "Kirim Email",
+          cta_whatsapp: "WhatsApp",
+
+          // Additional Help
+          additional_help: "Butuh bantuan lebih lanjut? ",
+          additional_link: "Kunjungi halaman kontak kami →",
+
+          // No Results
+          no_results_title: "Tidak ditemukan hasil",
+          no_results_desc:
+            "Coba kata kunci lain atau hubungi tim support kami untuk bantuan lebih lanjut",
+          no_results_btn: "Tampilkan Semua FAQ",
+        },
+
+        en: {
+          // Navbar
+          nav_home: "Home",
+          nav_search: "Discovery Hub",
+          nav_about: "About",
+          nav_faq: "FAQ",
+          nav_policy: "Policy",
+
+          // Hero
+          hero_badge: "Frequently Asked Questions",
+          hero_title: "Have Questions?",
+          hero_subtitle: "We Have Answers",
+          hero_desc:
+            "Find answers to frequently asked questions about Rhapsody Mall's Lost & Found service. From reporting to claiming items, all important information is here.",
+          search_placeholder: "Search questions or keywords...",
+          search_button: "Search",
+          search_hint:
+            'Try keywords: "report", "claim", "operating hours", "fees"',
+
+          // Categories
+          cat_all: "All Questions",
+          cat_report: "Reporting",
+          cat_claim: "Claim Items",
+          cat_policy: "Policies",
+          cat_contact: "Contact & Services",
+
+          // FAQ Questions
+          faq1_q: "How to report a lost item at Rhapsody Mall?",
+          faq1_a1: "There are 3 ways to report lost items:",
+          faq1_a3: "Contact via WhatsApp at +62 895-3574-15601 or +62 813-6678-9792",
+          faq1_a4:
+            "Phone call to (021) 1234-5678 ext. 123 during operating hours",
+          faq1_tip:
+            "For valuable items, it is recommended to come directly for faster process.",
+
+          faq2_q: "Is there a fee for reporting lost items?",
+          faq2_a1:
+            "No fee at all. Lost item reporting service at Rhapsody Mall is 100% free.",
+          faq2_a2:
+            "We are committed to helping visitors without administrative fees.",
+          faq2_a3: "*No administration, registration, or hidden fees.",
+
+          faq3_q: "What information should I prepare before reporting?",
+          faq3_a1: "To speed up the process, prepare:",
+          faq3_a2:
+            "Detailed item description (color, brand, size, distinctive features)",
+          faq3_a3: "Estimated time and location of loss",
+          faq3_a4: "Photo of the item if available (from your phone)",
+          faq3_a5: "Contact information",
+          faq3_a6: "Original ID card for verification",
+          faq3_tip:
+            "With complete preparation, reporting process only takes 10-15 minutes.",
+
+          faq5_q: "How long are items stored at Customer Service?",
+          faq5_a1:
+            "Items will be stored for a maximum of 30 calendar days from the date found.",
+          faq5_tip:
+            "Exceptions: Hazardous items stored for 24 hours only. Electronics 60 days.",
+         
+          faq6_q: "What are the requirements for claiming found items?",
+          faq6_a1: "Main requirements for claiming items:",
+          faq6_a2: "Original valid ID card",
+          faq6_a3: "Detailed and accurate description of the item",
+          faq6_a4:
+            "Proof of ownership if available (photo, receipt, warranty card)",
+          faq6_a5: "For electronics: request to turn on/enter password",
+          faq6_a6: "Signed item claim document form",
+
+          faq7_q: "Can someone else claim items for me?",
+          faq7_a1: "Yes, with requirements:",
+          faq7_a2: "Notarized power of attorney from original owner",
+          faq7_a3: "Legalized photocopy of original owner's ID card",
+          faq7_a4: "Original ID card of attorney",
+          faq7_a5: "Photo of item as identification proof",
+          faq7_a6: "Phone confirmation from original owner during claim",
+          faq7_tip: "For high-value items, it is recommended to come directly.",
+
+          faq8_q: "What happens if items are not claimed within 30 days?",
+          faq8_a1: "Items not claimed within 30 days will be:",
+          faq8_a2: "Donated to social foundations (usable items)",
+          faq8_a3: "Recycled (damaged/unusable items)",
+          faq8_a4: "Destroyed (important documents after being photographed)",
+          faq8_a5: "Handed over to police (high-value items)",
+          faq8_a6:
+            "This process follows Mall Regulation No. 045/2023 on Found Items Management.",
+
+          faq9_q: "What about the security of my personal data?",
+          faq9_a1: "We guarantee data security with layered security system:",
+          faq9_a2: "Encrypted Data",
+          faq9_a3: "256-bit SSL/TLS encryption",
+          faq9_a4: "Limited Access",
+          faq9_a5: "Only authorized personnel",
+          faq9_a6: "Limited Retention",
+          faq9_a7: "Data deleted after 90 days",
+          faq9_a8: "Privacy Protected",
+          faq9_a9: "Not sold/shared to third parties",
+
+          faq10_q: "What items are not accepted at Lost & Found?",
+          faq10_a1: "We do not accept and store:",
+          faq10_a2: "Dangerous items (weapons, chemicals, flammable materials)",
+          faq10_a3: "Illegal items (drugs, smuggled goods)",
+          faq10_a4: "Live animals (handed over to cleaning staff)",
+          faq10_a5: "Food/drinks (discarded for health reasons)",
+          faq10_a6: "Perishable items (discarded immediately)",
+          faq10_a7:
+            "Items in illegal and dangerous categories will be handed over to authorities immediately.",
+
+          faq11_q: "Customer Service Lost & Found operating hours?",
+          faq11_a1: "Normal Operations: 10:00 - 22:00 WIB (every day)",
+          faq11_a2: "Emergency Hotline: 24/7 for emergencies",
+          faq11_a3: "Location: 1st Floor, near Entrance A, Rhapsody Mall",
+          faq11_a4: "Coordinates: -6.175392, 106.827153",
+          faq11_tip:
+            "Open every day including national holidays.",
+
+          faq12_q: "How to track the status of my report?",
+          faq12_a1: "There are several ways to track status:",
+          faq12_a3:
+            "WhatsApp: Send report code to +62 895-3574-15601 Or +62 813-6678-9792",
+          faq12_a4: "Phone: Call (021) 1234-5678 ext. 123",
+          faq12_a5: "Email: Check inbox and spam folder for updates",
+          faq12_a6: "Visit Directly: Bring report proof to Customer Service",
+          faq12_tip:
+            "Every report gets a unique code for tracking. Keep it safe!",
+
+          // CTA
+          cta_title: "Still can't find the answer?",
+          cta_desc:
+            "Our team is ready to help you 24/7. Contact us via phone, email, WhatsApp, or visit the Lost & Found counter directly for fast and friendly personal assistance.",
+          cta_call: "Call (021) 1234-5678",
+          cta_email: "Send Email",
+          cta_whatsapp: "WhatsApp",
+
+          // Additional Help
+          additional_help: "Need further assistance? ",
+          additional_link: "Visit our contact page →",
+
+          // No Results
+          no_results_title: "No results found",
+          no_results_desc:
+            "Try other keywords or contact our support team for further assistance",
+          no_results_btn: "Show All FAQs",
+        },
+      };
+
+      function changeLanguage(lang) {
+        // Update all elements with data-i18n attribute
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+              element.placeholder = translations[lang][key];
+            } else if (
+              element.tagName === "BUTTON" &&
+              element.type === "submit"
+            ) {
+              element.textContent = translations[lang][key];
+            } else {
+              element.textContent = translations[lang][key];
+            }
+          }
+        });
+
+        // Update language switcher UI
+        const langId = document.getElementById("lang-id");
+        const langEn = document.getElementById("lang-en");
+
+        if (lang === "id") {
+          langId.classList.add("active");
+          langEn.classList.remove("active");
+        } else {
+          langEn.classList.add("active");
+          langId.classList.remove("active");
+        }
+
+        // Save preference
+        localStorage.setItem("rhapsody_language", lang);
+
+        // Show toast
+        showToast(
+          lang === "id"
+            ? "Bahasa diubah ke Indonesia"
+            : "Language changed to English",
+          "success"
+        );
+      }
+
+      // Initialize on load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load saved language preference
+        const savedLang = localStorage.getItem("rhapsody_language") || "id";
+        changeLanguage(savedLang);
+
+        // Update category counts
+        updateCategoryCounts();
+
+        // Enter key search
+        document
+          .getElementById("faqSearch")
+          .addEventListener("keyup", function (e) {
+            if (e.key === "Enter") {
+              searchFAQ();
+            }
+          });
+
+        // Auto focus search on desktop
+        if (window.innerWidth > 768) {
+          setTimeout(() => {
+            const searchInput = document.getElementById("faqSearch");
+            if (searchInput) {
+              searchInput.focus();
+            }
+          }, 800);
+        }
+
+        // Initialize all FAQ cards closed
+        setTimeout(() => {
+          document.querySelectorAll(".faq-card").forEach((card) => {
+            card.classList.remove("active");
+          });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Rhapsody Find</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --praxeti: #f6f7ed;
+        --midnight: #001f3f;
+        --spring: #dbe64c;
+        --mantis: #74c365;
+        --picture-green: #00804c;
+        --nuit-blanche: #1e488f;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--praxeti);
+        color: var(--midnight);
+        overflow-x: hidden;
+      }
+
+      .gelembung-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .gelembung {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.2;
+        animation: gelembung-float 25s infinite ease-in-out;
+      }
+
+      .gelembung-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--spring);
+        top: -200px;
+        right: -150px;
+        animation-delay: 0s;
+      }
+
+      .gelembung-2 {
+        width: 450px;
+        height: 450px;
+        background: var(--mantis);
+        bottom: -150px;
+        left: -100px;
+        animation-delay: -8s;
+        animation-duration: 30s;
+      }
+
+      .gelembung-3 {
+        width: 350px;
+        height: 350px;
+        background: var(--nuit-blanche);
+        top: 30%;
+        left: 10%;
+        opacity: 0.2;
+        animation-delay: -15s;
+        animation-duration: 35s;
+      }
+
+      .gelembung-4 {
+        width: 300px;
+        height: 300px;
+        background: var(--picture-green);
+        top: 60%;
+        right: 20%;
+        opacity: 0.15;
+        animation-delay: -5s;
+        animation-duration: 40s;
+      }
+
+      .gelembung-5 {
+        width: 250px;
+        height: 250px;
+        background: var(--spring);
+        top: 20%;
+        right: 40%;
+        opacity: 0.1;
+        animation-delay: -20s;
+        animation-duration: 45s;
+      }
+
+      .gelembung-6 {
+        width: 200px;
+        height: 200px;
+        background: var(--mantis);
+        bottom: 30%;
+        left: 30%;
+        opacity: 0.12;
+        animation-delay: -10s;
+        animation-duration: 28s;
+      }
+
+      .gelembung-7 {
+        width: 180px;
+        height: 180px;
+        background: var(--nuit-blanche);
+        top: 70%;
+        left: 60%;
+        opacity: 0.18;
+        animation-delay: -12s;
+        animation-duration: 32s;
+      }
+
+      .gelembung-8 {
+        width: 220px;
+        height: 220px;
+        background: var(--picture-green);
+        bottom: 10%;
+        right: 30%;
+        opacity: 0.14;
+        animation-delay: -18s;
+        animation-duration: 38s;
+      }
+
+      .gelembung-9 {
+        width: 120px;
+        height: 120px;
+        background: var(--spring);
+        top: 40%;
+        right: 10%;
+        opacity: 0.08;
+        animation-delay: -3s;
+        animation-duration: 22s;
+      }
+
+      .gelembung-10 {
+        width: 100px;
+        height: 100px;
+        background: var(--mantis);
+        bottom: 40%;
+        left: 70%;
+        opacity: 0.06;
+        animation-delay: -14s;
+        animation-duration: 26s;
+      }
+
+      .gelembung-11 {
+        width: 90px;
+        height: 90px;
+        background: var(--nuit-blanche);
+        top: 10%;
+        left: 50%;
+        opacity: 0.09;
+        animation-delay: -7s;
+        animation-duration: 24s;
+      }
+
+      .gelembung-12 {
+        width: 80px;
+        height: 80px;
+        background: var(--picture-green);
+        bottom: 60%;
+        right: 5%;
+        opacity: 0.07;
+        animation-delay: -16s;
+        animation-duration: 20s;
+      }
+
+      @keyframes gelembung-float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg) scale(1);
+        }
+        25% {
+          transform: translate(60px, 80px) rotate(90deg) scale(1.1);
+        }
+        50% {
+          transform: translate(0, 150px) rotate(180deg) scale(1);
+        }
+        75% {
+          transform: translate(-60px, 80px) rotate(270deg) scale(1.1);
+        }
+      }
+
+      .partikel {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: var(--midnight);
+        border-radius: 50%;
+        opacity: 0.04;
+        animation: partikel-float 15s linear infinite;
+      }
+
+      .partikel-2 {
+        width: 6px;
+        height: 6px;
+        opacity: 0.03;
+        animation-duration: 20s;
+      }
+
+      .partikel-3 {
+        width: 4px;
+        height: 4px;
+        opacity: 0.02;
+        animation-duration: 25s;
+      }
+
+      @keyframes partikel-float {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.1;
+        }
+        90% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translateY(-100px)
+            translateX(calc(100px * var(--random-x)));
+          opacity: 0;
+        }
+      }
+
+      /* --- NAVBAR --- */
+      .navbar-container {
+        position: fixed !important;
+        top: 25px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 0 20px !important;
+        pointer-events: none !important;
+      }
+
+      .navbar {
+        width: 100% !important;
+        max-width: 1140px !important;
+        background: rgba(255, 255, 255, 0.92) !important;
+        backdrop-filter: blur(20px) !important;
+        border-radius: 50px !important;
+        padding: 12px 30px !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 10px 30px rgba(0, 31, 63, 0.08) !important;
+        transition: all 0.4s ease !important;
+        pointer-events: auto !important;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.96) !important;
+        box-shadow: 0 15px 40px rgba(0, 31, 63, 0.12) !important;
+      }
+
+      .navbar-brand {
+        font-weight: 800 !important;
+        font-size: 1.5rem !important;
+        color: var(--midnight) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-decoration: none !important;
+      }
+
+      .text-green {
+        color: var(--picture-green) !important;
+        font-weight: 800 !important;
+      }
+
+      .brand-icon-box {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+      }
+
+      .brand-logo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+
+      .nav-link {
+        font-weight: 600 !important;
+        color: var(--midnight) !important;
+        margin: 0 5px !important;
+        padding: 8px 18px !important;
+        border-radius: 25px !important;
+        transition: 0.3s !important;
+        text-decoration: none !important;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--picture-green) !important;
+        background: rgba(116, 195, 101, 0.1) !important;
+      }
+
+      .lang-switch-box {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+        padding: 6px 14px !important;
+        border-radius: 20px !important;
+      }
+
+      .lang-opt {
+        cursor: pointer !important;
+        opacity: 0.4 !important;
+        transition: 0.3s !important;
+        user-select: none !important;
+      }
+
+      .lang-opt.active {
+        opacity: 1 !important;
+        color: var(--midnight) !important;
+      }
+
+      /* --- HERO SECTION --- */
+      .hero-section {
+        padding: 180px 0 100px;
+        position: relative;
+      }
+
+      .hero-content {
+        text-align: left;
+        padding-bottom: 60px; 
+      }
+
+      .hero-badge {
+        background: linear-gradient(
+          135deg,
+          rgba(116, 195, 101, 0.1),
+          rgba(219, 230, 76, 0.1)
+        );
+        color: var(--picture-green);
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        animation: badge-pulse 2s infinite;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 7vw, 5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .hero-description {
+        font-size: 1.2rem;
+        color: rgba(0, 31, 63, 0.8);
+        line-height: 1.6;
+        margin-bottom: 40px;
+        max-width: 600px;
+      }
+
+      .hero-content .btn {
+        margin-top: 20px !important;
+        margin-bottom: 40px !important;
+      }
+
+      @media (min-width: 992px) {
+        .hero-section .row > .col-lg-6:first-child {
+          padding-right: 60px !important; 
+        }
+
+        .hero-section .row > .col-lg-6:last-child {
+          padding-left: 40px !important; 
+        }
+      }
+
+      /* Spacing untuk mobile */
+      @media (max-width: 991px) {
+        .hero-content {
+          padding-bottom: 40px !important;
+        }
+
+        .hero-content .btn {
+          margin-bottom: 30px !important;
+        }
+      }
+
+      /* --- STATS CARDS --- */
+      .stats-section {
+        padding: 80px 0;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--mantis), var(--spring));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        border-color: var(--mantis);
+      }
+
+      .stat-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .stat-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(
+          135deg,
+          rgba(116, 195, 101, 0.1),
+          rgba(219, 230, 76, 0.1)
+        );
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.4s ease;
+      }
+
+      .stat-card:hover .stat-icon {
+        transform: rotate(15deg) scale(1.1);
+        background: linear-gradient(135deg, var(--mantis), var(--spring));
+      }
+
+      .stat-icon i {
+        font-size: 2rem;
+        color: var(--mantis);
+        transition: all 0.4s ease;
+      }
+
+      .stat-card:hover .stat-icon i {
+        color: white;
+      }
+
+      .stat-text {
+        font-size: 1.1rem;
+        color: var(--midnight);
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      /* --- VALUES SECTION --- */
+      .values-section {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: rgba(0, 31, 63, 0.7);
+        margin-bottom: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .value-card {
+        background: white;
+        border-radius: 25px;
+        padding: 40px;
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        border-color: var(--mantis);
+      }
+
+      .value-icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(116, 195, 101, 0.1);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+      }
+
+      .value-icon i {
+        font-size: 2rem;
+        color: var(--mantis);
+      }
+
+      .value-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--midnight);
+      }
+
+      .value-description {
+        font-size: 1rem;
+        color: rgba(0, 31, 63, 0.7);
+        line-height: 1.6;
+      }
+
+      /* --- TIMELINE SECTION --- */
+      .timeline-section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .timeline-container {
+        position: relative;
+        padding-left: 50px;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 25px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          var(--mantis),
+          var(--picture-green)
+        );
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 50px;
+        padding: 35px;
+        background: white;
+        border-radius: 20px;
+        border-left: 4px solid var(--mantis);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        margin-left: 30px;
+        width: calc(100% - 30px);
+        text-align: left;
+      }
+
+      .timeline-item:hover {
+        transform: translateX(8px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-marker {
+        position: absolute;
+        left: -40px;
+        top: 40px;
+        width: 25px;
+        height: 25px;
+        background: white;
+        border: 4px solid var(--mantis);
+        border-radius: 50%;
+        z-index: 2;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-year {
+        display: inline-block;
+        background: var(--midnight);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .timeline-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--midnight);
+      }
+
+      .timeline-description {
+        font-size: 1rem;
+        color: rgba(0, 31, 63, 0.7);
+        line-height: 1.6;
+      }
+
+      /* --- TEAM SECTION --- */
+      .team-section {
+        padding: 100px 0;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 25px;
+        padding: 35px;
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        height: 100%;
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        border-color: var(--mantis);
+      }
+
+      .team-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .team-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--midnight);
+      }
+
+      .team-role {
+        font-size: 0.95rem;
+        color: var(--mantis);
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .team-quote {
+        font-size: 0.95rem;
+        color: rgba(0, 31, 63, 0.7);
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+      /* --- CTA SECTION --- */
+      .cta-section {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          var(--midnight) 0%,
+          var(--nuit-blanche) 100%
+        );
+        border-radius: 60px;
+        margin: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-align: center;
+      }
+
+      .cta-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .cta-description {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        background: linear-gradient(135deg, var(--spring), var(--mantis));
+        color: var(--midnight);
+        border: none;
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background: var(--midnight);
+        color: white;
+        padding: 80px 0 30px;
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--mantis), var(--spring));
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 20px;
+        display: block;
+        text-align: left;
+      }
+
+      .footer-logo span {
+        color: var(--spring);
+      }
+
+      .footer-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: 25px;
+        text-align: left;
+      }
+
+      .social-icons {
+        text-align: left;
+      }
+
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-right: 12px;
+        color: white;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-icon:hover {
+        background: var(--spring);
+        color: var(--midnight);
+        transform: translateY(-3px);
+      }
+
+      .footer-heading {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 25px;
+        letter-spacing: 0.5px;
+        text-align: left;
+      }
+
+      .footer-link {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      .footer-link:hover {
+        color: var(--spring);
+        transform: translateX(5px);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .contact-icon i {
+        font-size: 1.1rem;
+        color: var(--spring);
+      }
+
+      .contact-text p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+
+      .contact-text strong {
+        display: block;
+        color: white;
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 60px;
+        padding-top: 30px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+      }
+
+      /* --- RESPONSIVE --- */
+      @media (max-width: 991px) {
+        .navbar-container {
+          padding: 0 15px !important;
+        }
+
+        .navbar {
+          padding: 10px 20px !important;
+        }
+
+        .hero-section {
+          padding: 140px 0 60px;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .section-title {
+          font-size: 2.3rem;
+        }
+
+        .cta-section {
+          border-radius: 40px;
+          margin: 60px 0;
+          padding: 80px 20px;
+        }
+
+        .cta-title {
+          font-size: 2.3rem;
+        }
+
+        .timeline-container {
+          padding-left: 40px;
+        }
+
+        .timeline-item {
+          margin-left: 25px;
+          width: calc(100% - 25px);
+        }
+
+        .timeline-marker {
+          left: -35px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-description {
+          font-size: 1.1rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .stat-card,
+        .value-card,
+        .team-card {
+          padding: 30px;
+        }
+
+        footer {
+          padding: 60px 0 25px;
+        }
+
+        .timeline-container {
+          padding-left: 30px;
+        }
+
+        .timeline-item {
+          margin-left: 20px;
+          width: calc(100% - 20px);
+          padding: 25px;
+        }
+
+        .timeline-marker {
+          left: -30px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero-content {
+          text-align: left;
+          padding-right: 0;
+        }
+
+        .timeline-container {
+          padding-left: 25px;
+        }
+
+        .timeline-line {
+          left: 12px;
+        }
+
+        .timeline-item {
+          margin-left: 15px;
+          width: calc(100% - 15px);
+          padding: 20px;
+        }
+
+        .timeline-marker {
+          left: -25px;
+        }
+
+        .footer-logo,
+        .footer-description,
+        .footer-heading,
+        .footer-link,
+        .contact-item {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="gelembung-container">
+      <div class="gelembung gelembung-1"></div>
+      <div class="gelembung gelembung-2"></div>
+      <div class="gelembung gelembung-3"></div>
+      <div class="gelembung gelembung-4"></div>
+      <div class="gelembung gelembung-5"></div>
+      <div class="gelembung gelembung-6"></div>
+      <div class="gelembung gelembung-7"></div>
+      <div class="gelembung gelembung-8"></div>
+      <div class="gelembung gelembung-9"></div>
+      <div class="gelembung gelembung-10"></div>
+      <div class="gelembung gelembung-11"></div>
+      <div class="gelembung gelembung-12"></div>
+    </div>
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <i class="ri-star-fill"></i>
+                <span data-translate="hero_badge">Beyond the Mall</span>
+              </div>
+
+              <h1 class="hero-title">
+                <span data-translate="hero_title_line1"
+                  >Dedikasi untuk menjaga</span
+                ><br />
+                <span
+                  class="title-highlight"
+                  data-translate="hero_title_highlight"
+                  >ketenangan</span
+                >
+                <span data-translate="hero_title_line2"
+                  >setiap langkah Anda.</span
+                >
+              </h1>
+
+              <p class="hero-description" data-translate="hero_description">
+                Menciptakan ekosistem keamanan cerdas yang memadukan teknologi
+                canggih dengan empati manusia untuk pengalaman berbelanja yang
+                aman dan nyaman.
+              </p>
+
+              <button
+                class="btn btn-dark btn-lg rounded-pill px-5 py-3 fw-bold"
+                onclick="scrollToSection('values')"
+              >
+                <i class="ri-arrow-down-line me-2"></i>
+                <span data-translate="hero_button">Jelajahi Lebih</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="position-relative">
+              <div class="rounded-4 overflow-hidden shadow-lg">
+                <img
+                  src="assets/img/Rhapsody-Mall.png"
+                  alt="Rhapsody Mall"
+                  class="w-100"
+                  style="height: 500px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="ri-search-eye-line"></i>
+              </div>
+              <p class="stat-text" data-translate="stat_1">
+                Ribuan barang berhasil ditemukan kembali dengan sistem pencarian
+                cerdas kami
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="ri-heart-line"></i>
+              </div>
+              <p class="stat-text" data-translate="stat_2">
+                Tingkat kepuasan pengguna yang sangat tinggi dengan layanan
+                personal kami
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="ri-time-line"></i>
+              </div>
+              <p class="stat-text" data-translate="stat_3">
+                Respon cepat 24 jam untuk membantu Anda kapan pun dibutuhkan
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="ri-user-line"></i>
+              </div>
+              <p class="stat-text" data-translate="stat_4">
+                Komunitas pengguna aktif yang terus berkembang dan saling
+                mendukung
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section" id="values">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title" data-translate="values_title">
+            Nilai-Nilai Kami
+          </h2>
+          <p class="section-subtitle" data-translate="values_subtitle">
+            Prinsip yang membimbing setiap langkah kami dalam memberikan layanan
+            terbaik
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="ri-shield-check-line"></i>
+              </div>
+              <h3 class="value-title" data-translate="value_title_1">
+                Integritas
+              </h3>
+              <p class="value-description" data-translate="value_desc_1">
+                Setiap laporan ditangani dengan transparansi dan kejujuran. Kami
+                memastikan proses yang jelas dan dapat dipercaya dari awal
+                hingga akhir.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="ri-heart-line"></i>
+              </div>
+              <h3 class="value-title" data-translate="value_title_2">Empati</h3>
+              <p class="value-description" data-translate="value_desc_2">
+                Kami memahami perasaan kehilangan dan berkomitmen untuk membantu
+                dengan penuh perhatian dan pengertian dalam setiap situasi.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="ri-lightbulb-flash-line"></i>
+              </div>
+              <h3 class="value-title" data-translate="value_title_3">
+                Inovasi
+              </h3>
+              <p class="value-description" data-translate="value_desc_3">
+                Terus mengembangkan teknologi terbaru untuk memudahkan proses
+                pencarian dan meningkatkan keamanan secara berkelanjutan.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="ri-team-line"></i>
+              </div>
+              <h3 class="value-title" data-translate="value_title_4">
+                Kolaborasi
+              </h3>
+              <p class="value-description" data-translate="value_desc_4">
+                Bekerja sama dengan semua pihak untuk menciptakan lingkungan
+                yang aman dan nyaman bagi semua pengunjung mall.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title" data-translate="timeline_title">
+            Perjalanan Kami
+          </h2>
+          <p class="section-subtitle" data-translate="timeline_subtitle">
+            Dari ide sederhana menjadi solusi terpercaya di pusat perbelanjaan
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-marker"></div>
+            <div class="timeline-year">2024</div>
+            <h3 class="timeline-title" data-translate="timeline_title_1">
+              Awal Mula
+            </h3>
+            <p class="timeline-description" data-translate="timeline_desc_1">
+              Ide Rhapsody Find muncul dari pengalaman pribadi pendiri yang
+              kehilangan barang penting di mall. Dimulai dengan tim kecil dan
+              sistem manual untuk membantu pengunjung menemukan barang hilang.
+            </p>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+            <div class="timeline-marker"></div>
+            <div class="timeline-year">2025</div>
+            <h3 class="timeline-title" data-translate="timeline_title_2">
+              Peluncuran Platform
+            </h3>
+            <p class="timeline-description" data-translate="timeline_desc_2">
+              Meluncurkan platform digital pertama yang memungkinkan pelaporan
+              online dengan mudah. Sistem database mulai dikembangkan untuk
+              menyimpan dan mengelola data dengan lebih efisien.
+            </p>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+            <div class="timeline-marker"></div>
+            <div class="timeline-year">2026</div>
+            <h3 class="timeline-title" data-translate="timeline_title_3">
+              Ekspansi & Inovasi
+            </h3>
+            <p class="timeline-description" data-translate="timeline_desc_3">
+              Mengintegrasikan teknologi terkini untuk pencarian yang lebih
+              akurat. Memperluas layanan ke beberapa mall lainnya di Jakarta
+              dengan sistem yang terintegrasi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title" data-translate="team_title">Tim Kami</h2>
+          <p class="section-subtitle" data-translate="team_subtitle">
+            Orang-orang berdedikasi di balik kesuksesan Rhapsody Find
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div
+            class="col-md-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="team-card">
+              <img
+                src="assets/img/lintang.jpg"
+                alt="Lintang Adira Kinaya"
+                class="team-img"
+              />
+              <h4 class="team-name">Lintang Adira Kinaya</h4>
+              <div class="team-role" data-translate="team_role_1">
+                Chief Executive Officer
+              </div>
+              <p class="team-quote" data-translate="team_quote_1">
+                "Setiap barang yang ditemukan kembali adalah sebuah cerita
+                bahagia yang tercipta."
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="team-card">
+              <img
+                src="assets/img/finesyaa.jpg"
+                alt="Finesya Aura Nadifa"
+                class="team-img"
+              />
+              <h4 class="team-name">Finesya Aura Nadifa</h4>
+              <div class="team-role" data-translate="team_role_2">
+                Chief Technology Officer
+              </div>
+              <p class="team-quote" data-translate="team_quote_2">
+                "Teknologi harus memudahkan, bukan mempersulit. Itulah filosofi
+                kami."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center cta-content" data-aos="zoom-in">
+            <h2 class="cta-title" data-translate="cta_title">
+              Bergabunglah Dengan Perjalanan Kami
+            </h2>
+            <p class="cta-description" data-translate="cta_description">
+              Apakah Anda memiliki barang hilang? Atau ingin menjadi bagian dari
+              perubahan dalam sistem keamanan mall? Tim kami siap membantu Anda
+              kapan saja.
+            </p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+              <button
+                class="btn cta-button"
+                onclick="window.location.href='search.html'"
+              >
+                <i class="ri-search-line me-2"></i>
+                <span data-translate="cta_button_1">Cari Barang Hilang</span>
+              </button>
+              <button
+                class="btn btn-outline-light btn-lg px-4 py-3 fw-bold"
+                data-bs-toggle="modal"
+                data-bs-target="#contactModal"
+              >
+                <i class="ri-chat-3-line me-2"></i>
+                <span data-translate="cta_button_2">Hubungi Kami</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <a href="index.html" class="footer-logo"
+              >Rhapsody<span>Find</span></a
+            >
+            <p class="footer-description" data-translate="footer_description">
+              Menciptakan ekosistem keamanan cerdas yang memadukan teknologi
+              canggih dengan empati manusia untuk kenyamanan Anda.
+            </p>
+            <div class="social-icons">
+              <a href="#" class="social-icon"
+                ><i class="ri-instagram-line"></i
+              ></a>
+              <a href="#" class="social-icon"
+                ><i class="ri-twitter-x-line"></i
+              ></a>
+              <a href="#" class="social-icon"
+                ><i class="ri-facebook-fill"></i
+              ></a>
+              <a href="#" class="social-icon"
+                ><i class="ri-linkedin-fill"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2">
+            <h6 class="footer-heading" data-translate="footer_links">TAUTAN</h6>
+            <a
+              href="index.html"
+              class="footer-link"
+              data-translate="footer_link_1"
+              >Beranda</a
+            >
+            <a
+              href="search.html"
+              class="footer-link"
+              data-translate="footer_link_2"
+              >Ruang Temuan</a
+            >
+            <a
+              href="about.html"
+              class="footer-link"
+              data-translate="footer_link_3"
+              >Tentang</a
+            >
+            <a
+              href="policy.html"
+              class="footer-link"
+              data-translate="footer_link_4"
+              >Kebijakan</a
+            >
+          </div>
+
+          <div class="col-lg-3">
+            <h6 class="footer-heading" data-translate="footer_contact">
+              KONTAK
+            </h6>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="ri-map-pin-2-line"></i>
+              </div>
+              <div class="contact-text">
+                <strong data-translate="contact_address_title"
+                  >Alamat Utama</strong
+                >
+                <p data-translate="contact_address">
+                  Rhapsody Mall, Lantai Dasar Blok B-12, Jakarta
+                </p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="ri-phone-line"></i>
+              </div>
+              <div class="contact-text">
+                <strong data-translate="contact_phone_title"
+                  >Telepon 24/7</strong
+                >
+                <p>(021) 555-1234</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="ri-mail-line"></i>
+              </div>
+              <div class="contact-text">
+                <strong data-translate="contact_email_title"
+                  >Email Resmi</strong
+                >
+                <p>help@rhapsodyfind.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <h6 class="footer-heading" data-translate="footer_newsletter">
+              NEWSLETTER
+            </h6>
+            <p
+              class="footer-description"
+              style="font-size: 0.95rem; margin-bottom: 20px"
+              data-translate="newsletter_text"
+            >
+              Dapatkan informasi terbaru dan tips keamanan dari kami.
+            </p>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Email Anda"
+                data-translate="email_placeholder"
+                style="
+                  background: rgba(255, 255, 255, 0.1);
+                  border: none;
+                  color: white;
+                "
+              />
+              <button class="btn btn-success" type="button">
+                <i class="ri-send-plane-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">&copy; 2024 Rhapsody Find. All rights reserved.</p>
+          <p class="mb-0 mt-2" data-translate="footer_slogan">
+            Keamanan Anda, Prioritas Kami.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-bold" data-translate="modal_title">
+              Hubungi Kami
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="bg-light rounded-3 p-3">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-success rounded-circle p-3 me-3">
+                      <i class="ri-phone-fill text-white"></i>
+                    </div>
+                    <div>
+                      <small
+                        class="text-muted d-block"
+                        data-translate="modal_emergency"
+                        >Telepon Darurat</small
+                      >
+                      <h6 class="fw-bold mb-0">(021) 555-1234</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <!-- Tombol WhatsApp yang bisa diklik -->
+                <a
+                  href="https://wa.me/6281366789792?text=Halo%20Rhapsody%20Find%2C%20saya%20perlu%20bantuan%20mengenai%20barang%20hilang"
+                  target="_blank"
+                  class="text-decoration-none"
+                >
+                  <div
+                    class="bg-light rounded-3 p-3 hover-effect"
+                    style="cursor: pointer"
+                  >
+                    <div class="d-flex align-items-center">
+                      <div class="bg-primary rounded-circle p-3 me-3">
+                        <i class="ri-whatsapp-line text-white"></i>
+                      </div>
+                      <div>
+                        <small class="text-muted d-block">WhatsApp</small>
+                        <h6 class="fw-bold mb-0">+62 813-6678-9792</h6>
+                        <small class="text-primary"
+                          >Klik untuk chat langsung</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Load navbar
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+
+            // Initialize navbar
+            setTimeout(() => {
+              const navLinks = document.querySelectorAll(".nav-link");
+              navLinks.forEach((link) => {
+                if (link.getAttribute("href") === "about.html") {
+                  link.classList.add("active");
+                }
+              });
+
+              // Set language
+              const savedLang =
+                localStorage.getItem("rhapsody_language") || "id";
+              updateLanguage(savedLang);
+
+              // Add event listeners for language switcher
+              const langId = document.getElementById("lang-id");
+              const langEn = document.getElementById("lang-en");
+
+              if (langId && langEn) {
+                langId.addEventListener("click", () => switchLanguage("id"));
+                langEn.addEventListener("click", () => switchLanguage("en"));
+              }
+
+              // Scroll effect
+              window.addEventListener("scroll", function () {
+                const navbar = document.querySelector(".navbar");
+                if (navbar && window.scrollY > 50) {
+                  navbar.classList.add("scrolled");
+                } else if (navbar) {
+                  navbar.classList.remove("scrolled");
+                }
+              });
+
+              // Generate particles
+              createParticles();
+            }, 100);
+          })
+          .catch((error) => {
+            console.error("Error loading navbar:", error);
+          });
+      });
+
+      // Smooth scroll
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      // Language functions
+      function switchLanguage(lang) {
+        localStorage.setItem("rhapsody_language", lang);
+        updateLanguage(lang);
+      }
+
+      function updateLanguage(lang) {
+        // Update language switcher UI
+        const langId = document.getElementById("lang-id");
+        const langEn = document.getElementById("lang-en");
+
+        if (langId && langEn) {
+          if (lang === "id") {
+            langId.classList.add("active");
+            langEn.classList.remove("active");
+          } else {
+            langEn.classList.add("active");
+            langId.classList.remove("active");
+          }
+        }
+
+        // Update content based on selected language
+        const translations = {
+          id: {
+            hero_badge: "Beyond the Mall",
+            hero_title_line1: "Dedikasi untuk menjaga",
+            hero_title_highlight: "ketenangan",
+            hero_title_line2: "setiap langkah Anda.",
+            hero_description:
+              "Menciptakan ekosistem keamanan cerdas yang memadukan teknologi canggih dengan empati manusia untuk pengalaman berbelanja yang aman dan nyaman.",
+            hero_button: "Jelajahi Lebih",
+            hero_quote: '"Menyatukan kembali yang terpisah"',
+            hero_quote_author: "Tim Rhapsody Find",
+
+            stat_1:
+              "Ribuan barang berhasil ditemukan kembali dengan sistem pencarian cerdas kami",
+            stat_2:
+              "Tingkat kepuasan pengguna yang sangat tinggi dengan layanan personal kami",
+            stat_3:
+              "Respon cepat 24 jam untuk membantu Anda kapan pun dibutuhkan",
+            stat_4:
+              "Komunitas pengguna aktif yang terus berkembang dan saling mendukung",
+
+            values_title: "Nilai-Nilai Kami",
+            values_subtitle:
+              "Prinsip yang membimbing setiap langkah kami dalam memberikan layanan terbaik",
+            value_title_1: "Integritas",
+            value_desc_1:
+              "Setiap laporan ditangani dengan transparansi dan kejujuran. Kami memastikan proses yang jelas dan dapat dipercaya dari awal hingga akhir.",
+            value_title_2: "Empati",
+            value_desc_2:
+              "Kami memahami perasaan kehilangan dan berkomitmen untuk membantu dengan penuh perhatian dan pengertian dalam setiap situasi.",
+            value_title_3: "Inovasi",
+            value_desc_3:
+              "Terus mengembangkan teknologi terbaru untuk memudahkan proses pencarian dan meningkatkan keamanan secara berkelanjutan.",
+            value_title_4: "Kolaborasi",
+            value_desc_4:
+              "Bekerja sama dengan semua pihak untuk menciptakan lingkungan yang aman dan nyaman bagi semua pengunjung mall.",
+
+            timeline_title: "Perjalanan Kami",
+            timeline_subtitle:
+              "Dari ide sederhana menjadi solusi terpercaya di pusat perbelanjaan",
+            timeline_title_1: "Awal Mula",
+            timeline_desc_1:
+              "Ide Rhapsody Find muncul dari pengalaman pribadi pendiri yang kehilangan barang penting di mall. Dimulai dengan tim kecil dan sistem manual untuk membantu pengunjung menemukan barang hilang.",
+            timeline_title_2: "Peluncuran Platform",
+            timeline_desc_2:
+              "Meluncurkan platform digital pertama yang memungkinkan pelaporan online dengan mudah. Sistem database mulai dikembangkan untuk menyimpan dan mengelola data dengan lebih efisien.",
+            timeline_title_3: "Ekspansi & Inovasi",
+            timeline_desc_3:
+              "Mengintegrasikan teknologi terkini untuk pencarian yang lebih akurat. Memperluas layanan ke beberapa mall lainnya di Jakarta dengan sistem yang terintegrasi.",
+
+            team_title: "Tim Kami",
+            team_subtitle:
+              "Orang-orang berdedikasi di balik kesuksesan Rhapsody Find",
+            team_role_1: "Chief Executive Officer",
+            team_quote_1:
+              '"Setiap barang yang ditemukan kembali adalah sebuah cerita bahagia yang tercipta."',
+            team_role_2: "Chief Technology Officer",
+            team_quote_2:
+              '"Teknologi harus memudahkan, bukan mempersulit. Itulah filosofi kami."',
+
+            cta_title: "Bergabunglah Dengan Perjalanan Kami",
+            cta_description:
+              "Apakah Anda memiliki barang hilang? Atau ingin menjadi bagian dari perubahan dalam sistem keamanan mall? Tim kami siap membantu Anda kapan saja.",
+            cta_button_1: "Cari Barang Hilang",
+            cta_button_2: "Hubungi Kami",
+
+            footer_description:
+              "Menciptakan ekosistem keamanan cerdas yang memadukan teknologi canggih dengan empati manusia untuk kenyamanan Anda.",
+            footer_links: "TAUTAN",
+            footer_link_1: "Beranda",
+            footer_link_2: "Ruang Temuan",
+            footer_link_3: "Tentang",
+            footer_link_4: "Kebijakan",
+            footer_contact: "KONTAK",
+            contact_address_title: "Alamat Utama",
+            contact_address: "Rhapsody Mall, Lantai Dasar Blok B-12, Jakarta",
+            contact_phone_title: "Telepon 24/7",
+            contact_email_title: "Email Resmi",
+            footer_newsletter: "NEWSLETTER",
+            newsletter_text:
+              "Dapatkan informasi terbaru dan tips keamanan dari kami.",
+            email_placeholder: "Email Anda",
+            footer_slogan: "Keamanan Anda, Prioritas Kami.",
+
+            modal_title: "Hubungi Kami",
+            modal_emergency: "Telepon Darurat",
+          },
+          en: {
+            hero_badge: "Beyond the Mall",
+            hero_title_line1: "Dedicated to preserving",
+            hero_title_highlight: "peace of mind",
+            hero_title_line2: "with every step you take.",
+            hero_description:
+              "Creating a smart security ecosystem that combines advanced technology with human empathy for a safe and comfortable shopping experience.",
+            hero_button: "Explore More",
+            hero_quote: '"Reuniting what has been separated"',
+            hero_quote_author: "Rhapsody Find Team",
+
+            stat_1:
+              "Thousands of items successfully recovered with our intelligent search system",
+            stat_2: "High user satisfaction rate with our personalized service",
+            stat_3: "24-hour quick response to assist you whenever needed",
+            stat_4:
+              "Active user community that continues to grow and support each other",
+
+            values_title: "Our Values",
+            values_subtitle:
+              "Principles that guide every step we take in providing the best service",
+            value_title_1: "Integrity",
+            value_desc_1:
+              "Every report is handled with transparency and honesty. We ensure a clear and trustworthy process from start to finish.",
+            value_title_2: "Empathy",
+            value_desc_2:
+              "We understand the feeling of loss and are committed to helping with full attention and understanding in every situation.",
+            value_title_3: "Innovation",
+            value_desc_3:
+              "Continuously developing the latest technology to facilitate the search process and improve security sustainably.",
+            value_title_4: "Collaboration",
+            value_desc_4:
+              "Working together with all parties to create a safe and comfortable environment for all mall visitors.",
+
+            timeline_title: "Our Journey",
+            timeline_subtitle:
+              "From a simple idea to a trusted solution in shopping centers",
+            timeline_title_1: "The Beginning",
+            timeline_desc_1:
+              "The idea of Rhapsody Find emerged from the personal experience of the founder who lost important items at the mall. Started with a small team and manual system to help visitors find lost items.",
+            timeline_title_2: "Platform Launch",
+            timeline_desc_2:
+              "Launched the first digital platform that enables easy online reporting. Database system began to be developed to store and manage data more efficiently.",
+            timeline_title_3: "Expansion & Innovation",
+            timeline_desc_3:
+              "Integrating the latest technology for more accurate search. Expanding services to several other malls in Jakarta with an integrated system.",
+
+            team_title: "Our Team",
+            team_subtitle:
+              "The dedicated people behind Rhapsody Find's success",
+            team_role_1: "Chief Executive Officer",
+            team_quote_1: '"Every item recovered is a happy story created."',
+            team_role_2: "Chief Technology Officer",
+            team_quote_2:
+              '"Technology should make things easier, not harder. That is our philosophy."',
+
+            cta_title: "Join Our Journey",
+            cta_description:
+              "Do you have lost items? Or want to be part of the change in mall security system? Our team is ready to help you anytime.",
+            cta_button_1: "Search Lost Items",
+            cta_button_2: "Contact Us",
+
+            footer_description:
+              "Creating a smart security ecosystem that combines advanced technology with human empathy for your comfort.",
+            footer_links: "LINKS",
+            footer_link_1: "Home",
+            footer_link_2: "Found Items",
+            footer_link_3: "About",
+            footer_link_4: "Policy",
+            footer_contact: "CONTACT",
+            contact_address_title: "Main Address",
+            contact_address: "Rhapsody Mall, Ground Floor Block B-12, Jakarta",
+            contact_phone_title: "24/7 Phone",
+            contact_email_title: "Official Email",
+            footer_newsletter: "NEWSLETTER",
+            newsletter_text:
+              "Get the latest information and security tips from us.",
+            email_placeholder: "Your Email",
+            footer_slogan: "Your Security, Our Priority.",
+
+            modal_title: "Contact Us",
+            modal_emergency: "Emergency Phone",
+          },
+        };
+
+        const elements = document.querySelectorAll("[data-translate]");
+        elements.forEach((element) => {
+          const key = element.getAttribute("data-translate");
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+
+        // Update placeholders
+        const inputElements = document.querySelectorAll(
+          "input[data-translate]"
+        );
+        inputElements.forEach((element) => {
+          const key = element.getAttribute("data-translate");
+          if (translations[lang] && translations[lang][key]) {
+            element.setAttribute("placeholder", translations[lang][key]);
+          }
+        });
+      }
+
+      // Generate random particles
+      function createParticles() {
+        const container = document.querySelector(".gelembung-container");
+        // Clear existing particles
+        const existingParticles = container.querySelectorAll(".partikel");
+        existingParticles.forEach((p) => p.remove());
+
+        // Create new particles
+        for (let i = 0; i < 40; i++) {
+          const particle = document.createElement("div");
+          const size = Math.random() * 10 + 2;
+          const randomX = Math.random() * 2 - 1;
+
+          particle.className = `partikel ${
+            Math.random() > 0.5 ? "partikel-2" : "partikel-3"
+          }`;
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.width = size + "px";
+          particle.style.height = size + "px";
+          particle.style.animationDelay = Math.random() * 20 + "s";
+          particle.style.animationDuration = 10 + Math.random() * 20 + "s";
+          particle.style.setProperty("--random-x", randomX);
+          particle.style.backgroundColor =
+            Math.random() > 0.7
+              ? "var(--spring)"
+              : Math.random() > 0.5
+              ? "var(--mantis)"
+              : Math.random() > 0.3
+              ? "var(--nuit-blanche)"
+              : "var(--picture-green)";
+
+          container.appendChild(particle);
+        }
+      }
+
+      // Initialize particles on load
+      document.addEventListener("DOMContentLoaded", createParticles);
+    </script>
+  </body>
+</html>

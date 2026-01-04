@@ -1,0 +1,2650 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+    />
+    <title>Kebijakan & Ketentuan - Rhapsody Find</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --praxeti-white: #f6f7ed;
+        --mantis-green: #74c365;
+        --spring-yellow: #dbe64c;
+        --picture-green: #00804c;
+        --midnight-mirage: #001f3f;
+        --nuit-blanche: #1e488f;
+        --text-light: #718096;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--praxeti-white);
+        color: var(--midnight-mirage);
+        overflow-x: hidden;
+        padding-top: 100px;
+        min-height: 100vh;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .btn,
+      .navbar-brand,
+      .policy-section-title {
+        font-family: "Outfit", sans-serif;
+      }
+
+      .navbar-container {
+        position: fixed !important;
+        top: 25px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 0 20px !important;
+        pointer-events: none !important;
+      }
+
+      .navbar {
+        width: 100% !important;
+        max-width: 1140px !important;
+        background: rgba(246, 247, 237, 0.85) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-radius: 50px !important;
+        padding: 12px 30px !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 10px 30px rgba(0, 31, 63, 0.08) !important;
+        transition: all 0.4s ease !important;
+        pointer-events: auto !important;
+      }
+
+      .navbar.scrolled {
+        background: rgba(246, 247, 237, 0.95) !important;
+        box-shadow: 0 15px 40px rgba(0, 31, 63, 0.15) !important;
+      }
+
+      .navbar-brand {
+        font-weight: 800 !important;
+        font-size: 1.5rem !important;
+        color: var(--midnight-mirage) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-decoration: none !important;
+      }
+
+      .text-green {
+        color: var(--picture-green) !important;
+        font-weight: 800 !important;
+      }
+
+      .brand-icon-box {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+      }
+
+      .brand-logo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+
+      .nav-link {
+        font-weight: 600 !important;
+        color: var(--midnight-mirage) !important;
+        margin: 0 5px !important;
+        padding: 8px 18px !important;
+        border-radius: 25px !important;
+        transition: 0.3s !important;
+        text-decoration: none !important;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--picture-green) !important;
+        background: rgba(116, 195, 101, 0.1) !important;
+      }
+
+      .lang-switch-box {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        background: rgba(0, 31, 63, 0.05) !important;
+        padding: 6px 14px !important;
+        border-radius: 20px !important;
+      }
+
+      .lang-opt {
+        cursor: pointer !important;
+        opacity: 0.4 !important;
+        transition: 0.3s !important;
+        user-select: none !important;
+      }
+
+      .lang-opt.active {
+        opacity: 1 !important;
+        color: var(--midnight-mirage) !important;
+      }
+
+      /* =========== BACKGROUND =========== */
+      .bg-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        background: var(--praxeti-white);
+      }
+
+      .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.5;
+        animation: float 20s infinite linear;
+      }
+
+      .circle-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--spring-yellow);
+        top: -150px;
+        right: -100px;
+        animation-duration: 25s;
+      }
+
+      .circle-2 {
+        width: 300px;
+        height: 300px;
+        background: var(--mantis-green);
+        bottom: -100px;
+        left: -50px;
+        animation-duration: 30s;
+        animation-direction: reverse;
+      }
+
+      .circle-3 {
+        width: 250px;
+        height: 250px;
+        background: var(--nuit-blanche);
+        top: 50%;
+        left: 10%;
+        opacity: 0.3;
+        animation-duration: 35s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(50px, 50px) rotate(90deg);
+        }
+        50% {
+          transform: translate(0, 100px) rotate(180deg);
+        }
+        75% {
+          transform: translate(-50px, 50px) rotate(270deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg);
+        }
+      }
+
+      /* =========== DATA PROTECTION INDICATORS =========== */
+      .policy-protection-indicators {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 25px 0;
+      }
+
+      .protection-item {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        border: 2px solid rgba(116, 195, 101, 0.1);
+        transition: all 0.3s;
+      }
+
+      .protection-item:hover {
+        border-color: var(--mantis-green);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .protection-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(116, 195, 101, 0.1),
+          rgba(116, 195, 101, 0.2)
+        );
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .protection-icon i {
+        font-size: 1.5rem;
+        color: var(--picture-green);
+      }
+
+      .protection-content {
+        flex: 1;
+      }
+
+      .protection-content h6 {
+        color: var(--midnight-mirage);
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .protection-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: rgba(116, 195, 101, 0.15);
+        color: var(--picture-green);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 5px;
+      }
+
+      .protection-badge.active {
+        background: rgba(116, 195, 101, 0.2);
+        color: var(--picture-green);
+      }
+
+      /* =========== PRINCIPLE CARDS =========== */
+      .principle-card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--mantis-green);
+        transition: all 0.3s;
+      }
+
+      .principle-card:hover {
+        background: white;
+        transform: translateX(5px);
+      }
+
+      .principle-card i {
+        color: var(--mantis-green);
+        font-size: 1.2rem;
+        margin-top: 2px;
+      }
+
+      .principle-card h6 {
+        color: var(--midnight-mirage);
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .principle-card p {
+        font-size: 0.85rem;
+      }
+
+      /* =========== INTERACTIVE POLICY HERO =========== */
+      .policy-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 100px 0 60px;
+      }
+
+      .policy-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(116, 195, 101, 0.05),
+          rgba(219, 230, 76, 0.05)
+        );
+        border-radius: 0 0 0 100px;
+        z-index: -1;
+      }
+
+      .policy-hero-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .policy-hero-badge {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 12px 25px;
+        border-radius: 50px;
+        color: var(--picture-green);
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        transition: all 0.3s;
+        align-self: flex-start;
+      }
+
+      .policy-hero-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .policy-hero-title-container {
+        min-height: 160px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .policy-hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        position: relative;
+        display: inline-block;
+        margin: 0;
+      }
+
+      .policy-hero-title::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 12px;
+        background: var(--spring-yellow);
+        opacity: 0.6;
+        z-index: -1;
+        border-radius: 4px;
+        transition: all 0.5s ease;
+      }
+
+      .policy-hero-title:hover::after {
+        height: 20px;
+        opacity: 0.8;
+      }
+
+      .policy-hero-desc {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 700px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+
+      /* =========== HERO CARD ALIGNMENT FIX =========== */
+      .policy-hero-card-container {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: flex-start; 
+        padding-top: 40px;
+      }
+
+      .policy-hero-card {
+        width: 100%;
+      }
+
+      /* =========== INTERACTIVE POLICY CARDS =========== */
+      .policy-section {
+        padding: 60px 0;
+      }
+
+      .policy-accordion {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        margin-bottom: 20px;
+        border: 2px solid transparent;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(0, 31, 63, 0.05);
+      }
+
+      .policy-accordion.active {
+        border-color: var(--mantis-green);
+        box-shadow: 0 15px 40px rgba(116, 195, 101, 0.15);
+        transform: translateY(-5px);
+      }
+
+      .policy-accordion-header {
+        padding: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s;
+      }
+
+      .policy-accordion-header:hover {
+        background: rgba(116, 195, 101, 0.05);
+      }
+
+      .policy-accordion-title {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--midnight-mirage);
+        margin: 0;
+      }
+
+      .policy-accordion-icon {
+        width: 55px;
+        height: 55px;
+        background: linear-gradient(
+          135deg,
+          var(--mantis-green),
+          var(--picture-green)
+        );
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .policy-accordion-icon i {
+        font-size: 1.6rem;
+        color: white;
+      }
+
+      .policy-accordion-toggle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(116, 195, 101, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .policy-accordion.active .policy-accordion-toggle {
+        transform: rotate(180deg);
+        background: var(--mantis-green);
+        color: white;
+      }
+
+      .policy-accordion-content {
+        padding: 0 25px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .policy-accordion.active .policy-accordion-content {
+        padding: 0 25px 25px;
+        max-height: 2000px;
+      }
+
+      .policy-table-interactive {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin: 20px 0;
+        transition: all 0.3s;
+      }
+
+      .policy-table-interactive:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .policy-table-interactive th {
+        background: linear-gradient(
+          135deg,
+          var(--midnight-mirage),
+          var(--nuit-blanche)
+        );
+        color: white;
+        font-weight: 600;
+        padding: 18px;
+        border: none;
+      }
+
+      .policy-table-interactive td {
+        padding: 16px 18px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+      }
+
+      .policy-table-interactive tbody tr:hover td {
+        background: rgba(116, 195, 101, 0.05);
+      }
+
+      .policy-progress {
+        margin: 25px 0;
+      }
+
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--midnight-mirage);
+      }
+
+      .progress-bar-custom {
+        height: 10px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--mantis-green),
+          var(--picture-green)
+        );
+        border-radius: 5px;
+        width: 0;
+        transition: width 1.5s ease-out;
+      }
+
+      /* =========== INTERACTIVE CHECKLIST =========== */
+      .policy-checklist {
+        list-style: none;
+        padding-left: 0;
+        margin: 20px 0;
+      }
+
+      .checklist-item {
+        padding: 14px;
+        margin-bottom: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        border-left: 4px solid transparent;
+        transition: all 0.3s;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .checklist-item:hover {
+        background: white;
+        border-left-color: var(--mantis-green);
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .checklist-item.completed {
+        border-left-color: var(--picture-green);
+        background: rgba(116, 195, 101, 0.05);
+      }
+
+      .checklist-checkbox {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.3s;
+      }
+
+      .checklist-item.completed .checklist-checkbox {
+        background: var(--mantis-green);
+        border-color: var(--mantis-green);
+        color: white;
+      }
+
+      .checklist-text {
+        flex: 1;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      /* =========== INTERACTIVE TIMELINE =========== */
+      .policy-timeline {
+        position: relative;
+        padding-left: 30px;
+        margin: 25px 0;
+      }
+
+      .policy-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          var(--mantis-green),
+          var(--picture-green)
+        );
+        border-radius: 3px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 25px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -36px;
+        top: 5px;
+        width: 18px;
+        height: 18px;
+        background: var(--spring-yellow);
+        border-radius: 50%;
+        border: 3px solid var(--mantis-green);
+        transition: all 0.3s;
+      }
+
+      .timeline-item:hover::before {
+        transform: scale(1.3);
+        background: var(--mantis-green);
+      }
+
+      .timeline-title {
+        font-weight: 700;
+        color: var(--midnight-mirage);
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+
+      .timeline-desc {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      /* =========== POLICY ACTION BUTTONS =========== */
+      .policy-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        justify-content: center;
+      }
+
+      .policy-action-btn {
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 2px solid;
+        font-size: 0.95rem;
+      }
+
+      .policy-action-btn.share {
+        background: rgba(116, 195, 101, 0.1);
+        color: var(--picture-green);
+        border-color: rgba(116, 195, 101, 0.3);
+      }
+
+      .policy-action-btn.faq {
+        background: rgba(30, 72, 143, 0.1);
+        color: var(--nuit-blanche);
+        border-color: rgba(30, 72, 143, 0.3);
+      }
+
+      .policy-action-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .policy-action-btn.share:hover {
+        background: rgba(116, 195, 101, 0.2);
+        border-color: var(--mantis-green);
+      }
+
+      .policy-action-btn.faq:hover {
+        background: rgba(30, 72, 143, 0.2);
+        border-color: var(--nuit-blanche);
+      }
+
+      /* =========== POLICY INFO CARD =========== */
+      .policy-info-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 40px;
+        border: 2px solid rgba(116, 195, 101, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      .policy-info-card h5 {
+        color: var(--midnight-mirage);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .policy-info-card h5 i {
+        color: var(--picture-green);
+      }
+
+      /* =========== RESPONSIVE IMPROVEMENTS - FIXED =========== */
+
+      @media (max-width: 400px) {
+        body {
+          padding-top: 70px !important;
+        }
+
+        .navbar-container {
+          top: 10px !important;
+          padding: 0 8px !important;
+        }
+
+        .navbar {
+          padding: 6px 12px !important;
+          border-radius: 40px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1rem !important;
+          gap: 5px !important;
+        }
+
+        .brand-icon-box {
+          width: 30px !important;
+          height: 30px !important;
+        }
+
+        .navbar-toggler {
+          padding: 4px 8px !important;
+          font-size: 0.9rem !important;
+        }
+
+        .nav-link {
+          padding: 6px 12px !important;
+          font-size: 0.9rem !important;
+          margin: 2px 0 !important;
+        }
+
+        .lang-switch-box {
+          padding: 4px 10px !important;
+          font-size: 0.8rem !important;
+        }
+
+        .policy-hero {
+          padding: 40px 0 20px !important;
+          min-height: auto !important;
+        }
+
+        .policy-hero-content-wrapper {
+          text-align: center;
+        }
+
+        .policy-hero-badge {
+          align-self: center !important;
+          padding: 8px 15px !important;
+          font-size: 0.75rem !important;
+          margin-bottom: 15px !important;
+        }
+
+        .policy-hero-title-container {
+          min-height: auto !important;
+          margin-bottom: 10px !important;
+        }
+
+        .policy-hero-title {
+          font-size: 1.8rem !important;
+          line-height: 1.3 !important;
+        }
+
+        .policy-hero-title::after {
+          height: 8px !important;
+          bottom: 5px !important;
+        }
+
+        .policy-hero-desc {
+          font-size: 0.9rem !important;
+          line-height: 1.5 !important;
+          margin-bottom: 15px !important;
+        }
+
+        /* Stack kolom vertikal mobile */
+        .policy-hero > .container > .row {
+          flex-direction: column;
+        }
+
+        .policy-hero > .container > .row > .col-lg-8,
+        .policy-hero > .container > .row > .col-lg-4 {
+          width: 100% !important;
+          max-width: 100% !important;
+          flex: 0 0 100% !important;
+        }
+
+        .policy-hero-card-container {
+          margin-top: 20px !important;
+          padding-top: 0 !important;
+          align-items: center !important;
+        }
+
+        /* Info bar di bawah judul */
+        .d-flex.flex-wrap.gap-3.gap-md-4.align-items-center {
+          justify-content: center;
+          flex-direction: column;
+          gap: 8px !important;
+        }
+
+        .d-flex.flex-wrap.gap-3.gap-md-4.align-items-center > div {
+          font-size: 0.8rem !important;
+        }
+
+        /* Protection indicators */
+        .policy-protection-indicators {
+          grid-template-columns: 1fr !important;
+          gap: 12px !important;
+          margin: 15px 0 !important;
+        }
+
+        .protection-item {
+          padding: 12px !important;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .protection-icon {
+          width: 40px !important;
+          height: 40px !important;
+        }
+
+        .protection-icon i {
+          font-size: 1.2rem !important;
+        }
+
+        /* Timeline */
+        .policy-timeline {
+          padding-left: 20px !important;
+          margin: 15px 0 !important;
+        }
+
+        .timeline-item {
+          padding-left: 15px !important;
+          margin-bottom: 15px !important;
+        }
+
+        .timeline-item::before {
+          left: -26px !important;
+          width: 12px !important;
+          height: 12px !important;
+        }
+
+        /* Checklist */
+        .checklist-item {
+          padding: 10px !important;
+          gap: 10px !important;
+        }
+
+        .checklist-text {
+          font-size: 0.85rem !important;
+        }
+
+        /* Table */
+        .policy-table-interactive {
+          border-radius: 10px !important;
+          margin: 15px -10px !important;
+          width: calc(100% + 20px) !important;
+        }
+
+        .policy-table-interactive table {
+          min-width: 500px;
+        }
+
+        .policy-table-interactive th,
+        .policy-table-interactive td {
+          padding: 12px 10px !important;
+          font-size: 0.8rem !important;
+        }
+
+        /* Action buttons */
+        .policy-actions {
+          flex-direction: column !important;
+          gap: 10px !important;
+          margin-top: 25px !important;
+        }
+
+        .policy-action-btn {
+          width: 100% !important;
+          justify-content: center !important;
+          padding: 12px !important;
+          font-size: 0.85rem !important;
+        }
+
+        /* Info card */
+        .policy-info-card {
+          padding: 15px !important;
+          margin-top: 25px !important;
+        }
+
+        /* Floating circles untuk mobile */
+        .floating-circle {
+          opacity: 0.3 !important;
+          filter: blur(40px) !important;
+        }
+
+        .circle-1 {
+          width: 200px !important;
+          height: 200px !important;
+          top: -50px !important;
+          right: -50px !important;
+        }
+
+        .circle-2 {
+          width: 150px !important;
+          height: 150px !important;
+          bottom: -30px !important;
+          left: -20px !important;
+        }
+
+        .circle-3 {
+          width: 100px !important;
+          height: 100px !important;
+          top: 30% !important;
+          left: 5% !important;
+        }
+      }
+
+      /* BREAKPOINT SUPER SMALL */
+      @media (max-width: 320px) {
+        .navbar-brand {
+          font-size: 0.9rem !important;
+        }
+
+        .brand-icon-box {
+          width: 25px !important;
+          height: 25px !important;
+        }
+
+        .policy-hero-title {
+          font-size: 1.6rem !important;
+        }
+
+        .policy-hero-desc {
+          font-size: 0.85rem !important;
+        }
+
+        .policy-hero-badge {
+          padding: 6px 12px !important;
+          font-size: 0.7rem !important;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        body {
+          padding-top: 80px !important;
+        }
+
+        .navbar-container {
+          top: 10px !important;
+          padding: 0 10px !important;
+        }
+
+        .navbar {
+          padding: 8px 15px !important;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem !important;
+        }
+
+        .brand-icon-box {
+          width: 35px !important;
+          height: 35px !important;
+        }
+
+        .policy-hero {
+          padding: 50px 0 25px !important;
+          min-height: auto !important;
+        }
+
+        .policy-hero-badge {
+          padding: 10px 18px !important;
+          font-size: 0.8rem !important;
+          margin-bottom: 15px !important;
+        }
+
+        .policy-hero-title-container {
+          min-height: auto !important;
+          margin-bottom: 15px !important;
+        }
+
+        .policy-hero-title {
+          font-size: 2rem !important;
+          line-height: 1.3 !important;
+        }
+
+        .policy-hero-desc {
+          font-size: 1rem !important;
+          line-height: 1.5 !important;
+          margin-bottom: 20px !important;
+        }
+
+        .policy-hero-card-container {
+          position: relative !important;
+          margin-top: 25px !important;
+          padding-top: 0 !important;
+          align-items: center !important;
+        }
+
+        .policy-hero-card {
+          position: relative !important;
+          top: auto !important;
+        }
+
+        .policy-accordion-header {
+          padding: 15px !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          flex-wrap: wrap !important;
+          gap: 10px !important;
+        }
+
+        .policy-accordion-title {
+          font-size: 1.1rem !important;
+          gap: 12px !important;
+          width: calc(100% - 50px) !important;
+        }
+
+        .policy-accordion-icon {
+          width: 45px !important;
+          height: 45px !important;
+        }
+
+        .policy-accordion-icon i {
+          font-size: 1.3rem !important;
+        }
+
+        .policy-accordion-toggle {
+          position: static !important;
+          right: auto !important;
+          top: auto !important;
+          width: 35px !important;
+          height: 35px !important;
+        }
+
+        .policy-protection-indicators {
+          grid-template-columns: 1fr !important;
+          gap: 15px !important;
+          margin: 15px 0 !important;
+        }
+
+        .protection-item {
+          padding: 15px !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: 12px !important;
+        }
+
+        .protection-icon {
+          width: 40px !important;
+          height: 40px !important;
+        }
+
+        .protection-icon i {
+          font-size: 1.2rem !important;
+        }
+
+        .policy-checklist {
+          margin: 15px 0 !important;
+        }
+
+        .checklist-item {
+          padding: 12px !important;
+          gap: 10px !important;
+        }
+
+        .policy-table-interactive {
+          overflow-x: auto !important;
+          margin: 15px -10px !important;
+          width: calc(100% + 20px) !important;
+        }
+
+        .policy-table-interactive table {
+          min-width: 500px !important;
+        }
+
+        .policy-table-interactive th,
+        .policy-table-interactive td {
+          padding: 12px 15px !important;
+          font-size: 0.85rem !important;
+        }
+
+        .policy-actions {
+          flex-direction: column !important;
+          gap: 12px !important;
+          margin-top: 30px !important;
+        }
+
+        .policy-action-btn {
+          padding: 12px 20px !important;
+          width: 100% !important;
+          justify-content: center !important;
+          font-size: 0.9rem !important;
+        }
+
+        .policy-info-card {
+          padding: 20px !important;
+          margin-top: 30px !important;
+        }
+
+        .timeline-item {
+          padding-left: 20px !important;
+          margin-bottom: 20px !important;
+        }
+
+        .timeline-item::before {
+          left: -31px !important;
+          width: 15px !important;
+          height: 15px !important;
+        }
+
+        .policy-section {
+          padding: 40px 0 !important;
+        }
+
+        .container {
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+        }
+
+        .policy-accordion-content {
+          padding: 0 15px !important;
+        }
+
+        .policy-accordion.active .policy-accordion-content {
+          padding: 0 15px 15px !important;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .policy-hero::before {
+          width: 100% !important;
+          border-radius: 0 !important;
+        }
+
+        .floating-circle {
+          opacity: 0.3 !important;
+          filter: blur(40px) !important;
+        }
+
+        .circle-1 {
+          width: 250px !important;
+          height: 250px !important;
+          top: -80px !important;
+          right: -80px !important;
+        }
+
+        .circle-2 {
+          width: 200px !important;
+          height: 200px !important;
+          bottom: -60px !important;
+          left: -30px !important;
+        }
+
+        .circle-3 {
+          width: 150px !important;
+          height: 150px !important;
+          top: 40% !important;
+          left: 5% !important;
+        }
+
+        .policy-hero-card-container {
+          padding-top: 0 !important;
+        }
+      }
+
+      @media (min-width: 576px) and (max-width: 991.98px) {
+        .policy-hero-title-container {
+          min-height: 140px !important;
+        }
+
+        .policy-hero-title {
+          font-size: 2.8rem !important;
+        }
+
+        .policy-hero-desc {
+          font-size: 1.1rem !important;
+        }
+
+        .policy-accordion-title {
+          font-size: 1.2rem !important;
+          gap: 15px !important;
+        }
+
+        .policy-accordion-icon {
+          width: 50px !important;
+          height: 50px !important;
+        }
+
+        .policy-accordion-icon i {
+          font-size: 1.4rem !important;
+        }
+
+        .policy-protection-indicators {
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 15px !important;
+        }
+
+        .principle-card {
+          padding: 15px !important;
+        }
+
+        .policy-actions {
+          gap: 12px !important;
+        }
+
+        .policy-action-btn {
+          padding: 12px 24px !important;
+          font-size: 0.9rem !important;
+        }
+
+        .policy-hero-card-container {
+          margin-top: 0 !important;
+          padding-top: 40px !important;
+        }
+
+        .policy-hero-card {
+          position: relative !important;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 991.98px) {
+        .policy-hero-card-container {
+          padding-top: 50px !important;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .policy-hero::before {
+          width: 50% !important;
+        }
+
+        .policy-hero-title-container {
+          min-height: 160px !important;
+        }
+
+        .policy-protection-indicators {
+          grid-template-columns: repeat(4, 1fr) !important;
+        }
+
+        .policy-hero-card-container {
+          padding-top: 40px !important;
+        }
+
+        .policy-hero > .container > .row {
+          align-items: flex-start !important;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .policy-hero-title-container {
+          min-height: 180px !important;
+        }
+
+        .policy-hero-title {
+          font-size: 4rem !important;
+        }
+
+        .policy-hero-desc {
+          font-size: 1.25rem !important;
+        }
+
+        .policy-hero-card-container {
+          padding-top: 50px !important;
+        }
+      }
+
+      @media (max-width: 991.98px) {
+        .navbar-container {
+          padding: 0 15px !important;
+        }
+
+        .navbar {
+          padding: 10px 20px !important;
+        }
+
+        .navbar-collapse {
+          background: rgba(246, 247, 237, 0.95) !important;
+          border-radius: 20px !important;
+          margin-top: 10px !important;
+          padding: 15px !important;
+          box-shadow: 0 10px 30px rgba(0, 31, 63, 0.1) !important;
+        }
+
+        .nav-item {
+          margin-bottom: 5px !important;
+        }
+
+        .lang-switch-box {
+          margin-top: 15px !important;
+          justify-content: center !important;
+        }
+
+        .policy-hero-card-container {
+          position: relative !important;
+        }
+
+        .policy-hero-card {
+          position: relative !important;
+          top: auto !important;
+        }
+      }
+
+      @supports (padding: max(0px)) {
+        .navbar-container {
+          padding-left: max(15px, env(safe-area-inset-left)) !important;
+          padding-right: max(15px, env(safe-area-inset-right)) !important;
+        }
+
+        @media (max-width: 575.98px) {
+          body {
+            padding-top: calc(80px + env(safe-area-inset-top)) !important;
+          }
+        }
+
+        @media (max-width: 400px) {
+          body {
+            padding-top: calc(70px + env(safe-area-inset-top)) !important;
+          }
+        }
+      }
+
+      @media print {
+        .bg-wrapper,
+        .policy-hero-badge,
+        .policy-actions,
+        .navbar,
+        .navbar-container {
+          display: none !important;
+        }
+
+        body {
+          padding-top: 0 !important;
+          background: white !important;
+          color: black !important;
+        }
+
+        .policy-accordion {
+          box-shadow: none !important;
+          border: 1px solid #ddd !important;
+          margin-bottom: 10px !important;
+        }
+
+        .policy-accordion.active {
+          border-color: #ccc !important;
+        }
+
+        .policy-accordion-content {
+          max-height: none !important;
+          display: block !important;
+          padding: 0 25px 25px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Interactive Background -->
+    <div class="bg-wrapper">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar-container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <div class="brand-icon-box">
+              <img src="assets/img/logo.png" alt="Logo" class="brand-logo" />
+            </div>
+            <span>Rhapsody <span class="text-green">Find</span></span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" data-i18n="nav_home"
+                  >Beranda</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="search.html" data-i18n="nav_search"
+                  >Ruang Temuan</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html" data-i18n="nav_about"
+                  >Tentang</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="faq.html" data-i18n="nav_faq">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="policy.html"
+                  data-i18n="nav_policy"
+                  >Kebijakan</a
+                >
+              </li>
+            </ul>
+
+            <div class="lang-switch-box">
+              <span
+                class="lang-opt active"
+                id="lang-id"
+                onclick="changeLanguage('id')"
+                >ID</span
+              >
+              <span class="text-muted">|</span>
+              <span class="lang-opt" id="lang-en" onclick="changeLanguage('en')"
+                >EN</span
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Interactive Hero Section -->
+    <section class="policy-hero">
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col-lg-8" data-aos="fade-right">
+            <div class="policy-hero-content-wrapper">
+              <div
+                class="policy-hero-badge"
+                onclick="scrollToContent()"
+                data-i18n="hero_badge"
+              >
+                <i class="ri-shield-check-fill"></i>
+                <span>Kebijakan Resmi - Klik untuk baca</span>
+                <i class="ri-arrow-down-s-line ms-2"></i>
+              </div>
+
+              <div class="policy-hero-title-container">
+                <h1 class="policy-hero-title" data-i18n="hero_title">
+                  Kebijakan & Ketentuan
+                </h1>
+              </div>
+
+              <p class="policy-hero-desc" data-i18n="hero_desc">
+                Panduan lengkap penggunaan layanan Lost & Found Rhapsody Mall.
+                Pastikan Anda membaca dan memahami seluruh ketentuan sebelum
+                menggunakan layanan kami.
+              </p>
+
+              <div class="d-flex flex-wrap gap-3 gap-md-4 align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                  <i
+                    class="ri-calendar-line"
+                    style="color: var(--mantis-green)"
+                  ></i>
+                  <span class="text-muted" data-i18n="last_updated"
+                    >Terakhir diperbarui:</span
+                  >
+                  <strong class="ms-1">2 Januari 2026</strong>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i
+                    class="ri-file-text-line"
+                    style="color: var(--mantis-green)"
+                  ></i>
+                  <span class="text-muted" data-i18n="version">Versi:</span>
+                  <strong class="ms-1 badge bg-success">v2.1.0</strong>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i
+                    class="ri-time-line"
+                    style="color: var(--mantis-green)"
+                  ></i>
+                  <span class="text-muted" data-i18n="read_time"
+                    >Waktu baca:</span
+                  >
+                  <strong class="ms-1">≈ 8 menit</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KOLOM KANAN (Card) -->
+          <div class="col-lg-4" data-aos="fade-left">
+            <div class="policy-hero-card-container">
+              <div class="policy-hero-card">
+                <div
+                  class="card border-0 shadow-lg"
+                  style="background: rgba(255, 255, 255, 0.9)"
+                >
+                  <div class="card-body p-4 text-center">
+                    <div class="policy-accordion-icon mx-auto mb-3">
+                      <i class="ri-book-read-line"></i>
+                    </div>
+                    <h5 class="card-title mb-3" data-i18n="start_reading">
+                      Mulai Membaca
+                    </h5>
+                    <p class="text-muted small mb-3" data-i18n="start_desc">
+                      Baca kebijakan secara lengkap untuk memahami hak dan
+                      kewajiban Anda
+                    </p>
+                    <button
+                      class="btn w-100 mt-2"
+                      style="background: var(--mantis-green); color: white"
+                      onclick="startReading()"
+                    >
+                      <i class="ri-play-circle-line me-2"></i>
+                      <span data-i18n="start_button">Mulai Membaca</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Policy Content -->
+    <section class="policy-section" id="policyContent">
+      <div class="container">
+        <!-- Terms Accordion -->
+        <div class="policy-accordion active" data-aos="fade-up">
+          <div class="policy-accordion-header" onclick="toggleAccordion(this)">
+            <h3 class="policy-accordion-title">
+              <div class="policy-accordion-icon">
+                <i class="ri-file-text-line"></i>
+              </div>
+              <span data-i18n="section_terms">Ketentuan Penggunaan Sistem</span>
+            </h3>
+            <div class="policy-accordion-toggle">
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+          </div>
+          <div class="policy-accordion-content">
+            <h5 data-i18n="terms_1_title">1.1 Syarat Umum</h5>
+            <ul class="policy-checklist">
+              <li class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div class="checklist-text" data-i18n="terms_1_1">
+                  Sistem hanya untuk pencarian barang hilang di area Rhapsody
+                  Mall
+                </div>
+              </li>
+              <li class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div class="checklist-text" data-i18n="terms_1_2">
+                  Informasi yang diberikan harus akurat dan dapat
+                  dipertanggungjawabkan
+                </div>
+              </li>
+              <li class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div class="checklist-text" data-i18n="terms_1_3">
+                  Dilarang menyalahgunakan sistem untuk tujuan komersial atau
+                  ilegal
+                </div>
+              </li>
+              <li class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div class="checklist-text" data-i18n="terms_1_4">
+                  Mall berhak menolak layanan jika ditemukan pelanggaran
+                  ketentuan
+                </div>
+              </li>
+              <li class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div class="checklist-text" data-i18n="terms_1_5">
+                  Pengguna minimal berusia 17 tahun atau didampingi orang
+                  tua/wali
+                </div>
+              </li>
+            </ul>
+
+            <h5 data-i18n="terms_2_title">1.2 Batasan Tanggung Jawab</h5>
+            <div
+              class="alert alert-warning border-0"
+              style="
+                background: rgba(255, 193, 7, 0.1);
+                border-left: 4px solid #ffc107;
+              "
+            >
+              <strong>
+                <i class="ri-alert-line me-2"></i>
+                <span data-i18n="important">Penting:</span>
+              </strong>
+              <span data-i18n="disclaimer">
+                Rhapsody Mall tidak bertanggung jawab atas:
+              </span>
+              <ul class="mb-0 mt-2 ps-3">
+                <li class="mb-1" data-i18n="disclaimer_1">
+                  Kerusakan barang akibat faktor alam atau force majeure
+                </li>
+                <li class="mb-1" data-i18n="disclaimer_2">
+                  Kehilangan barang berharga yang tidak dilaporkan dalam 24 jam
+                </li>
+                <li class="mb-1" data-i18n="disclaimer_3">
+                  Klaim palsu atau informasi yang tidak dapat diverifikasi
+                </li>
+                <li class="mb-1" data-i18n="disclaimer_4">
+                  Kerusakan barang sebelum ditemukan oleh petugas
+                </li>
+                <li data-i18n="disclaimer_5">
+                  Pencurian barang setelah diklaim dan keluar dari area mall
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Accordion -->
+        <div class="policy-accordion" data-aos="fade-up" data-aos-delay="100">
+          <div class="policy-accordion-header" onclick="toggleAccordion(this)">
+            <h3 class="policy-accordion-title">
+              <div class="policy-accordion-icon">
+                <i class="ri-shield-keyhole-line"></i>
+              </div>
+              <span data-i18n="section_privacy">Kebijakan Privasi & Data</span>
+            </h3>
+            <div class="policy-accordion-toggle">
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+          </div>
+          <div class="policy-accordion-content">
+            <!-- Interactive Data Protection Indicators -->
+            <div class="policy-protection-indicators">
+              <div class="protection-item">
+                <div class="protection-icon">
+                  <i class="ri-lock-line"></i>
+                </div>
+                <div class="protection-content">
+                  <h6 data-i18n="protection_encryption">Enkripsi Data</h6>
+                  <p
+                    class="text-muted small mb-2"
+                    data-i18n="protection_encryption_desc"
+                  >
+                    Semua data pribadi dienkripsi dengan standar AES-256
+                  </p>
+                  <div class="protection-badge active">
+                    <span data-i18n="status_active">Aktif</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="protection-item">
+                <div class="protection-icon">
+                  <i class="ri-shield-line"></i>
+                </div>
+                <div class="protection-content">
+                  <h6 data-i18n="protection_storage">Penyimpanan Aman</h6>
+                  <p
+                    class="text-muted small mb-2"
+                    data-i18n="protection_storage_desc"
+                  >
+                    Data disimpan di server lokal dengan akses terbatas
+                  </p>
+                  <div class="protection-badge active">
+                    <span data-i18n="status_active">Aktif</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="protection-item">
+                <div class="protection-icon">
+                  <i class="ri-time-line"></i>
+                </div>
+                <div class="protection-content">
+                  <h6 data-i18n="protection_retention">Retensi Terbatas</h6>
+                  <p
+                    class="text-muted small mb-2"
+                    data-i18n="protection_retention_desc"
+                  >
+                    Data dihapus otomatis setelah 90 hari
+                  </p>
+                  <div class="protection-badge active">
+                    <span data-i18n="status_active">Aktif</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="protection-item">
+                <div class="protection-icon">
+                  <i class="ri-eye-off-line"></i>
+                </div>
+                <div class="protection-content">
+                  <h6 data-i18n="protection_anonymous">Anonimitas Parsial</h6>
+                  <p
+                    class="text-muted small mb-2"
+                    data-i18n="protection_anonymous_desc"
+                  >
+                    Data dibagikan tanpa informasi identitas lengkap
+                  </p>
+                  <div class="protection-badge active">
+                    <span data-i18n="status_active">Aktif</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h5 data-i18n="privacy_1_title">2.1 Data yang Dikumpulkan</h5>
+            <div class="policy-table-interactive">
+              <table class="table table-borderless mb-0">
+                <thead>
+                  <tr>
+                    <th data-i18n="table_type">Jenis Data</th>
+                    <th data-i18n="table_example">Contoh</th>
+                    <th data-i18n="table_purpose">Tujuan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong data-i18n="data_personal">Data Pribadi</strong>
+                    </td>
+                    <td data-i18n="data_personal_ex">Nama, Telepon, Email</td>
+                    <td data-i18n="data_personal_purpose">
+                      Verifikasi Identitas
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong data-i18n="data_identity">Data Identitas</strong>
+                    </td>
+                    <td data-i18n="data_identity_ex">
+                      Foto/Nomor dari KTP/SIM, Nomor Passport, dan Alamat Sesuai
+                      Identitas
+                    </td>
+                    <td data-i18n="data_identity_purpose">
+                      Validasi Kepemilikan
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong data-i18n="data_item">Data Barang</strong></td>
+                    <td data-i18n="data_item_ex">Foto, Deskripsi, Nilai</td>
+                    <td data-i18n="data_item_purpose">
+                      Pencatatan & Pencarian
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong data-i18n="data_location">Data Lokasi</strong>
+                    </td>
+                    <td data-i18n="data_location_ex">Area & Waktu</td>
+                    <td data-i18n="data_location_purpose">Analisis Keamanan</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Data Usage Principles -->
+            <h5 class="mt-4" data-i18n="privacy_2_title">
+              2.2 Prinsip Penggunaan Data
+            </h5>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="principle-card">
+                  <i class="ri-checkbox-circle-line"></i>
+                  <div>
+                    <h6 data-i18n="principle_legal">Kepatuhan Hukum</h6>
+                    <p
+                      class="small text-muted mb-0"
+                      data-i18n="principle_legal_desc"
+                    >
+                      Mematuhi UU PDP dan regulasi perlindungan data
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="principle-card">
+                  <i class="ri-checkbox-circle-line"></i>
+                  <div>
+                    <h6 data-i18n="principle_minimal">Koleksi Minimal</h6>
+                    <p
+                      class="small text-muted mb-0"
+                      data-i18n="principle_minimal_desc"
+                    >
+                      Hanya mengumpulkan data yang diperlukan
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="principle-card">
+                  <i class="ri-checkbox-circle-line"></i>
+                  <div>
+                    <h6 data-i18n="principle_transparency">Transparansi</h6>
+                    <p
+                      class="small text-muted mb-0"
+                      data-i18n="principle_transparency_desc"
+                    >
+                      Memberitahu tujuan penggunaan data
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="principle-card">
+                  <i class="ri-checkbox-circle-line"></i>
+                  <div>
+                    <h6 data-i18n="principle_consent">Persetujuan</h6>
+                    <p
+                      class="small text-muted mb-0"
+                      data-i18n="principle_consent_desc"
+                    >
+                      Meminta persetujuan sebelum mengumpulkan data
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Procedures Accordion -->
+        <div class="policy-accordion" data-aos="fade-up" data-aos-delay="200">
+          <div class="policy-accordion-header" onclick="toggleAccordion(this)">
+            <h3 class="policy-accordion-title">
+              <div class="policy-accordion-icon">
+                <i class="ri-search-eye-line"></i>
+              </div>
+              <span data-i18n="section_procedures">Prosedur Lost & Found</span>
+            </h3>
+            <div class="policy-accordion-toggle">
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+          </div>
+          <div class="policy-accordion-content">
+            <!-- Interactive Timeline -->
+            <div class="policy-timeline">
+              <div class="timeline-item">
+                <div class="timeline-title" data-i18n="timeline_1">
+                  1. Mengunjungi Website Rhapsody Find
+                </div>
+                <div class="timeline-desc" data-i18n="timeline_1_desc">
+                  Kunjungi halaman Lost & Found
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title" data-i18n="timeline_2">
+                  2. Mencari barang
+                </div>
+                <div class="timeline-desc" data-i18n="timeline_2_desc">
+                  Gunakan fitur pencarian untuk menemukan barang hilang Anda
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title" data-i18n="timeline_3">
+                  3. Isi Formulir
+                </div>
+                <div class="timeline-desc" data-i18n="timeline_3_desc">
+                  Isi formulir klaim dengan informasi yang akurat dan lengkap.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title" data-i18n="timeline_4">
+                  4. Klaim
+                </div>
+                <div class="timeline-desc" data-i18n="timeline_4_desc">
+                  Klaim barang di loket dengan menunjukkan dokumen form klaim
+                  dan identitas.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title" data-i18n="timeline_5">
+                  5. Proses Klaim
+                </div>
+                <div class="timeline-desc" data-i18n="timeline_5_desc">
+                  Proses verifikasi dan validasi klaim oleh petugas.
+                </div>
+              </div>
+            </div>
+
+            <h5 class="mt-4" data-i18n="storage_title">
+              Masa Penyimpanan Barang
+            </h5>
+            <div class="policy-table-interactive">
+              <table class="table table-borderless mb-0">
+                <thead>
+                  <tr>
+                    <th data-i18n="table_item_type">Jenis Barang</th>
+                    <th data-i18n="table_storage">Masa Simpan</th>
+                    <th data-i18n="table_status">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr onclick="showItemDetail('electronic')">
+                    <td>
+                      <i class="ri-smartphone-line me-2"></i>
+                      <span data-i18n="item_electronic">Elektronik</span>
+                    </td>
+                    <td><span class="badge bg-success">60 Hari</span></td>
+                    <td>
+                      <i class="ri-checkbox-circle-line text-success"></i>
+                      <span data-i18n="status_safe">Aman</span>
+                    </td>
+                  </tr>
+                  <tr onclick="showItemDetail('wallet')">
+                    <td>
+                      <i class="ri-wallet-line me-2"></i>
+                      <span data-i18n="item_wallet">Dompet & Dokumen</span>
+                    </td>
+                    <td>
+                      <span
+                        class="badge bg-primary"
+                        style="background: var(--nuit-blanche) !important"
+                      >
+                        30 Hari
+                      </span>
+                    </td>
+                    <td>
+                      <i class="ri-checkbox-circle-line text-success"></i>
+                      <span data-i18n="status_encrypted">Terenkripsi</span>
+                    </td>
+                  </tr>
+                  <tr onclick="showItemDetail('general')">
+                    <td>
+                      <i class="ri-t-shirt-line me-2"></i>
+                      <span data-i18n="item_general">Barang Umum</span>
+                    </td>
+                    <td>
+                      <span
+                        class="badge bg-primary"
+                        style="background: var(--nuit-blanche) !important"
+                      >
+                        30 Hari
+                      </span>
+                    </td>
+                    <td>
+                      <i class="ri-checkbox-circle-line text-success"></i>
+                      <span data-i18n="status_stored">Tersimpan</span>
+                    </td>
+                  </tr>
+                  <tr onclick="showItemDetail('perishable')">
+                    <td>
+                      <i class="ri-cup-line me-2"></i>
+                      <span data-i18n="item_perishable">Perishable</span>
+                    </td>
+                    <td>
+                      <span class="badge bg-warning text-dark">24 Jam</span>
+                    </td>
+                    <td>
+                      <i class="ri-alert-line text-warning"></i>
+                      <span data-i18n="status_priority">Prioritas</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="policy-actions" data-aos="fade-up" data-aos-delay="300">
+          <button class="policy-action-btn share" onclick="sharePolicy()">
+            <i class="ri-share-line"></i>
+            <span data-i18n="btn_share">Bagikan Halaman</span>
+          </button>
+          <a href="faq.html" class="policy-action-btn faq">
+            <i class="ri-question-line"></i>
+            <span data-i18n="btn_faq">Lihat FAQ</span>
+          </a>
+        </div>
+
+        <!-- Policy Info Card -->
+        <div class="policy-info-card" data-aos="zoom-in">
+          <h5>
+            <i class="ri-information-line"></i>
+            <span data-i18n="info_title">Informasi Penting</span>
+          </h5>
+          <p class="mb-0" data-i18n="info_desc">
+            Kebijakan ini dapat diperbarui sewaktu-waktu untuk meningkatkan
+            layanan. Pengguna akan diberitahu via email atau notifikasi di
+            website minimal 7 hari sebelum perubahan berlaku. Penggunaan sistem
+            setelah tanggal efektif dianggap sebagai persetujuan terhadap
+            perubahan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // TRANSLATION SYSTEM
+      const translations = {
+        id: {
+          // Navbar
+          nav_home: "Beranda",
+          nav_search: "Ruang Temuan",
+          nav_about: "Tentang",
+          nav_faq: "FAQ",
+          nav_policy: "Kebijakan",
+
+          // Hero Section
+          hero_badge: "Kebijakan Resmi - Klik untuk baca",
+          hero_title: "Kebijakan & Ketentuan",
+          hero_desc:
+            "Panduan lengkap penggunaan layanan Lost & Found Rhapsody Mall. Pastikan Anda membaca dan memahami seluruh ketentuan sebelum menggunakan layanan kami.",
+          last_updated: "Terakhir diperbarui:",
+          version: "Versi:",
+          read_time: "Waktu baca:",
+
+          start_reading: "Mulai Membaca",
+          start_desc:
+            "Baca kebijakan secara lengkap untuk memahami hak dan kewajiban Anda",
+          start_button: "Mulai Membaca",
+
+          // Section Titles
+          section_terms: "Ketentuan Penggunaan Sistem",
+          section_privacy: "Kebijakan Privasi & Data",
+          section_procedures: "Prosedur Lost & Found",
+
+          // Terms Section
+          terms_1_title: "1.1 Syarat Umum",
+          terms_1_1:
+            "Sistem hanya untuk pencarian barang hilang di area Rhapsody Mall",
+          terms_1_2:
+            "Informasi yang diberikan harus akurat dan dapat dipertanggungjawabkan",
+          terms_1_3:
+            "Dilarang menyalahgunakan sistem untuk tujuan komersial atau ilegal",
+          terms_1_4:
+            "Mall berhak menolak layanan jika ditemukan pelanggaran ketentuan",
+          terms_1_5:
+            "Pengguna minimal berusia 17 tahun atau didampingi orang tua/wali",
+
+          terms_2_title: "1.2 Batasan Tanggung Jawab",
+          important: "Penting:",
+          disclaimer: "Rhapsody Mall tidak bertanggung jawab atas:",
+          disclaimer_1:
+            "Kerusakan barang akibat faktor alam atau force majeure",
+          disclaimer_2:
+            "Kehilangan barang berharga yang tidak dilaporkan dalam 24 jam",
+          disclaimer_3:
+            "Klaim palsu atau informasi yang tidak dapat diverifikasi",
+          disclaimer_4: "Kerusakan barang sebelum ditemukan oleh petugas",
+          disclaimer_5:
+            "Pencurian barang setelah diklaim dan keluar dari area mall",
+
+          // Privacy Section
+          table_type: "Jenis Data",
+          table_example: "Contoh",
+          table_purpose: "Tujuan",
+          data_personal: "Data Pribadi",
+          data_personal_ex: "Nama, Telepon, Email",
+          data_personal_purpose: "Verifikasi Identitas",
+          data_identity: "Data Identitas",
+          data_identity_ex:
+            "Foto/Nomor dari KTP/SIM, Nomor Passport, dan Alamat Sesuai Identitas",
+          data_identity_purpose: "Validasi Kepemilikan",
+          data_item: "Data Barang",
+          data_item_ex: "Foto, Deskripsi, Nilai",
+          data_item_purpose: "Pencatatan & Pencarian",
+          data_location: "Data Lokasi",
+          data_location_ex: "Area & Waktu",
+
+          // Data Protection
+          protection_encryption: "Enkripsi Data",
+          protection_encryption_desc:
+            "Semua data pribadi dienkripsi dengan standar AES-256",
+          protection_storage: "Penyimpanan Aman",
+          protection_storage_desc:
+            "Data disimpan di server lokal dengan akses terbatas",
+          protection_retention: "Retensi Terbatas",
+          protection_retention_desc: "Data dihapus otomatis setelah 90 hari",
+          protection_anonymous: "Anonimitas Parsial",
+          protection_anonymous_desc:
+            "Data dibagikan tanpa informasi identitas lengkap",
+          status_active: "Aktif",
+
+          // Principles
+          privacy_2_title: "2.2 Prinsip Penggunaan Data",
+          principle_legal: "Kepatuhan Hukum",
+          principle_legal_desc:
+            "Mematuhi UU PDP dan regulasi perlindungan data",
+          principle_minimal: "Koleksi Minimal",
+          principle_minimal_desc: "Hanya mengumpulkan data yang diperlukan",
+          principle_transparency: "Transparansi",
+          principle_transparency_desc: "Memberitahu tujuan penggunaan data",
+          principle_consent: "Persetujuan",
+          principle_consent_desc:
+            "Meminta persetujuan sebelum mengumpulkan data",
+
+          // Procedures Section
+          storage_title: "Masa Penyimpanan Barang",
+          table_item_type: "Jenis Barang",
+          table_storage: "Masa Simpan",
+          table_status: "Status",
+
+          timeline_1: "1. Mengunjungi Website Rhapsody Find",
+          timeline_1_desc: "Kunjungi halaman Lost & Found",
+          timeline_2: "2. Mencari barang",
+          timeline_2_desc:
+            "Gunakan fitur pencarian untuk menemukan barang hilang Anda",
+          timeline_3: "3. Isi Formulir",
+          timeline_3_desc:
+            "Isi formulir klaim dengan informasi yang akurat dan lengkap.",
+          timeline_4: "4. Klaim",
+          timeline_4_desc:
+            "Klaim barang di loket dengan menunjukkan identitas asli",
+          timeline_5: "5. Proses Klaim",
+          timeline_5_desc: "Proses verifikasi dan validasi klaim oleh petugas.",
+
+          item_electronic: "Elektronik",
+          item_wallet: "Dompet & Dokumen",
+          item_general: "Barang Umum",
+          item_perishable: "Perishable",
+          status_safe: "Aman",
+          status_encrypted: "Terenkripsi",
+          status_stored: "Tersimpan",
+          status_priority: "Prioritas",
+
+          // Buttons
+          btn_share: "Bagikan Halaman",
+          btn_faq: "Lihat FAQ",
+
+          // Info Card
+          info_title: "Informasi Penting",
+          info_desc:
+            "Kebijakan ini dapat diperbarui sewaktu-waktu untuk meningkatkan layanan. Pengguna akan diberitahu via email atau notifikasi di website minimal 7 hari sebelum perubahan berlaku. Penggunaan sistem setelah tanggal efektif dianggap sebagai persetujuan terhadap perubahan.",
+        },
+
+        en: {
+          // Navbar
+          nav_home: "Home",
+          nav_search: "Discovery Hub",
+          nav_about: "About",
+          nav_faq: "FAQ",
+          nav_policy: "Policy",
+
+          // Hero Section
+          hero_badge: "Official Policy - Click to read",
+          hero_title: "Policy & Terms",
+          hero_desc:
+            "Complete guide to using Rhapsody Mall's Lost & Found service. Please read and understand all terms before using our services.",
+          last_updated: "Last updated: 2 January 2026",
+          version: "Version:",
+          read_time: "Read time:",
+
+          start_reading: "Start Reading",
+          start_desc:
+            "Read the policy thoroughly to understand your rights and obligations",
+          start_button: "Start Reading",
+
+          // Data Protection
+          protection_encryption: "Data Encryption",
+          protection_encryption_desc:
+            "All personal data encrypted with AES-256 standard",
+          protection_storage: "Secure Storage",
+          protection_storage_desc:
+            "Data stored on local servers with limited access",
+          protection_retention: "Limited Retention",
+          protection_retention_desc: "Data automatically deleted after 90 days",
+          protection_anonymous: "Partial Anonymity",
+          protection_anonymous_desc:
+            "Data shared without complete identity information",
+          status_active: "Active",
+
+          // Principles
+          privacy_2_title: "2.2 Data Usage Principles",
+          principle_legal: "Legal Compliance",
+          principle_legal_desc:
+            "Comply with PDP Law and data protection regulations",
+          principle_minimal: "Minimal Collection",
+          principle_minimal_desc: "Only collect necessary data",
+          principle_transparency: "Transparency",
+          principle_transparency_desc: "Inform about data usage purposes",
+          principle_consent: "Consent",
+          principle_consent_desc: "Request consent before collecting data",
+
+          // Section Titles
+          section_terms: "Terms of Service",
+          section_privacy: "Privacy & Data Policy",
+          section_procedures: "Lost & Found Procedures",
+
+          // Terms Section
+          terms_1_title: "1.1 General Terms",
+          terms_1_1: "System only for finding lost items in Rhapsody Mall area",
+          terms_1_2: "Information provided must be accurate and accountable",
+          terms_1_3:
+            "Misuse of system for commercial or illegal purposes is prohibited",
+          terms_1_4:
+            "Mall reserves right to refuse service if terms are violated",
+          terms_1_5:
+            "Users must be at least 17 years old or accompanied by parent/guardian",
+
+          terms_2_title: "1.2 Liability Limitations",
+          important: "Important:",
+          disclaimer: "Rhapsody Mall is not responsible for:",
+          disclaimer_1: "Item damage due to natural factors or force majeure",
+          disclaimer_2: "Loss of valuable items not reported within 24 hours",
+          disclaimer_3: "False claims or unverifiable information",
+          disclaimer_4: "Item damage before being found by staff",
+          disclaimer_5: "Theft of items after claimed and leaving mall area",
+
+          // Privacy Section
+          table_type: "Data Type",
+          table_example: "Example",
+          table_purpose: "Purpose",
+          data_personal: "Personal Data",
+          data_personal_ex: "Name, Phone, Email",
+          data_personal_purpose: "Identity Verification",
+          data_identity: "Identity Data",
+          data_identity_ex:
+            "Photo/Number from ID/Driver's License, Passport Number, and Address as per Identity Document",
+          data_identity_purpose: "Ownership Validation",
+          data_item: "Item Data",
+          data_item_ex: "Photos, Description, Value",
+          data_item_purpose: "Recording & Searching",
+          data_location: "Location Data",
+          data_location_ex: "Area & Time",
+          data_location_purpose: "Security Analysis",
+
+          // Procedures Section
+          storage_title: "Item Storage Period",
+          table_item_type: "Item Type",
+          table_storage: "Storage Period",
+          table_status: "Status",
+
+          timeline_1: "1. Visit Rhapsody Find Website",
+          timeline_1_desc: "Visit the Lost & Found page",
+          timeline_2: "2. Search Item",
+          timeline_2_desc: "Use the search feature to find your lost item",
+          timeline_3: "3. Fill Out Form",
+          timeline_3_desc:
+            "Fill out the claim form with accurate and complete information.",
+          timeline_4: "4. Claim",
+          timeline_4_desc: "Claim item at counter by showing original ID",
+          timeline_5: "5. Claim Process",
+          timeline_5_desc: "Verification and validation of claim by staff.",
+
+          item_electronic: "Electronics",
+          item_wallet: "Wallet & Documents",
+          item_general: "General Items",
+          item_perishable: "Perishable",
+          status_safe: "Safe",
+          status_encrypted: "Encrypted",
+          status_stored: "Stored",
+          status_priority: "Priority",
+
+          // Buttons
+          btn_share: "Share Page",
+          btn_faq: "View FAQ",
+
+          // Info Card
+          info_title: "Important Information",
+          info_desc:
+            "This policy may be updated periodically to improve services. Users will be notified via email or website notification at least 7 days before changes take effect. Using the system after effective date constitutes acceptance of changes.",
+        },
+      };
+
+      function changeLanguage(lang) {
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+
+        // Update language switcher UI
+        const langId = document.getElementById("lang-id");
+        const langEn = document.getElementById("lang-en");
+
+        if (lang === "id") {
+          langId.classList.add("active");
+          langEn.classList.remove("active");
+        } else {
+          langEn.classList.add("active");
+          langId.classList.remove("active");
+        }
+
+        localStorage.setItem("rhapsody_language", lang);
+        showToast(
+          lang === "id"
+            ? "Bahasa diubah ke Indonesia"
+            : "Language changed to English",
+          "success"
+        );
+      }
+
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (navbar && window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else if (navbar) {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Accordion Toggle
+      function toggleAccordion(header) {
+        const accordion = header.closest(".policy-accordion");
+        const wasActive = accordion.classList.contains("active");
+
+        // Close all accordions
+        document.querySelectorAll(".policy-accordion").forEach((acc) => {
+          acc.classList.remove("active");
+        });
+
+        if (!wasActive) {
+          accordion.classList.add("active");
+        }
+      }
+
+      // Checklist Toggle
+      function toggleChecklist(item) {
+        item.classList.toggle("completed");
+
+        // Check if all items are completed
+        const checklist = item.closest(".policy-checklist");
+        const allItems = checklist.querySelectorAll(".checklist-item");
+        const completedItems = checklist.querySelectorAll(
+          ".checklist-item.completed"
+        );
+
+        if (allItems.length === completedItems.length) {
+          showToast(
+            getCurrentLanguage() === "id"
+              ? "Semua poin telah dicentang! 🎉"
+              : "All points checked! 🎉",
+            "success"
+          );
+        }
+      }
+
+      // Get current language
+      function getCurrentLanguage() {
+        return localStorage.getItem("rhapsody_language") || "id";
+      }
+
+      // Item Detail Modal
+      function showItemDetail(type) {
+        const currentLang = getCurrentLanguage();
+        const details = {
+          electronic: {
+            title: currentLang === "id" ? "Elektronik" : "Electronics",
+            desc:
+              currentLang === "id"
+                ? "Serial number dicatat, baterai dilepas, disimpan di ruang terkontrol suhu"
+                : "Serial number recorded, battery removed, stored in temperature-controlled room",
+            icon: "ri-smartphone-line",
+          },
+          wallet: {
+            title:
+              currentLang === "id" ? "Dompet & Dokumen" : "Wallet & Documents",
+            desc:
+              currentLang === "id"
+                ? "Dokumen difoto, uang dihitung oleh 2 petugas, disimpan di brankas"
+                : "Documents photographed, money counted by 2 staff, stored in safe",
+            icon: "ri-wallet-line",
+          },
+          general: {
+            title: currentLang === "id" ? "Barang Umum" : "General Items",
+            desc:
+              currentLang === "id"
+                ? "Disimpan di rak dengan label kode unik, dipisahkan berdasarkan kategori"
+                : "Stored on racks with unique code labels, separated by category",
+            icon: "ri-t-shirt-line",
+          },
+          perishable: {
+            title: currentLang === "id" ? "Perishable" : "Perishable",
+            desc:
+              currentLang === "id"
+                ? "Dibuang setelah 24 jam untuk alasan kesehatan dan kebersihan"
+                : "Discarded after 24 hours for health and hygiene reasons",
+            icon: "ri-cup-line",
+          },
+        };
+
+        const detail = details[type];
+        if (detail) {
+          const modalHtml = `
+                    <div class="modal fade" id="itemDetailModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border-0 shadow-lg">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title"><i class="${
+                                      detail.icon
+                                    } me-2"></i>${detail.title}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>${detail.desc}</p>
+                                    <div class="alert alert-info border-0 mt-3">
+                                        <i class="ri-information-line me-2"></i>
+                                        <small>${
+                                          currentLang === "id"
+                                            ? "Klik baris tabel untuk melihat detail setiap jenis barang"
+                                            : "Click table row to view details of each item type"
+                                        }</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+          const existingModal = document.getElementById("itemDetailModal");
+          if (existingModal) existingModal.remove();
+          document.body.insertAdjacentHTML("beforeend", modalHtml);
+          const modal = new bootstrap.Modal(
+            document.getElementById("itemDetailModal")
+          );
+          modal.show();
+        }
+      }
+
+      // Share Functionality
+      function sharePolicy() {
+        const currentLang = getCurrentLanguage();
+        const shareTitle =
+          currentLang === "id"
+            ? "Kebijakan Rhapsody Find"
+            : "Rhapsody Find Policy";
+        const shareText =
+          currentLang === "id"
+            ? "Baca kebijakan dan ketentuan penggunaan layanan Lost & Found"
+            : "Read policy and terms of Lost & Found service usage";
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: shareTitle,
+              text: shareText,
+              url: window.location.href,
+            })
+            .then(() => {
+              showToast(
+                currentLang === "id"
+                  ? "Halaman berhasil dibagikan!"
+                  : "Page shared successfully!",
+                "success"
+              );
+            })
+            .catch((err) => {
+              console.log("Error sharing:", err);
+              copyToClipboard();
+            });
+        } else {
+          copyToClipboard();
+        }
+      }
+
+      function copyToClipboard() {
+        const currentLang = getCurrentLanguage();
+        navigator.clipboard
+          .writeText(window.location.href)
+          .then(() => {
+            showToast(
+              currentLang === "id"
+                ? "Tautan berhasil disalin ke clipboard!"
+                : "Link copied to clipboard!",
+              "success"
+            );
+          })
+          .catch((err) => {
+            showToast(
+              currentLang === "id"
+                ? "Gagal menyalin tautan"
+                : "Failed to copy link",
+              "error"
+            );
+          });
+      }
+
+      // Toast Notification
+      function showToast(message, type = "info") {
+        const bgColor =
+          type === "success"
+            ? "var(--picture-green)"
+            : type === "error"
+            ? "#dc3545"
+            : "var(--nuit-blanche)";
+
+        const toastHtml = `
+                <div class="toast align-items-center text-white border-0" 
+                     role="alert" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: ${bgColor};">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            `;
+
+        document.body.insertAdjacentHTML("beforeend", toastHtml);
+        const toast = new bootstrap.Toast(document.querySelector(".toast"));
+        toast.show();
+
+        toast._element.addEventListener("hidden.bs.toast", function () {
+          this.remove();
+        });
+      }
+
+      function scrollToContent() {
+        document.getElementById("policyContent").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      function startReading() {
+        const currentLang = getCurrentLanguage();
+        scrollToContent();
+        showToast(
+          currentLang === "id"
+            ? "Mulai membaca kebijakan 📖"
+            : "Start reading policy 📖",
+          "success"
+        );
+
+        const firstAccordion = document.querySelector(".policy-accordion");
+        if (firstAccordion && !firstAccordion.classList.contains("active")) {
+          firstAccordion.querySelector(".policy-accordion-header").click();
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const savedLang = localStorage.getItem("rhapsody_language") || "id";
+        changeLanguage(savedLang);
+
+        const firstAccordion = document.querySelector(".policy-accordion");
+        if (firstAccordion) {
+          firstAccordion.classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhapsody Find - Lost & Found Solution</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #E6F0E8;
+      --primary: #001F3F;
+      --accent-green: #74C365;
+      --accent-dark-green: #00804C;
+      --text-grey: #546E7A;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, .btn, .navbar-brand, .badge-official { 
+      font-family: 'Outfit', sans-serif; 
+    }
+
+    .text-green {
+      color: var(--accent-dark-green) !important;
+      font-weight: 800;
+    }
+
+    /* --- BACKGROUND BLOBS --- */
+    .bg-wrapper {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      z-index: -1;
+      overflow: hidden; 
+      background: var(--bg-color);
+    }
+    
+    .blob {
+      position: absolute; 
+      border-radius: 50%; 
+      filter: blur(90px); 
+      opacity: 0.6;
+      animation: floatBlob 12s infinite alternate ease-in-out;
+    }
+    
+    .blob-1 { 
+      width: 600px; 
+      height: 600px; 
+      background: #C1E1C5; 
+      top: -150px; 
+      right: -150px; 
+    }
+    
+    .blob-2 { 
+      width: 500px; 
+      height: 500px; 
+      background: #A8D5BA; 
+      bottom: -100px; 
+      left: -100px; 
+      animation-duration: 18s; 
+    }
+    
+    .blob-3 { 
+      width: 400px; 
+      height: 400px; 
+      background: #DCE775; 
+      top: 40%; 
+      left: 30%; 
+      opacity: 0.4; 
+      animation-duration: 15s; 
+    }
+
+    @keyframes floatBlob {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.1); }
+    }
+
+    /* --- NAVBAR CONTAINER --- */
+    .navbar-container {
+      position: fixed; 
+      top: 25px; 
+      left: 0; 
+      right: 0; 
+      z-index: 1000;
+      display: flex; 
+      justify-content: center; 
+      padding: 0 20px;
+      pointer-events: none;
+    }
+
+    .navbar {
+      width: 100%; 
+      max-width: 1140px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 12px 30px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px rgba(0, 31, 63, 0.08);
+      transition: all 0.4s ease;
+      pointer-events: auto;
+    }
+
+    .navbar.scrolled { 
+      background: rgba(255, 255, 255, 0.9); 
+      box-shadow: 0 15px 40px rgba(0, 31, 63, 0.15); 
+    }
+
+    .navbar-brand { 
+      font-weight: 800; 
+      font-size: 1.5rem; 
+      color: var(--primary); 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      text-decoration: none;
+    }
+    
+    .brand-icon-box { 
+      width: 40px; 
+      height: 40px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+    }
+    
+    .brand-logo { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; 
+    }
+
+    .nav-link {
+      font-weight: 600; 
+      color: var(--primary); 
+      margin: 0 5px;
+      padding: 8px 18px !important; 
+      border-radius: 25px; 
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    
+    .nav-link:hover, .nav-link.active { 
+      color: var(--accent-dark-green); 
+      background: rgba(255, 255, 255, 0.8); 
+    }
+
+    .lang-switch-box {
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-weight: 700; 
+      font-size: 0.85rem;
+      background: rgba(0, 31, 63, 0.05); 
+      padding: 6px 14px; 
+      border-radius: 20px;
+    }
+    
+    .lang-opt { 
+      cursor: pointer; 
+      opacity: 0.4; 
+      transition: 0.3s; 
+      user-select: none;
+    }
+    
+    .lang-opt.active { 
+      opacity: 1; 
+      color: var(--primary); 
+    }
+
+    /* --- HERO --- */
+    .hero-section { 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      padding-top: 100px; 
+    }
+    
+    .badge-official {
+      background: rgba(255, 255, 255, 0.6); 
+      padding: 10px 20px; 
+      border-radius: 50px;
+      color: var(--accent-dark-green); 
+      font-weight: 700; 
+      font-size: 0.85rem; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      margin-bottom: 25px;
+    }
+    
+    .hero-title { 
+      font-size: 4.5rem; 
+      line-height: 1.1; 
+      font-weight: 800; 
+      margin-bottom: 25px; 
+    }
+    
+    .text-highlight { 
+      background: linear-gradient(120deg, var(--accent-dark-green), var(--accent-green)); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      background-clip: text;
+    }
+    
+    .hero-desc { 
+      font-size: 1.15rem; 
+      color: var(--text-grey); 
+      margin-bottom: 40px; 
+      max-width: 520px; 
+    }
+
+    /* Visual Cards */
+    .visual-container { 
+      position: relative; 
+      height: 550px; 
+      width: 100%; 
+    }
+    
+    .glass-card {
+      position: absolute; 
+      border-radius: 30px; 
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px); 
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 30px 60px rgba(0, 31, 63, 0.1); 
+      transition: 0.4s;
+    }
+    
+    .card-back { 
+      width: 240px; 
+      top: 40px; 
+      left: 20px; 
+      padding: 20px; 
+      animation: float 8s infinite alternate; 
+    }
+    
+    .card-front { 
+      width: 340px; 
+      bottom: 40px; 
+      right: 20px; 
+      padding: 25px; 
+      z-index: 2; 
+      animation: float 6s infinite alternate-reverse; 
+    }
+
+    @keyframes float { 
+      from { transform: translateY(0); } 
+      to { transform: translateY(-20px); } 
+    }
+
+    .card-tag { 
+      position: absolute; 
+      top: 20px; 
+      right: 20px; 
+      padding: 5px 12px; 
+      border-radius: 20px; 
+      font-size: 0.65rem; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+    }
+    
+    .tag-lost { 
+      background: #FFEBEE; 
+      color: #D32F2F; 
+    }
+    
+    .tag-found { 
+      background: #E8F5E9; 
+      color: #2E7D32; 
+    }
+
+    .status-pill { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-size: 0.85rem; 
+      font-weight: 700; 
+      color: var(--accent-dark-green); 
+      background: rgba(116, 195, 101, 0.1); 
+      padding: 6px 15px; 
+      border-radius: 12px; 
+      margin-top: 15px; 
+      width: fit-content; 
+    }
+    
+    .pulsing-dot { 
+      width: 8px; 
+      height: 8px; 
+      background: var(--accent-green); 
+      border-radius: 50%; 
+      animation: pulse 2s infinite; 
+    }
+    
+    @keyframes pulse { 
+      0% { 
+        transform: scale(0.95); 
+        box-shadow: 0 0 0 0 rgba(116, 195, 101, 0.7); 
+      } 
+      70% { 
+        transform: scale(1); 
+        box-shadow: 0 0 0 10px rgba(116, 195, 101, 0); 
+      } 
+      100% { 
+        transform: scale(0.95); 
+        box-shadow: 0 0 0 0 rgba(116, 195, 101, 0); 
+      } 
+    }
+
+    .btn-hero-primary { 
+      background: var(--primary); 
+      color: #fff; 
+      padding: 16px 35px; 
+      border-radius: 50px; 
+      font-weight: 700; 
+      text-decoration: none; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 10px; 
+      transition: 0.3s; 
+      border: none;
+    }
+    
+    .btn-hero-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 10px 25px rgba(0, 31, 63, 0.2); 
+      color: #fff; 
+    }
+
+    .stats-box { 
+      margin-top: 50px; 
+      display: flex; 
+      gap: 40px; 
+    }
+    
+    .stat-number { 
+      font-size: 2rem; 
+      font-weight: 800; 
+    }
+    
+    .stat-label { 
+      font-size: 0.85rem; 
+      color: var(--text-grey); 
+    }
+
+    @media (max-width: 991px) {
+      .hero-title { font-size: 3rem; }
+      .hero-section { text-align: center; padding-top: 150px; }
+      .hero-desc { margin: 0 auto 30px; }
+      .visual-container { height: 400px; margin-top: 50px; }
+      .card-front { right: 0; left: 0; margin: 0 auto; }
+      .card-back { display: none; }
+      .stats-box { justify-content: center; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem; }
+      .hero-desc { font-size: 1rem; }
+      .navbar-container { top: 10px; padding: 0 10px; }
+      .navbar { padding: 8px 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-wrapper">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="navbar-container">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <div class="brand-icon-box">
+            <img src="assets/img/logo.png" alt="Logo" class="brand-logo" />
+          </div>
+          <span>Rhapsody <span class="text-green">Find</span></span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html" data-i18n="nav_home">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="search.html" data-i18n="nav_search">Ruang Temuan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html" data-i18n="nav_about">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="faq.html" data-i18n="nav_faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="policy.html" data-i18n="nav_policy">Kebijakan</a>
+            </li>
+          </ul>
+
+          <div class="lang-switch-box">
+            <span class="lang-opt active" id="lang-id" onclick="changeLanguage('id')">ID</span>
+            <span class="text-muted">|</span>
+            <span class="lang-opt" id="lang-en" onclick="changeLanguage('en')">EN</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="badge-official">
+            <i class="ri-shield-check-fill"></i>
+            <span data-i18n="badge_official">Sistem Resmi Mall</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span data-i18n="hero_h1_1">Barang Hilang?</span><br>
+            <span class="text-highlight" data-i18n="hero_h1_2">Kami Temukan.</span>
+          </h1>
+
+          <p class="hero-desc" data-i18n="hero_desc">
+            Platform digital resmi Rhapsody Mall. Cari barang temuan atau laporkan kehilangan secara real-time. Aman, Cepat, dan Transparan.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="search.html" class="btn-hero-primary">
+              <i class="ri-search-2-line"></i> <span data-i18n="btn_cta_search">Cari Barang</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="visual-container">
+            <div class="glass-card card-back" data-aos="fade-up" data-aos-delay="200">
+              <div class="card-tag tag-found" data-i18n="tag_found">Ditemukan</div>
+              <div style="height: 120px; overflow:hidden; border-radius:15px; margin-bottom:15px;">
+                <img src="assets/img/dompet1.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Dompet ditemukan">
+              </div>
+              <h6 class="fw-bold mb-0">Dompet Coklat</h6>
+              <small class="text-muted">Lobby Utara</small>
+            </div>
+
+            <div class="glass-card card-front" data-aos="fade-up" data-aos-delay="400">
+              <div class="card-tag tag-lost" data-i18n="tag_lost">Baru Hilang</div>
+              <div style="height: 180px; overflow:hidden; border-radius:20px; margin-bottom:20px;">
+                <img src="assets/img/iphone 14 pro.jpg" style="width:100%; height:100%; object-fit:cover;" alt="iPhone hilang">
+              </div>
+              <h4 class="fw-bold mb-1">iPhone 14 Pro</h4>
+              <small class="text-muted"><i class="ri-map-pin-line"></i> Food Court</small>
+              <div class="status-pill">
+                <div class="pulsing-dot"></div>
+                <span data-i18n="status_tracking">Hilang</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ 
+      once: true, 
+      duration: 800,
+      offset: 100
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (navbar && window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else if (navbar) {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Translation resources
+    const resources = {
+      id: {
+        // Navbar
+        nav_home: "Beranda",
+        nav_search: "Ruang Temuan",
+        nav_about: "Tentang",
+        nav_faq: "FAQ",
+        nav_policy: "Kebijakan",
+        
+        // Hero Section
+        badge_official: "Sistem Resmi Mall",
+        hero_h1_1: "Barang Hilang?",
+        hero_h1_2: "Kami Temukan.",
+        hero_desc: "Platform digital resmi Rhapsody Mall. Cari barang temuan atau laporkan kehilangan secara real-time. Aman, Cepat, dan Transparan.",
+        btn_cta_search: "Cari Barang",
+        
+        // Card tags
+        tag_found: "Ditemukan",
+        tag_lost: "Baru Hilang",
+        status_tracking: "Hilang"
+      },
+      en: {
+        // Navbar
+        nav_home: "Home",
+        nav_search: "Discovery Hub",
+        nav_about: "About",
+        nav_faq: "FAQ",
+        nav_policy: "Policy",
+        
+        // Hero Section
+        badge_official: "Official Mall System",
+        hero_h1_1: "Lost Something?",
+        hero_h1_2: "We'll Find It.",
+        hero_desc: "The official digital platform of Rhapsody Mall. Search for found items or report a loss in real-time. Safe, Fast, and Transparent.",
+        btn_cta_search: "Search Items",
+        
+        // Card tags
+        tag_found: "Found",
+        tag_lost: "Recently Lost",
+        status_tracking: "Lost"
+      }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (resources[lang] && resources[lang][key]) {
+          el.innerText = resources[lang][key];
+        }
+      });
+      
+      // Update language switcher UI
+      const langId = document.getElementById('lang-id');
+      const langEn = document.getElementById('lang-en');
+      
+      if (langId) {
+        if (lang === 'id') {
+          langId.classList.add('active');
+          langEn.classList.remove('active');
+        } else {
+          langEn.classList.add('active');
+          langId.classList.remove('active');
+        }
+      }
+      
+      // Save preference
+      localStorage.setItem('preferredLang', lang);
+      
+      // Show notification
+      showToast(lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English', 'success');
+    }
+
+    // Toast notification function
+    function showToast(message, type = 'info') {
+      const bgColor = type === 'success' ? 'var(--accent-dark-green)' : 
+                     type === 'error' ? '#dc3545' : 'var(--primary)';
+      
+      const toastHtml = `
+        <div class="toast align-items-center text-white border-0" 
+             role="alert" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: ${bgColor};">
+          <div class="d-flex">
+            <div class="toast-body">
+              ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      `;
+      
+      // Remove existing toast
+      const existingToast = document.querySelector('.toast');
+      if (existingToast) existingToast.remove();
+      
+      // Add new toast
+      document.body.insertAdjacentHTML('beforeend', toastHtml);
+      const toastEl = document.querySelector('.toast');
+      const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+      toast.show();
+      
+      // Remove after hide
+      toastEl.addEventListener('hidden.bs.toast', function() {
+        this.remove();
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load saved language preference
+      const savedLang = localStorage.getItem('preferredLang') || 'id';
+      changeLanguage(savedLang);
+      
+      // Mark current page as active in navbar
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
